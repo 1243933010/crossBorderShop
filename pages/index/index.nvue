@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		<customHeader />
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
 			<text class="title">{{title}}{{$t('index.system-language')}}</text>
@@ -14,7 +15,9 @@
 </template>
 
 <script>
+	import customHeader from '@/components/customHeader/customHeader.nvue'
 	export default {
+		components:{customHeader},
 		data() {
 			return {
 				title: 'Hello'

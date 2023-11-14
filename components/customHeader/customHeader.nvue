@@ -1,0 +1,105 @@
+<template>
+	<view class="page">
+		<view class="image-width">
+			<view class="header" <!-- #ifdef APP-NVUE -->
+				:style="{ paddingTop: iStatusBarHeight + 'px'}"
+				<!-- #endif -->>
+				<view class="header-icon">
+					<image src="../../static/logo.png" mode="widthFix"></image>
+				</view>
+				<view class="header-text">
+					<text>普斯集团</text>
+				</view>
+				<picker @change="bindPickerChange" :value="index" :range="array">
+					<view class="header-select">
+						<image class="header-select-icon" :src="imgSrc" mode="widthFix"></image>
+						<image class="header-select-select" src="../../static/select_icon.png" mode="widthFix"></image>
+					</view>
+				</picker>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		name: "customHeader",
+		data() {
+			return {
+				iStatusBarHeight: 0,
+				array: ['中文', '英语'],
+				index: 0,
+				iconList:['../../static/cn.png','../../static/eg.png'],
+				imgSrc:'../../static/cn.png',
+				locale:{'zh-Hans':0,'en':1}
+			};
+		},
+		mounted() {
+			console.log(uni.getSystemInfoSync().statusBarHeight, '----')
+			this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
+			let code =  uni.getLocale();
+			if(code){
+				this.imgSrc = this.iconList[this.locale[code]]
+			}
+		},
+		methods: {
+			bindPickerChange: function(e) {
+				// console.log('picker发送选择改变，携带值为', e.detail.value)
+				this.imgSrc = this.iconList[e.detail.value]
+			},
+		}
+	}
+</script>
+
+<style lang="less" scoped>
+	.page {
+		width: 100%;
+	}
+
+	.image-width {
+		width: 100%;
+		background-image: url('../../static/header_tabber.png');
+		height: 200rpx;
+
+		.header {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			width: calc(100% - 60rpx);
+			margin: 0 auto;
+			/* #ifdef H5 */
+			padding-top: 44px;
+
+			/* #endif */
+			.header-icon {
+				image {
+					width: 68rpx;
+					border-radius: 50%;
+				}
+
+			}
+
+			.header-text {
+				color: white;
+			}
+
+			.header-select {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+
+				.header-select-icon {
+					width: 53rpx;
+					border-radius: 50%;
+				}
+
+				.header-select-select {
+					width: 19rpx;
+					height: 12rpx;
+					margin-left: 9rpx;
+				}
+			}
+		}
+	}
+</style>
