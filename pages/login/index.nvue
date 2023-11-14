@@ -1,0 +1,194 @@
+<template>
+	<view class="profi-page-container login-page">
+		<view class="login-scroll">
+			<view class="logo pic">
+				<image src="../../static/img/logo.png" mode="widthFix" class="img"></image>
+			</view>
+
+			<view class="form-container">
+				<view class="form-tit">PUTH GROUP</view>
+
+				<view class="input-con account">
+					<view class="image-icon"></view>
+					<view class="prefix-con">
+						<view class="number-prefix">{{ pNumberPerfix }}</view>
+						<view class="arrow"></view>
+					</view>
+					<view class="inp">
+						<input type="number" placeholder="请输入手机号" />
+					</view>
+				</view>
+
+				<view class="input-con password">
+					<view class="image-icon"></view>
+					<view class="inp">
+						<input type="text" password placeholder="请输入密码" />
+					</view>
+					<view class="eye-icon"></view>
+				</view>
+
+				<label class="remember-me">
+					<radio class="radio" value="rememberMe" checked="true" color="color" />
+					记住密码
+				</label>
+
+				<view class="btn-list">
+					<button class="button login-btn">登录</button>
+					<button class="button region-btn">注册</button>
+				</view>
+			</view>
+
+			<!-- 手机号前缀选择器 -->
+			<picker @change="bindPickerChange" :value="pNumberPerfix" :range="pNumberPerfixArr">
+				<view class="uni-input">{{ pNumberPerfixArr[pNumberPerfix] }}</view>
+			</picker>
+		</view>
+	</view>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			pNumberPerfix: "+1", // 手机前缀
+			pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
+		};
+	},
+	methods: {
+		bindPickerChange() {},
+	},
+};
+</script>
+
+<style lang="less">
+@import "../../static/less/variable.less";
+.login-page {
+	padding-top: 170rpx;
+	background: url("../../static/img/bg/gradient.png") no-repeat center center / 100% 100%;
+	width: 100vw;
+	height: 100vh;
+
+	.login-scroll {
+		height: 100%;
+		
+		.logo {
+			margin: 0 auto 62rpx;
+			border-radius: 50%;
+			width: 140rpx;
+		}
+
+		.form-container {
+			padding: 65rpx 45rpx;
+			border-radius: 20rpx 20rpx 0 0;
+			background-color: #fff;
+			min-height: 10%;
+			flex-grow: 1;
+
+			.form-tit {
+				margin-bottom: 32rpx;
+				color: @bodyColor;
+				text-align: center;
+				font-size: 48rpx;
+				font-weight: bold;
+			}
+
+			.input-con {
+				margin-top: 40rpx;
+				padding: 30rpx 28rpx;
+				border-radius: 10rpx;
+				background-color: #f5f7fb;
+
+				.df(center, flex-start);
+
+				.image-icon {
+					width: 35rpx;
+					height: 38rpx;
+					background: no-repeat center center / 100%;
+				}
+
+				.inp {
+					margin-left: 25rpx;
+					min-width: 10%;
+					flex-grow: 1;
+
+					input {
+					}
+				}
+
+				&.account {
+					.image-icon {
+						background-image: url("../../static/img/icon/phone.png");
+					}
+
+					.prefix-con {
+						position: relative;
+
+						.number-prefix {
+							margin-left: 22rpx;
+							margin-right: 25rpx;
+						}
+
+						.arrow {
+							width: 20rpx;
+							height: 12rpx;
+							background: url("../../static/img/icon/arrow.png") no-repeat center center / 100% 100%;
+
+							position: absolute;
+							right: 0;
+							top: 50%;
+							transform: translateY(-50%);
+						}
+					}
+				}
+
+				&.password {
+					.image-icon {
+						background-image: url("../../static/img/icon/clock.png");
+					}
+
+					.eye-icon {
+						width: 29rpx;
+						height: 22rpx;
+						background: url("../../static/img/icon/eye.png") no-repeat center center / 100%;
+					}
+				}
+			}
+
+			.remember-me {
+				margin-top: 28rpx;
+				color: @descColor;
+
+				.df(center, flex-start);
+
+				.radio {
+					margin-right: 12rpx;
+					transform: scale(0.7);
+					font-size: @descSize;
+				}
+			}
+
+			.btn-list {
+				margin-top: 46rpx;
+
+				.button {
+					margin-top: 30rpx;
+					padding: 32rpx 20rpx;
+					width: 100%;
+					font-size: @descSize;
+
+					&.login-btn {
+						border-color: #383838;
+						color: #fff;
+						background-color: #383838;
+					}
+
+					&.region-btn {
+						border: 1px solid @descColor;
+						color: #383838;
+					}
+				}
+			}
+		}
+	}
+}
+</style>
