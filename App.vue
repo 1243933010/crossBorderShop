@@ -2,6 +2,11 @@
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			let code =  uni.getLocale();
+			if(!code){
+				uni.setLocale('zh-Hans');
+			}
+			console.log(code)
 		},
 		onShow: function() {
 			console.log('App Show')
