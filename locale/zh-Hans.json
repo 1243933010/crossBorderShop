@@ -18,7 +18,18 @@
 	"index.application-language": "应用语言",
 	"index.language-change-confirm": "应用此设置将重启App",
 	"api.message": "提示",
-  "schema.name": "姓名",
+	"schema.name": "姓名",
 	"schema.add": "新增",
-	"schema.add-success": "新增成功"
+	"schema.add-success": "新增成功",
+	
+	// 登录
+	"login.phonePlaceholder": "请输入手机号",
+	"login.pwdPlaceholder": "请输入密码",
+	"login.btn1": "登录",
+	"login.radioText": "记住密码",
+	
+	// 注册
+	"region.invitePlaceholder": "请输入邀请码",
+	"region.btn1": "注册",
+	"region.btn2": "已有账号，请前往登录"
 }

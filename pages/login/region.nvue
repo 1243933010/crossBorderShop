@@ -15,14 +15,14 @@
 						<view class="arrow"></view>
 					</view>
 					<view class="inp">
-						<input type="number" placeholder="请输入手机号" />
+						<input type="number" :placeholder="$t('login.phonePlaceholder')" />
 					</view>
 				</view>
 
 				<view class="input-con password">
 					<view class="image-icon"></view>
 					<view class="inp">
-						<input type="text" password placeholder="请输入密码" />
+						<input type="text" password :placeholder="$t('login.pwdPlaceholder')" />
 					</view>
 					<view class="eye-icon"></view>
 				</view>
@@ -30,14 +30,14 @@
 				<view class="input-con invite-code">
 					<view class="image-icon"></view>
 					<view class="inp">
-						<input type="number" placeholder="请输入密码" />
+						<input type="number" :placeholder="$t('region.invitePlaceholder')" />
 					</view>
 					<view class="eye-icon"></view>
 				</view>
 
 				<view class="btn-list">
-					<button class="button login-btn">注册</button>
-					<button class="button region-btn">已有账号，请前往登录</button>
+					<button class="button login-btn">{{ $t("region.btn1") }}</button>
+					<button class="button region-btn">{{ $t("region.btn2") }}</button>
 				</view>
 			</view>
 
@@ -155,7 +155,7 @@ export default {
 						background: url("../../static/img/icon/eye.png") no-repeat center center / 100%;
 					}
 				}
-				
+
 				&.invite-code {
 					.image-icon {
 						background-image: url("../../static/img/icon/invite.png");

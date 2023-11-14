@@ -10,38 +10,36 @@
 
 				<view class="input-con account">
 					<view class="image-icon"></view>
-					<view class="prefix-con">
-						<view class="number-prefix">{{ pNumberPerfix }}</view>
+					<view class="prefix-con" @click="openpNumberPicker">
+						<!-- 手机号前缀选择器 -->
+						<picker @change="bindPickerChange" :value="pNumberPerfixIndex" :range="pNumberPerfixArr">
+							<view class="number-prefix">{{ pNumberPerfix }}</view>
+						</picker>
 						<view class="arrow"></view>
 					</view>
 					<view class="inp">
-						<input type="number" placeholder="请输入手机号" />
+						<input type="number" :placeholder="$t('login.phonePlaceholder')" />
 					</view>
 				</view>
 
 				<view class="input-con password">
 					<view class="image-icon"></view>
 					<view class="inp">
-						<input type="text" password placeholder="请输入密码" />
+						<input type="text" password :placeholder="$t('login.pwdPlaceholder')" />
 					</view>
 					<view class="eye-icon"></view>
 				</view>
 
 				<label class="remember-me">
 					<radio class="radio" value="rememberMe" checked="true" color="color" />
-					记住密码
+					{{ $t("login.radioText") }}
 				</label>
 
 				<view class="btn-list">
-					<button class="button login-btn">登录</button>
-					<button class="button region-btn">注册</button>
+					<button class="button login-btn">{{ $t("login.btn1") }}</button>
+					<button class="button region-btn">{{ $t("region.btn1") }}</button>
 				</view>
 			</view>
-
-			<!-- 手机号前缀选择器 -->
-			<picker @change="bindPickerChange" :value="pNumberPerfix" :range="pNumberPerfixArr">
-				<view class="uni-input">{{ pNumberPerfixArr[pNumberPerfix] }}</view>
-			</picker>
 		</view>
 	</view>
 </template>
@@ -50,12 +48,17 @@
 export default {
 	data() {
 		return {
-			pNumberPerfix: "+1", // 手机前缀
+			pNumberPerfixIndex: 0, // 手机前缀 角标
 			pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
+			pNumberPerfix: "+1", // 手机前缀
 		};
 	},
 	methods: {
-		bindPickerChange() {},
+		bindPickerChange(e) {
+			this.pNumberPerfixIndex = e.detail.value;
+			this.pNumberPerfix = this.pNumberPerfixArr[this.pNumberPerfixIndex];
+		},
+		openpNumberPicker() {},
 	},
 };
 </script>
@@ -70,7 +73,7 @@ export default {
 
 	.login-scroll {
 		height: 100%;
-		
+
 		.logo {
 			margin: 0 auto 62rpx;
 			border-radius: 50%;
