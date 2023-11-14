@@ -5,6 +5,27 @@
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
+		},
+		{
+			"path": "pages/join/join",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/classification/classification",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/me/me",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
 		}
 	],
 	"globalStyle": {
@@ -13,5 +34,45 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#3cc51f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"height": "50px",
+		"fontSize": "10px",
+		"iconWidth": "24px",
+		"spacing": "3px",
+		"iconfontSrc": "static/iconfont.ttf", // app tabbar 字体.ttf文件路径 app 3.4.4+
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "",
+			"selectedIconPath": "",
+			"text": "首页"
+		
+		}, {
+			"pagePath": "pages/join/join",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "加盟"
+		},{
+			"pagePath": "pages/classification/classification",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "分类"
+		},{
+			"pagePath": "pages/me/me",
+			"iconPath": "static/image/icon_API.png",
+			"selectedIconPath": "static/image/icon_API_HL.png",
+			"text": "我的"
+		}]
+		
+	},
+	 "easycom": {
+	    "autoscan": true, //是否自动扫描组件
+	    "custom": {//自定义扫描规则
+	      "^uni-(.*)": "@/components/uni-$1.vue"
+	    }
+	  }
 }
