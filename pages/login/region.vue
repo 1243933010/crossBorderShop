@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import CustomHeader from "@/components/customHeader/customHeader.nvue";
+import CustomHeader from "@/components/customHeader/customHeader.vue";
 
 export default {
 	components: {

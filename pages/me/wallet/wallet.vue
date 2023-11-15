@@ -8,7 +8,7 @@
 </template>
 
 <script>
-	import hxNavbar from '@/components/hx-navbar.nvue'
+	import hxNavbar from '@/components/hx-navbar.vue'
 	export default {
 		components:{hxNavbar},
 		data() {

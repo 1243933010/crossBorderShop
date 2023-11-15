@@ -35,10 +35,7 @@
     "popGesture": "close",
     "launchwebview": {
       "id": "1",
-      "kernel": "WKWebview",
-      "uniNView": {
-        "path": "pages/index/index.js"
-      }
+      "kernel": "WKWebview"
     },
     "usingComponents": true,
     "nvueStyleCompiler": "uni-app",
@@ -61,6 +58,9 @@
           "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
           "<uses-feature android:name=\"android.hardware.camera\"/>",
           "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+        ],
+        "abiFilters": [
+          "arm64-v8a"
         ]
       },
       "apple": {},
@@ -147,5 +147,6 @@
       "selected": 0
     }
   },
+  "launch_path": "__uniappview.html",
   "fallbackLocale": "en"
 }
