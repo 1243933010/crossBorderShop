@@ -188,10 +188,10 @@ page {
 
           .df(center, center);
           flex-direction: column;
+		  text-align: center;
 
           .input {
             margin-bottom: 32rpx;
-            text-align: center;
           }
 
           &.active {

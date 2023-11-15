@@ -21,6 +21,7 @@
   "schema.name": "Name",
   "schema.add": "Add",
   "schema.add-success": "Add success",
+  "loacal.chinaText": "English",
 
   // 登录
   "login.phonePlaceholder": "Please enter your phone number",
@@ -129,14 +130,21 @@
   "app.join": "join",
   "app.classification": "classification",
   "app.me": "me",
-  "app.Exit":"Exit login",
-  "app.Agreement":"Service Agreement",
-  "app.orderDetail":"order detail",
-  "app.costPrice":"cost price",
-  "app.profit":"profit",
-  "app.quantity":"quantity",
-  "app.totalPrice":"Total price",
-  "app.orderNumber":"Order number",
-  "app.PaymentTime":"Payment time",
-  "app.orderTime":"order time"
+
+  // 团队加入详情
+  "teamInfo.pageTit": "Subordinate Details",
+  "teamInfo.tableTh1": "phone Num",
+  "teamInfo.tableTh2": "Level",
+  "teamInfo.tableTh3": "Registration time",
+
+  "app.Exit": "Exit login",
+  "app.Agreement": "Service Agreement",
+  "app.orderDetail": "order detail",
+  "app.costPrice": "cost price",
+  "app.profit": "profit",
+  "app.quantity": "quantity",
+  "app.totalPrice": "Total price",
+  "app.orderNumber": "Order number",
+  "app.PaymentTime": "Payment time",
+  "app.orderTime": "order time"
 }

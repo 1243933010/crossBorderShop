@@ -5,7 +5,7 @@
       <view class="list">
         <navigator url="/pages/index/activityInfo" class="item">
           <view class="item-tit">{{ $t("activity.item1") }}</view>
-          <view class="arrow-icon"><!-- TODO: 没有箭头图片 --></view>
+          <view class="arrow-icon"></view>
         </navigator>
       </view>
     </view>
@@ -62,7 +62,7 @@ page {
         .arrow-icon {
           width: 14rpx;
           height: 25rpx;
-          background-color: #999;
+          background: url("../../static/img/right_arrow.png") no-repeat top left / 100% 100%;
         }
       }
     }

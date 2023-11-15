@@ -5,15 +5,15 @@
       <view class="list">
         <navigator url="/pages/index/qualificationsInfo" class="item">
           <view class="item-tit">{{ $t("qualifications.item1") }}</view>
-          <view class="arrow-icon"><!-- TODO: 没有箭头图片 --></view>
+          <view class="arrow-icon"></view>
         </navigator>
         <navigator url="/pages/index/qualificationsInfo" class="item">
           <view class="item-tit">{{ $t("qualifications.item2") }}</view>
-          <view class="arrow-icon"><!-- TODO: 没有箭头图片 --></view>
+          <view class="arrow-icon"></view>
         </navigator>
         <navigator url="/pages/index/qualificationsInfo" class="item">
           <view class="item-tit">{{ $t("qualifications.item3") }}</view>
-          <view class="arrow-icon"><!-- TODO: 没有箭头图片 --></view>
+          <view class="arrow-icon"></view>
         </navigator>
       </view>
     </view>
@@ -70,7 +70,7 @@ page {
         .arrow-icon {
           width: 14rpx;
           height: 25rpx;
-          background-color: #999;
+          background: url("../../static/img/right_arrow.png") no-repeat top left / 100% 100%;
         }
       }
     }

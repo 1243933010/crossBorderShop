@@ -130,14 +130,21 @@
   "app.join": "加盟",
   "app.classification": "分类",
   "app.me": "我的",
-  "app.Exit":"退出登陆",
-  "app.Agreement":"服务协议",
-  "app.orderDetail":"订单详情",
-  "app.costPrice":"成本价",
-  "app.profit":"利润",
-  "app.quantity":"数量",
-  "app.totalPrice":"价格总额",
-  "app.orderNumber":"订单号",
-  "app.PaymentTime":"付款时间",
-  "app.orderTime":"订货时间"
+
+  // 团队加入详情
+  "teamInfo.pageTit": "下级详细信息",
+  "teamInfo.tableTh1": "电话",
+  "teamInfo.tableTh2": "数量",
+  "teamInfo.tableTh3": "报名时间",
+
+  "app.Exit": "退出登陆",
+  "app.Agreement": "服务协议",
+  "app.orderDetail": "订单详情",
+  "app.costPrice": "成本价",
+  "app.profit": "利润",
+  "app.quantity": "数量",
+  "app.totalPrice": "价格总额",
+  "app.orderNumber": "订单号",
+  "app.PaymentTime": "付款时间",
+  "app.orderTime": "订货时间"
 }
