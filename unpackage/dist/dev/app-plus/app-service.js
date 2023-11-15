@@ -40,34 +40,967 @@ if (uni.restoreGlobal) {
   };
   const _sfc_main$3 = {
     data() {
-      return {};
+      return {
+        userInfo: {
+          name: "昵称",
+          id: "111111",
+          vip: 1,
+          num1: 1,
+          num2: 1,
+          num3: 1
+        }
+      };
+    },
+    computed: {
+      linkList() {
+        return [
+          { url: "", title: this.$t("app.myWallet"), src: "../../static/img/lc.png" },
+          { url: "", title: this.$t("app.financial"), src: "../../static/img/cw.png" },
+          { url: "", title: this.$t("app.securityCenter"), src: "../../static/img/ws.png" },
+          { url: "", title: this.$t("app.recharge"), src: "../../static/img/cz.png" },
+          { url: "", title: this.$t("app.withdraw"), src: "../../static/img/tx.png" },
+          { url: "", title: this.$t("app.basicFunctions"), src: "../../static/img/jz.png" }
+        ];
+      }
     }
   };
   function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view");
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createElementVNode("view", { class: "bk" }, [
+        vue.createElementVNode("view", { class: "userinfo" }, [
+          vue.createElementVNode("view", { class: "logo" }, [
+            vue.createElementVNode("image", {
+              src: "/static/img/logo.png",
+              mode: "widthFix"
+            })
+          ]),
+          vue.createElementVNode("view", { class: "msg" }, [
+            vue.createElementVNode("view", { class: "name" }, [
+              vue.createElementVNode(
+                "text",
+                { class: "name-text" },
+                vue.toDisplayString($data.userInfo.name),
+                1
+                /* TEXT */
+              ),
+              vue.createElementVNode(
+                "view",
+                { class: "vip" },
+                "VIP" + vue.toDisplayString($data.userInfo.vip),
+                1
+                /* TEXT */
+              )
+            ]),
+            vue.createElementVNode("view", { class: "id" }, [
+              vue.createElementVNode(
+                "text",
+                null,
+                vue.toDisplayString($data.userInfo.id),
+                1
+                /* TEXT */
+              )
+            ])
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "number" }, [
+          vue.createElementVNode("view", { class: "item" }, [
+            vue.createElementVNode("view", { class: "num" }, [
+              vue.createElementVNode("text", null, "1")
+            ]),
+            vue.createElementVNode("view", { class: "text" }, [
+              vue.createElementVNode("text", null, "平衡 (U)")
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "item" }, [
+            vue.createElementVNode("view", { class: "num" }, [
+              vue.createElementVNode("text", null, "1")
+            ]),
+            vue.createElementVNode("view", { class: "text" }, [
+              vue.createElementVNode("text", null, "总收入 (U)")
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "item" }, [
+            vue.createElementVNode("view", { class: "num" }, [
+              vue.createElementVNode("text", null, "1")
+            ]),
+            vue.createElementVNode("view", { class: "text" }, [
+              vue.createElementVNode("text", null, "存款 (U)")
+            ])
+          ])
+        ])
+      ]),
+      vue.createElementVNode("view", { class: "list" }, [
+        (vue.openBlock(true), vue.createElementBlock(
+          vue.Fragment,
+          null,
+          vue.renderList($options.linkList, (item, index) => {
+            return vue.openBlock(), vue.createElementBlock("view", {
+              class: "item",
+              key: index
+            }, [
+              vue.createElementVNode("view", { class: "left" }, [
+                vue.createElementVNode("image", {
+                  src: item.src,
+                  mode: "widthFix"
+                }, null, 8, ["src"]),
+                vue.createElementVNode("view", { class: "text" }, [
+                  vue.createElementVNode(
+                    "text",
+                    null,
+                    vue.toDisplayString(item.title),
+                    1
+                    /* TEXT */
+                  )
+                ])
+              ]),
+              vue.createElementVNode("view", { class: "right" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/right_arrow.png",
+                  mode: "widthFix"
+                })
+              ])
+            ]);
+          }),
+          128
+          /* KEYED_FRAGMENT */
+        ))
+      ]),
+      vue.createElementVNode("view", { class: "btn-box" }, [
+        vue.createElementVNode("view", { class: "box" }, [
+          vue.createElementVNode("view", { class: "exit" }, [
+            vue.createElementVNode("text", null, "退出登陆")
+          ]),
+          vue.createElementVNode("view", { class: "agreement" }, [
+            vue.createElementVNode("text", null, "服务协议")
+          ])
+        ])
+      ])
+    ]);
   }
-  const PagesJoinJoin = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "D:/私人文件夹/crossBorderShop/pages/join/join.vue"]]);
+  const PagesMeMe = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__scopeId", "data-v-19c123a7"], ["__file", "E:/work/外包/crossBorderShop/pages/me/me.vue"]]);
   const _sfc_main$2 = {
+    name: "hxNavbar",
+    components: {},
     data() {
-      return {};
+      return {
+        title: "",
+        backgroundColorRgba: "",
+        backgroundColorRgb: "rgb(222,222,222)",
+        backgroundImage: null,
+        backgroundImageEnd: null,
+        //当前使用文字颜色
+        txtColor: "#333333",
+        // 背景颜色过度数组
+        bgArr: [],
+        // 文字颜色过度数组
+        colorArr: [],
+        // 状态栏颜色
+        statusBarBackground: "",
+        // 背景透明
+        bgTransparent: 1,
+        // 背景图片透明
+        bgImgTransparent: [1, 1],
+        // 小程序 胶囊宽度
+        jnWidth: 0,
+        // 背景颜色是否为线性渐变
+        bgIsLine: false,
+        // 插槽过度透明度
+        slotSwitchOpacity: 1,
+        // 默认设置
+        conf: {
+          // 标题
+          title: "",
+          // nav 高度
+          height: 44,
+          // 是否固定头部
+          fixed: true,
+          // 是否包含状态栏
+          statusBar: true,
+          // 状态栏字体颜色，只支持黑（#000000）和白（#FFFFFF）两种颜色。为数组则是滑动变色
+          statusBarFontColor: "#000000",
+          //状态栏背景颜色
+          statusBarBackground: null,
+          // 字体
+          font: "hxicon",
+          // 字体大小
+          fontSize: "18px",
+          // 文字颜色，可以数组和string，为数组则是滑动变色 ["#000000","#ff9900"]
+          color: "#333333",
+          //背景颜色;参数一：透明度;参数二：背景颜色（array则为线性渐变，string为单色背景）、
+          // [1,['#24bdab','#80c54c']]
+          backgroundColor: [1, "#ffffff"],
+          // 背景图片（array则为滑动切换背景图，string为单一背景图）
+          // 普通背景
+          // ['/static/xj.jpg']
+          // 切换功能参数说明：第一张图片，第二张图，第一张图透明度，第二张图透明度
+          // ['/static/xj.jpg','/static/xk.jpg',1,1]
+          backgroundImg: null,
+          // 线性渐变角度
+          backgroundColorLinearDeg: "to right",
+          // 滑动距离
+          slideHeight: 100,
+          // 滑动后背景颜色;参数一：透明度;参数二：背景颜色（array则为线性渐变，string为单色背景）
+          slideBackgroundColor: null,
+          // 是否需要返回按钮
+          back: true,
+          // 返回文本 '返回',小程序无效
+          backTxt: null,
+          // 返回tab页面
+          backTabPage: null,
+          // 返回普通页面
+          backPage: null,
+          // 左侧按钮组，icon参数为必填
+          leftButton: null,
+          // 右侧按钮组，icon参数为必填
+          rightButton: null,
+          // rightButton:[{
+          //	key: 'address',		// 标识，方便事件识别是哪一个按钮触发
+          // 	icon: '&#xe64b;',	// 图标代码
+          //	txt: '文本',			// 文本，常用于城市选择
+          // 	color: '#ff9900',	// 图标颜色
+          //  position: 'left', // 图标居于文字left 或 right
+          // },{
+          //	key: 'address',		// 标识，方便事件识别是哪一个按钮触发
+          // 	icon: '&#xe650;', 
+          // 	txt: '文本',
+          // 	color: '#894574',
+          // },]
+          // 搜索框
+          search: null,
+          // search: {
+          // 	value:'',
+          // 	placeholder: '',
+          // 	disabled: false
+          // }
+          // 阴影
+          shadow: false,
+          // 底边框
+          border: false,
+          // 导航栏占位符
+          barPlaceholder: true,
+          // 插槽滑动切换
+          slotSwitch: 0,
+          // 右插槽
+          rightSlot: false,
+          // 右插槽切换
+          rightSlotSwitch: false
+        }
+      };
+    },
+    props: {
+      config: {
+        type: Object,
+        default: () => ({})
+      }
+    },
+    computed: {
+      //获取系统状态栏高度
+      statusBarHeight() {
+        return uni.getSystemInfoSync().statusBarHeight;
+      },
+      navbarHeight() {
+        var that = this;
+        return uni.getSystemInfoSync().statusBarHeight + that.conf.height + "px";
+      },
+      screenWidth() {
+        return uni.getSystemInfoSync().screenWidth;
+      }
+    },
+    created() {
+      var that = this;
+      that.init();
+    },
+    mounted() {
+    },
+    watch: {
+      // 'conf.leftButton': {
+      // 	handler(newVal, oldVal) {
+      // 		__f__('log','at components/hx-navbar.nvue:316',"出发了")
+      // 		//this.init()
+      // 		this.conf.leftButton = newVal
+      // 	},
+      // 	// 启用深度监听
+      // 	deep: true
+      // }
+    },
+    methods: {
+      iconHandle(icon) {
+        icon = icon.replace(/(&#x|;)/g, "");
+        return unescape("%u" + icon);
+      },
+      init() {
+        var that = this;
+        that.conf = Object.assign(that.conf, that.config);
+        if (that.conf.title != "") {
+          uni.setNavigationBarTitle({
+            title: that.conf.title
+          });
+        }
+        if (that.conf.title) {
+          if (typeof that.conf.title == "object" && that.conf.title.length == 2) {
+            that.title = that.conf.title[0];
+          } else {
+            that.title = that.conf.title;
+          }
+        }
+        if (that.conf.statusBarBackground) {
+          if (typeof that.conf.statusBarBackground == "object" && that.conf.statusBarBackground.length == 2) {
+            that.statusBarBackground = that.conf.statusBarBackground[0];
+          } else {
+            that.statusBarBackground = that.conf.statusBarBackground;
+          }
+        }
+        if (that.conf.statusBarFontColor) {
+          uni.setNavigationBarColor({
+            frontColor: typeof that.conf.statusBarFontColor == "object" ? that.conf.statusBarFontColor[0] : that.conf.statusBarFontColor,
+            backgroundColor: "#000000"
+          });
+        }
+        if (that.conf.color != "") {
+          if (typeof that.conf.color == "object" && that.conf.color.length == 2) {
+            that.txtColor = that.conf.color[0];
+            that.colorArr = that.gradientColor(that.conf.color[0], that.conf.color[1], that.conf.slideHeight);
+          } else {
+            that.txtColor = that.conf.color;
+          }
+        }
+        if (that.conf.backgroundImg) {
+          let img = "";
+          if (typeof that.conf.backgroundImg == "object") {
+            img = that.conf.backgroundImg[0];
+            if (that.conf.backgroundImg.length > 2) {
+              that.bgTransparent = that.conf.backgroundImg[2];
+            }
+          } else {
+            img = that.conf.backgroundImg;
+            that.bgTransparent = 1;
+          }
+          that.backgroundImage = that.bgImgStringHandle(img);
+        }
+        if (that.conf.backgroundColor) {
+          let transparent = that.conf.backgroundColor[0];
+          let background = that.conf.backgroundColor[1];
+          if (typeof background == "object" && background.length > 1) {
+            that.bgIsLine = true;
+          }
+          if (that.conf.slideBackgroundColor) {
+            let backgroundEnd = that.conf.slideBackgroundColor[1];
+            that.bgArr = [];
+            if (background && typeof background == "object" && background.length > 0) {
+              for (var i in background) {
+                that.bgArr.push(that.gradientColor(background[i], backgroundEnd[i], that.conf.slideHeight));
+              }
+            } else {
+              that.bgArr.push(that.gradientColor(background, backgroundEnd, that.conf.slideHeight));
+            }
+          }
+          that.bgTransparent = transparent;
+          that.setBgColor(background, transparent);
+        }
+        if (that.conf.rightButton && that.conf.rightButton.length > 0)
+          ;
+      },
+      // 返回
+      onBack() {
+        var that = this;
+        if (that.conf.backTabPage) {
+          uni.switchTab({
+            url: that.conf.backTabPage
+          });
+        } else if (that.conf.backPage) {
+          uni.redirectTo({
+            url: that.conf.backPage
+          });
+        } else if (getCurrentPages().length > 1) {
+          uni.navigateBack();
+        } else
+          ;
+      },
+      onClickBtn(e) {
+        this.$emit("clickBtn", e);
+      },
+      pageScroll(e) {
+        var that = this;
+        const st = parseFloat(e.scrollTop.toFixed(2));
+        let slideHeight = that.conf.slideHeight;
+        let a = Math.round(st);
+        if (a > 0) {
+          a -= 1;
+        } else {
+          a = 0;
+        }
+        if (that.conf.title && typeof that.conf.title == "object" && that.conf.title.length == 2) {
+          if (st <= slideHeight) {
+            that.title = that.conf.title[0];
+          } else {
+            that.title = that.conf.title[1];
+          }
+        }
+        if (that.conf.color && typeof that.conf.color == "object" && that.conf.color.length == 2) {
+          let colorArr = that.colorArr;
+          let rgb = a <= colorArr.length - 1 ? colorArr[a] : colorArr[colorArr.length - 1];
+          that.txtColor = rgb;
+        }
+        that.slotSwitchOpacity = that.transHandle(st, slideHeight, 1, 0);
+        if (that.conf.statusBarFontColor && typeof that.conf.statusBarFontColor == "object" && that.conf.statusBarFontColor.length == 2) {
+          if (st <= slideHeight) {
+            uni.setNavigationBarColor({
+              frontColor: that.conf.statusBarFontColor[0],
+              backgroundColor: "#ffffff"
+            });
+          } else {
+            uni.setNavigationBarColor({
+              frontColor: that.conf.statusBarFontColor[1],
+              backgroundColor: "#ffffff"
+            });
+          }
+        }
+        if (that.conf.statusBarBackground && typeof that.conf.statusBarBackground == "object" && that.conf.statusBarBackground.length == 2) {
+          if (st <= slideHeight) {
+            that.statusBarBackground = that.conf.statusBarBackground[0];
+          } else {
+            that.statusBarBackground = that.conf.statusBarBackground[1];
+          }
+        }
+        let BI = that.conf.backgroundImg;
+        if (that.conf.backgroundImg && typeof that.conf.backgroundImg == "object" && BI.length > 1) {
+          let BIL = BI.length;
+          that.bgTransparent = BIL <= 3 ? 1 : that.transHandle(st, slideHeight, BI[2], BI[3]);
+          that.bgImgTransparent[0] = BIL <= 3 ? 1 : that.transHandle(st, slideHeight, BI[2], 0);
+          that.bgImgTransparent[1] = BI[3];
+          if (st <= slideHeight) {
+            BI[0];
+          } else {
+            BI[1];
+          }
+          that.backgroundImage = that.bgImgStringHandle(BI[0]);
+          that.backgroundImageEnd = that.bgImgStringHandle(BI[1]);
+        }
+        if (that.conf.slideBackgroundColor) {
+          let bgArr = that.bgArr;
+          var bgData = [];
+          for (var i in that.bgArr) {
+            let rgb = a <= bgArr[i].length - 1 ? bgArr[i][a] : bgArr[i][bgArr[i].length - 1];
+            bgData.push(rgb.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(","));
+          }
+          let transparentStart = that.conf.backgroundColor[0];
+          let transparentEnd = that.conf.slideBackgroundColor[0];
+          let transparent = transparentEnd;
+          if (st <= slideHeight) {
+            let cVal = Math.abs(transparentEnd - transparentStart);
+            let tVal = parseFloat(cVal / slideHeight).toFixed(4);
+            let curVal = parseFloat(tVal * st).toFixed(2);
+            transparent = transparentStart > transparentEnd ? transparentStart - curVal : transparentStart + curVal;
+            transparent = parseFloat(transparent).toFixed(2);
+          }
+          let backgroundEnd = that.conf.slideBackgroundColor[1];
+          let rgbStr = "";
+          if (typeof backgroundEnd == "object" && backgroundEnd.length > 1) {
+            rgbStr = "linear-gradient(" + that.conf.backgroundColorLinearDeg + ",";
+            let l = bgData.length;
+            for (var i in bgData) {
+              let c = bgData[i];
+              rgbStr += "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + transparent + ")";
+              if (l != i * 1 + 1) {
+                rgbStr += ",";
+              }
+            }
+            rgbStr += ")";
+          } else {
+            rgbStr = "rgba(" + bgData[0][0] + "," + bgData[0][1] + "," + bgData[0][2] + "," + transparent + ")";
+          }
+          that.bgTransparent = transparent;
+          that.backgroundColorRgba = rgbStr;
+        }
+      },
+      // 透明度计算，
+      // 起始位置，结束位置，起始透明度，目标透明度
+      transHandle(hStart, hEnd, tStart, tEnd) {
+        let transparent = tEnd;
+        if (hStart <= hEnd) {
+          let cVal = Math.abs(tEnd - tStart);
+          let tVal = parseFloat(cVal / hEnd).toFixed(4);
+          let curVal = parseFloat(tVal * hStart).toFixed(2);
+          transparent = tStart > tEnd ? tStart - curVal : tStart + curVal;
+          transparent = parseFloat(transparent).toFixed(2);
+        }
+        return transparent;
+      },
+      // 起始颜色，结束颜色，过渡数量
+      gradientColor(startColor, endColor, step) {
+        var that = this;
+        let startRGB = that.colorRgb(startColor);
+        let startR = startRGB[0];
+        let startG = startRGB[1];
+        let startB = startRGB[2];
+        let endRGB = that.colorRgb(endColor);
+        let endR = endRGB[0];
+        let endG = endRGB[1];
+        let endB = endRGB[2];
+        let sR = (endR - startR) / step;
+        let sG = (endG - startG) / step;
+        let sB = (endB - startB) / step;
+        let colorArr = [];
+        for (let i = 0; i < step; i++) {
+          var str = "rgb(" + parseInt(sR * i + startR) + "," + parseInt(sG * i + startG) + "," + parseInt(sB * i + startB) + ")";
+          let hex = that.colorHex(str);
+          colorArr.push(hex);
+        }
+        return colorArr;
+      },
+      // 转换函数
+      colorRgb(sColor) {
+        var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+        var sColor = sColor.toLowerCase();
+        if (sColor && reg.test(sColor)) {
+          if (sColor.length === 4) {
+            var sColorNew = "#";
+            for (var i = 1; i < 4; i += 1) {
+              sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+            }
+            sColor = sColorNew;
+          }
+          var sColorChange = [];
+          for (var i = 1; i < 7; i += 2) {
+            sColorChange.push(parseInt("0x" + sColor.slice(i, i + 2)));
+          }
+          return sColorChange;
+        } else {
+          return sColor;
+        }
+      },
+      colorHex(rgb) {
+        var _this = rgb;
+        var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+        if (/^(rgb|RGB)/.test(_this)) {
+          var aColor = _this.replace(/(?:(|)|rgb|RGB)*/g, "").split(",");
+          var strHex = "#";
+          for (var i = 0; i < aColor.length; i++) {
+            var hex = Number(aColor[i]).toString(16);
+            hex = hex < 10 ? "0" + hex : hex;
+            if (hex === "0") {
+              hex += hex;
+            }
+            strHex += hex;
+          }
+          if (strHex.length !== 7) {
+            strHex = _this;
+          }
+          return strHex;
+        } else if (reg.test(_this)) {
+          var aNum = _this.replace(/#/, "").split("");
+          if (aNum.length === 6) {
+            return _this;
+          } else if (aNum.length === 3) {
+            var numHex = "#";
+            for (var i = 0; i < aNum.length; i += 1) {
+              numHex += aNum[i] + aNum[i];
+            }
+            return numHex;
+          }
+        } else {
+          return _this;
+        }
+      },
+      //背景颜色初始化
+      // 透明度，背景颜色string ，array
+      setBgColor(background, transparent) {
+        var that = this;
+        if (typeof background == "object" && background.length > 0) {
+          let rgbStr = "linear-gradient(" + that.conf.backgroundColorLinearDeg + ",";
+          let c = null;
+          for (var i in background) {
+            c = background[i];
+            let o = that.colorRgb(c);
+            rgbStr += `rgba(${o[0]}, ${o[1]}, ${o[2]}, ${transparent})`;
+            if (background.length != i * 1 + 1) {
+              rgbStr += ",";
+            }
+          }
+          rgbStr += ")";
+          that.backgroundColorRgba = rgbStr;
+        } else {
+          let c = background;
+          let o = that.colorRgb(c);
+          that.backgroundColorRgba = `rgba(${o[0]}, ${o[1]}, ${o[2]}, ${transparent})`;
+        }
+      },
+      bgImgStringHandle(img) {
+        return img;
+      },
+      // 搜索框，点击完成时触发
+      searchConfirm(event) {
+        this.$emit("searchConfirm", event.detail);
+      },
+      // 搜索框点击事件
+      searchClick(event) {
+        this.$emit("searchClick", true);
+      }
     }
   };
   function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view");
+    return vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        class: "hx-navbar",
+        style: vue.normalizeStyle({ width: $options.screenWidth + "px" })
+      },
+      [
+        vue.createElementVNode(
+          "view",
+          {
+            class: vue.normalizeClass(["hx-navbar__content", { "hx-navbar__fixed": $data.conf.fixed, "hx-navbar__shadow": $data.conf.shadow, "hx-navbar__border": $data.conf.border }]),
+            style: vue.normalizeStyle({ width: $options.screenWidth + "px", "background-color": !$data.bgIsLine ? $data.backgroundColorRgba : "", "background-image": $data.bgIsLine ? $data.backgroundColorRgba : "", height: $options.navbarHeight, color: $data.txtColor })
+          },
+          [
+            vue.createCommentVNode(` <block v-if="backgroundImage">\r
+				<view class="hx-navbar__img" :style="{'background-image': backgroundImageEnd,'opacity': bgImgTransparent[1]}"></view>\r
+				<view class="hx-navbar__img" :style="{'background-image': backgroundImage,'opacity': bgImgTransparent[0]}"></view>\r
+			</block> `),
+            $data.backgroundImage ? (vue.openBlock(), vue.createElementBlock(
+              "view",
+              {
+                key: 0,
+                class: "hx-navbar__content__imgctn",
+                style: vue.normalizeStyle({ "opacity": $data.bgImgTransparent[1] })
+              },
+              [
+                vue.createElementVNode("image", {
+                  class: "hx-navbar__imgctn__img",
+                  style: vue.normalizeStyle({ "height": $data.conf.height + $options.statusBarHeight + "px", width: $options.screenWidth + "px" }),
+                  src: $data.backgroundImageEnd,
+                  mode: "scaleToFill"
+                }, null, 12, ["src"])
+              ],
+              4
+              /* STYLE */
+            )) : vue.createCommentVNode("v-if", true),
+            $data.backgroundImage ? (vue.openBlock(), vue.createElementBlock(
+              "view",
+              {
+                key: 1,
+                class: "hx-navbar__content__imgctn",
+                style: vue.normalizeStyle({ "opacity": $data.bgImgTransparent[0] })
+              },
+              [
+                vue.createElementVNode("image", {
+                  class: "hx-navbar__imgctn__img",
+                  style: vue.normalizeStyle({ "height": $data.conf.height + $options.statusBarHeight + "px", width: $options.screenWidth + "px" }),
+                  src: $data.backgroundImage,
+                  mode: "scaleToFill"
+                }, null, 12, ["src"])
+              ],
+              4
+              /* STYLE */
+            )) : vue.createCommentVNode("v-if", true),
+            vue.createCommentVNode(" 状态栏 "),
+            $data.conf.statusBar ? (vue.openBlock(), vue.createElementBlock(
+              "view",
+              {
+                key: 2,
+                style: vue.normalizeStyle("height:" + $options.statusBarHeight + "px;" + ($data.statusBarBackground ? "background-color:" + $data.statusBarBackground : "")),
+                class: "hx-navbar__status"
+              },
+              null,
+              4
+              /* STYLE */
+            )) : vue.createCommentVNode("v-if", true),
+            vue.createCommentVNode(" 小程序分开编译 "),
+            vue.createElementVNode(
+              "view",
+              {
+                class: "hx-navbar__content__main",
+                style: vue.normalizeStyle({ height: $data.conf.height + "px", fontSize: $data.conf.fontSize })
+              },
+              [
+                vue.createCommentVNode(" 不是app的时候中返回和left在前面 "),
+                $data.conf.back ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 0,
+                  class: "hx-navbar__content__main_back",
+                  onClick: _cache[0] || (_cache[0] = (...args) => $options.onBack && $options.onBack(...args))
+                }, [
+                  vue.createElementVNode(
+                    "text",
+                    {
+                      class: vue.normalizeClass(["hxicon hx-navbar__icon", { "hx-navbar__icontran": $data.bgTransparent == 0 }]),
+                      style: vue.normalizeStyle({ color: $data.txtColor })
+                    },
+                    "",
+                    6
+                    /* CLASS, STYLE */
+                  ),
+                  $data.conf.backTxt ? (vue.openBlock(), vue.createElementBlock(
+                    "text",
+                    {
+                      key: 0,
+                      class: "hx_font_size",
+                      style: vue.normalizeStyle({ color: $data.txtColor })
+                    },
+                    vue.toDisplayString($data.conf.backTxt),
+                    5
+                    /* TEXT, STYLE */
+                  )) : vue.createCommentVNode("v-if", true)
+                ])) : vue.createCommentVNode("v-if", true),
+                $data.conf.leftSlot ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 1,
+                  class: "hx-navbar__content__main_left",
+                  style: { "padding": "0", "margin": "0 13px 0 0" }
+                }, [
+                  $data.conf.leftSlotSwitch && $data.slotSwitchOpacity == 0 ? vue.renderSlot(_ctx.$slots, "leftSwitch", { key: 0 }, void 0, true) : vue.renderSlot(_ctx.$slots, "left", { key: 1 }, void 0, true)
+                ])) : vue.createCommentVNode("v-if", true),
+                $data.conf.leftButton ? (vue.openBlock(), vue.createElementBlock(
+                  "view",
+                  {
+                    key: 2,
+                    class: "hx-navbar__content__main_left",
+                    style: vue.normalizeStyle({ "padding": $data.conf.back || $data.conf.leftSlot ? "0" : "0 9px 0 13px;" })
+                  },
+                  [
+                    (vue.openBlock(true), vue.createElementBlock(
+                      vue.Fragment,
+                      null,
+                      vue.renderList($data.conf.leftButton, (btn, index) => {
+                        return vue.openBlock(), vue.createElementBlock("view", {
+                          key: index,
+                          class: vue.normalizeClass(["hx-navbar__content__main_left_btn", { "hx-navbar__btntran": $data.bgTransparent == 0 }]),
+                          onClick: ($event) => $options.onClickBtn(btn)
+                        }, [
+                          btn.position && btn.position == "left" ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 0,
+                              class: vue.normalizeClass(["hx-navbar__icon", $data.conf.font]),
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : $data.txtColor, marginRight: btn.txt ? "2px" : "0" })
+                            },
+                            vue.toDisplayString($options.iconHandle(btn.icon)),
+                            7
+                            /* TEXT, CLASS, STYLE */
+                          )) : vue.createCommentVNode("v-if", true),
+                          btn.txt ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 1,
+                              class: "hx-navbar__content__main_lefticon_txt hx_font_size",
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : $data.txtColor })
+                            },
+                            vue.toDisplayString(btn.txt),
+                            5
+                            /* TEXT, STYLE */
+                          )) : vue.createCommentVNode("v-if", true),
+                          !btn.position || btn.position != "left" ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 2,
+                              class: vue.normalizeClass(["hx-navbar__icon", $data.conf.font]),
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : $data.txtColor, marginLeft: btn.txt ? "2px" : "0" })
+                            },
+                            vue.toDisplayString($options.iconHandle(btn.icon)),
+                            7
+                            /* TEXT, CLASS, STYLE */
+                          )) : vue.createCommentVNode("v-if", true)
+                        ], 10, ["onClick"]);
+                      }),
+                      128
+                      /* KEYED_FRAGMENT */
+                    ))
+                  ],
+                  4
+                  /* STYLE */
+                )) : vue.createCommentVNode("v-if", true),
+                !$data.conf.search && !$data.conf.maxSlot ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 3,
+                  class: "hx-navbar__content__main_center"
+                }, [
+                  vue.createElementVNode("view", { class: "hx-navbar__content__main_center_flex" }),
+                  vue.createElementVNode("view", { class: "hx-navbar__content__main_center_txt" }, [
+                    !$data.conf.centerSlot && $data.title ? (vue.openBlock(), vue.createElementBlock(
+                      "text",
+                      {
+                        key: 0,
+                        class: "hx_font_size hx_text_overflow",
+                        style: vue.normalizeStyle({ color: $data.txtColor })
+                      },
+                      vue.toDisplayString($data.title),
+                      5
+                      /* TEXT, STYLE */
+                    )) : vue.createCommentVNode("v-if", true),
+                    $data.conf.centerSlotSwitch && $data.slotSwitchOpacity == 0 ? vue.renderSlot(_ctx.$slots, "centerSwitch", { key: 1 }, void 0, true) : vue.renderSlot(_ctx.$slots, "center", { key: 2 }, void 0, true)
+                  ]),
+                  vue.createElementVNode("view", { class: "hx-navbar__content__main_center_flex" })
+                ])) : vue.createCommentVNode("v-if", true),
+                !$data.conf.search && $data.conf.maxSlot ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 4,
+                  class: "hx-navbar__content__main_center",
+                  style: { "overflow": "hidden" }
+                }, [
+                  $data.conf.maxSlotSwitch && $data.slotSwitchOpacity == 0 ? vue.renderSlot(_ctx.$slots, "maxSwitch", { key: 0 }, void 0, true) : vue.renderSlot(_ctx.$slots, "max", { key: 1 }, void 0, true)
+                ])) : vue.createCommentVNode("v-if", true),
+                $data.conf.search ? (vue.openBlock(), vue.createElementBlock(
+                  "view",
+                  {
+                    key: 5,
+                    class: "hx-navbar__content__main_search",
+                    style: vue.normalizeStyle({ "padding-left": $data.conf.leftButton ? "9px" : "13px", "padding-right": $data.conf.rightButton ? "9px" : "13px" }),
+                    onClick: _cache[2] || (_cache[2] = (...args) => $options.searchClick && $options.searchClick(...args))
+                  },
+                  [
+                    vue.createElementVNode("text", {
+                      class: "hxicon hx-navbar__content__main_search_hxicon",
+                      style: { "color": "#dbdbdb" }
+                    }, ""),
+                    vue.createElementVNode("input", {
+                      type: "text",
+                      class: "hx-navbar__content__main_search_input hx_font_size",
+                      "placeholder-style": "color:#dbdbdb;",
+                      "confirm-type": "search",
+                      value: $data.conf.search.value,
+                      placeholder: $data.conf.search.placeholder ? $data.conf.search.placeholder : "请输入搜索内容",
+                      disabled: $data.conf.search.disabled,
+                      onConfirm: _cache[1] || (_cache[1] = (...args) => $options.searchConfirm && $options.searchConfirm(...args))
+                    }, null, 40, ["value", "placeholder", "disabled"])
+                  ],
+                  4
+                  /* STYLE */
+                )) : vue.createCommentVNode("v-if", true),
+                !$data.conf.search ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 6,
+                  class: "",
+                  style: { "flex": "1" }
+                })) : vue.createCommentVNode("v-if", true),
+                $data.conf.rightButton ? (vue.openBlock(), vue.createElementBlock(
+                  "view",
+                  {
+                    key: 7,
+                    class: "hx-navbar__content__main_right",
+                    style: vue.normalizeStyle({ padding: $data.conf.rightSlot ? "0" : "0 13px 0 9px;" })
+                  },
+                  [
+                    (vue.openBlock(true), vue.createElementBlock(
+                      vue.Fragment,
+                      null,
+                      vue.renderList($data.conf.rightButton, (btn, index) => {
+                        return vue.openBlock(), vue.createElementBlock("view", {
+                          key: index,
+                          class: vue.normalizeClass(["hx-navbar__content__main_right_btn", { "hx-navbar__btntran": $data.bgTransparent == 0 }]),
+                          onClick: ($event) => $options.onClickBtn(btn)
+                        }, [
+                          btn.position && btn.position == "left" ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 0,
+                              class: vue.normalizeClass(["hxicon hx-navbar__content__main_right_icon hx-navbar__icon", $data.conf.font]),
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : "", marginRight: btn.txt ? "2px" : "0" })
+                            },
+                            vue.toDisplayString($options.iconHandle(btn.icon)),
+                            7
+                            /* TEXT, CLASS, STYLE */
+                          )) : vue.createCommentVNode("v-if", true),
+                          btn.txt ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 1,
+                              class: "hx-navbar__content__main_right_txt hx_font_size",
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : $data.txtColor })
+                            },
+                            vue.toDisplayString(btn.txt),
+                            5
+                            /* TEXT, STYLE */
+                          )) : vue.createCommentVNode("v-if", true),
+                          !btn.position || btn.position != "left" ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 2,
+                              class: vue.normalizeClass(["hxicon hx-navbar__content__main_right_icon hx-navbar__icon", $data.conf.font]),
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : "", marginLeft: btn.txt ? "2px" : "0" })
+                            },
+                            vue.toDisplayString($options.iconHandle(btn.icon)),
+                            7
+                            /* TEXT, CLASS, STYLE */
+                          )) : vue.createCommentVNode("v-if", true)
+                        ], 10, ["onClick"]);
+                      }),
+                      128
+                      /* KEYED_FRAGMENT */
+                    ))
+                  ],
+                  4
+                  /* STYLE */
+                )) : vue.createCommentVNode("v-if", true),
+                $data.conf.rightSlot ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 8,
+                  class: "hx-navbar__content__main_right",
+                  style: { "padding": "0", "margin": "0" }
+                }, [
+                  $data.conf.rightSlotSwitch && $data.slotSwitchOpacity == 0 ? vue.renderSlot(_ctx.$slots, "rightSwitch", { key: 0 }, void 0, true) : vue.renderSlot(_ctx.$slots, "right", { key: 1 }, void 0, true),
+                  vue.createCommentVNode(" 滑动过度 和 突变两种模式，因不实用在此先注释 "),
+                  vue.createCommentVNode(` <view v-if="conf.rightSlotSwitch && (conf.slotSwitch == 1 || conf.slotSwitch == 2 && slotSwitchOpacity == 0) " :style="{'opacity': 1 - slotSwitchOpacity,top:statusBarHeight+ 1 + 'px'}">\r
+						<slot name="rightSwitch" />\r
+					</view>\r
+					<view v-if="conf.slotSwitch == 1 || (conf.slotSwitch == 2 && slotSwitchOpacity != 0)"   :style="{'opacity': conf.slotSwitch == 1 ? slotSwitchOpacity : 1,top:statusBarHeight + 1 + 'px'}">\r
+						<slot name="right" />\r
+					</view> `)
+                ])) : vue.createCommentVNode("v-if", true)
+              ],
+              4
+              /* STYLE */
+            )
+          ],
+          6
+          /* CLASS, STYLE */
+        ),
+        vue.createCommentVNode(" 占位符，一般都需要 "),
+        $data.conf.barPlaceholder && $data.conf.fixed ? (vue.openBlock(), vue.createElementBlock("view", { key: 0 }, [
+          $data.conf.statusBar ? (vue.openBlock(), vue.createElementBlock(
+            "view",
+            {
+              key: 0,
+              style: vue.normalizeStyle({ height: $options.statusBarHeight + "px" })
+            },
+            null,
+            4
+            /* STYLE */
+          )) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode(
+            "view",
+            {
+              style: vue.normalizeStyle({ height: $data.conf.height + "px" })
+            },
+            null,
+            4
+            /* STYLE */
+          )
+        ])) : vue.createCommentVNode("v-if", true)
+      ],
+      4
+      /* STYLE */
+    );
   }
-  const PagesClassificationClassification = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__file", "D:/私人文件夹/crossBorderShop/pages/classification/classification.vue"]]);
+  const hxNavbar = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__scopeId", "data-v-3d892113"], ["__file", "E:/work/外包/crossBorderShop/components/hx-navbar.nvue"]]);
   const _sfc_main$1 = {
+    components: { hxNavbar },
     data() {
-      return {};
+      return {
+        config: {
+          title: "这里是新疆",
+          color: "#ffffff",
+          backgroundColor: [1, "#24bdab"],
+          // 背景图片（array则为滑动切换背景图，string为单一背景图）
+          // backgroundImg: ['/static/xj.jpg','/static/logo.png'],
+          backgroundImg: "../../static/header_tabber.png"
+        }
+      };
     }
   };
   function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view");
+    const _component_hx_navbar = vue.resolveComponent("hx-navbar");
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createVNode(_component_hx_navbar, { config: $data.config }, null, 8, ["config"]),
+      vue.createElementVNode("view", { class: "" }, " 1111 ")
+    ]);
   }
-  const PagesMeMe = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "D:/私人文件夹/crossBorderShop/pages/me/me.vue"]]);
-  __definePage("pages/join/join", PagesJoinJoin);
-  __definePage("pages/classification/classification", PagesClassificationClassification);
+  const PagesMeWalletWallet = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "E:/work/外包/crossBorderShop/pages/me/wallet/wallet.vue"]]);
   __definePage("pages/me/me", PagesMeMe);
+  __definePage("pages/me/wallet/wallet", PagesMeWalletWallet);
   function formatAppLog(type, filename, ...args) {
     if (uni.__log__) {
       uni.__log__(type, filename, ...args);
@@ -91,7 +1024,7 @@ if (uni.restoreGlobal) {
       formatAppLog("log", "at App.vue:15", "App Hide");
     }
   };
-  const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "D:/私人文件夹/crossBorderShop/App.vue"]]);
+  const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "E:/work/外包/crossBorderShop/App.vue"]]);
   const en = {
     "locale.auto": "System",
     "locale.en": "English",
@@ -114,7 +1047,92 @@ if (uni.restoreGlobal) {
     "api.message": "Message",
     "schema.name": "Name",
     "schema.add": "Add",
-    "schema.add-success": "Add success"
+    "schema.add-success": "Add success",
+    "login.phonePlaceholder": "Please enter your phone number",
+    "login.pwdPlaceholder": "Please enter the password",
+    "login.btn1": "LOGIN",
+    "login.radioText": "remember password",
+    "region.invitePlaceholder": "Please enter the invitation code",
+    "region.btn1": "REGISTER",
+    "region.btn2": "Existing account, please go to log in",
+    "app.name": "profi group",
+    "app.search": "Click to search for content",
+    "app.Product": "Product",
+    "app.Store": "Store",
+    "app.Sell": "Sell",
+    "index.news": "News",
+    "index.moreProduct": "More Products",
+    "index.moreProductDesc": "Top products at incredible prices",
+    "index.menuBtn1": "About us",
+    "index.menuBtn2": "Enterprise Qualification",
+    "index.menuBtn3": "Platform rewards",
+    "index.menuBtn4": "Storage level",
+    "index.menuBtn5": "Wallet recharge",
+    "index.menuBtn6": "I need to withdraw cash",
+    "index.menuBtn7": "Download apps",
+    "index.menuBtn8": "Platform activities",
+    "index.menuBtn9": "Invite friends",
+    "join.bannerTit": "Join now and permanently join the team",
+    "join.bannerTit1": "Enjoy stable income and bonuses",
+    "join.joinTit1": "Added code",
+    "join.joinTit2": "Joined Link",
+    "join.copy": "copy",
+    "join.boxTit": "Number of added statistics",
+    "join.bonusText": "Franchise store bonus",
+    "join.commissionText": "Franchise store commission",
+    "join.compensationText": "Total compensation",
+    "join.teamTit1": "A-level team joining details",
+    "join.teamTit2": "B-level team joining details",
+    "join.teamTit3": "Details of joining a C - level team ",
+    "join.committee": "committee ",
+    "join.partners": "Number of partners",
+    "aboutUs.pageTit": "About Us",
+    "aboutUs.content": "As an online passive e-commerce partner. You will be able to share the dividends of the e-commerce market with PT Company. No need to hoard, no need to take risks, just carry out promotions and earn generous profits. Whether you are an individual or a team, whether you have experience in e-commerce or not, as long as you have a certain level of sales ability and enthusiasm, we welcome you to join us. We will provide you with training and support to help you achieve success in the field of e-commerce.",
+    "qualifications.item1": "Enterprise Qualification",
+    "qualifications.item2": "Indian Enterprise Qualifications",
+    "qualifications.item3": "Qualification of Iraqi Enterprises",
+    "activity.pageTit": "Activity Center",
+    "activity.item1": "Partner store profit",
+    "storageLevel.pageTit": "Store Level",
+    "storageLevel.dollar": "dollar",
+    "storageLevel.dailyRevenue": "Daily Revenue",
+    "storageLevel.row1": "Franchise deposit",
+    "storageLevel.row2": "Daily purchase limit",
+    "storageLevel.row3": "Monthly income",
+    "recargar.pageTit": "Recargar",
+    "recargar.text1": "",
+    "recargar.balanceItem1": "Convertidor de moneda 1 USDT = $1",
+    "recargar.balanceItem2": "Convertidor de moneda 1 BTC = $239188",
+    "recargar.recTxt3": "Monto de recarga",
+    "recargar.inpPlaceholder": "Introduce la cantidad",
+    "recargar.popupTips": "充值成功",
+    "withdraw.pageTit": "withdraw",
+    "withdraw.title": "Withdrawal method",
+    "withdraw.pwdPlaceholder": "Please enter the transaction password",
+    "withdraw.tipsTit": "Withdrawal instructions",
+    "withdraw.tips1": "1. The minimum withdrawal amount is 12USDT, which must be an integer when submitting withdrawal, for example: 12USDT 20USDT 30USDT 40USDT, etc., and so on.",
+    "withdraw.tips2": "2. Withdrawal fee: 5% for a single withdrawal of 1~300USDT, 3% for 301~500USDT, 2% for 501~999USDT, no handling fee for more than 1000USDT.",
+    "withdraw.tips3": "3. Withdrawal time: Between 10:00 and 21:00 from Monday to Friday, the withdrawal will be credited within 72 hours.",
+    "productDetail.pageTit": "Product Details",
+    "productDetail.title": "GGARMONT Mini Stitched Leather Bag",
+    "productDetail.text1": "Cost Price",
+    "productDetail.text2": "Profit",
+    "productDetail.text3": "Order Number",
+    "productDetail.btnText": "Release of goods",
+    "app.price": "price",
+    "app.balance": "balance",
+    "app.TotalIncome": "Total income",
+    "app.deposit": "deposit",
+    "app.myWallet": "My wallet",
+    "app.financial": "Financial details",
+    "app.securityCenter": "Security Center",
+    "app.recharge": "I need to recharge",
+    "app.withdraw": " I need to withdraw",
+    "app.basicFunctions": " Basic functions",
+    "app.home": "home",
+    "app.join": "join",
+    "app.classification": "classification",
+    "app.me": "me"
   };
   const zhHans = {
     "locale.auto": "系统",
@@ -138,7 +1156,92 @@ if (uni.restoreGlobal) {
     "api.message": "提示",
     "schema.name": "姓名",
     "schema.add": "新增",
-    "schema.add-success": "新增成功"
+    "loacal.chinaText": "英语",
+    "login.phonePlaceholder": "请输入手机号",
+    "login.pwdPlaceholder": "请输入密码",
+    "login.btn1": "登录",
+    "login.radioText": "记住密码",
+    "region.invitePlaceholder": "请输入邀请码",
+    "region.btn1": "注册",
+    "region.btn2": "已有账号，请前往登录",
+    "app.name": "普斯集团",
+    "app.search": "点击搜索内容",
+    "app.Product": "产品",
+    "app.Store": "店",
+    "app.Sell": "卖",
+    "index.news": "新闻",
+    "index.moreProduct": "更多商品",
+    "index.moreProductDesc": "顶级产品·令人难以置信的价格",
+    "index.menuBtn1": "关于我们",
+    "index.menuBtn2": "企业资质",
+    "index.menuBtn3": "平台奖励",
+    "index.menuBtn4": "储存级别",
+    "index.menuBtn5": "钱包充值",
+    "index.menuBtn6": "我要提现",
+    "index.menuBtn7": "下载应用",
+    "index.menuBtn8": "平台活动",
+    "index.menuBtn9": "邀请好友",
+    "join.bannerTit": "立即加入, 永久加入团队",
+    "join.bannerTit1": "即可享受稳定的收入和奖金",
+    "join.joinTit1": "加入代码",
+    "join.joinTit2": "加入链接",
+    "join.copy": "复制",
+    "join.boxTit": "加入的统计数量",
+    "join.bonusText": "加盟店佣金",
+    "join.commissionText": "加盟店佣金",
+    "join.compensationText": "加盟店佣金",
+    "join.teamTit1": "A-level团队加入详情",
+    "join.teamTit2": "B级团队加入详情",
+    "join.teamTit3": "C级团队加入详情",
+    "join.committee": "委员会",
+    "join.partners": "合伙人数量",
+    "aboutUs.pageTit": "关于我们",
+    "aboutUs.content": "作为在线无源电子商务合作伙伴。您将能够与PT公司分享电子商务市场的红利。无需囤货，无需冒险，只需进行促销，即可获得丰厚的利润。无论你是个人还是团队，无论你有没有电子商务经验，只要你有一定的销售能力和热情，我们都欢迎你加入我们。我们将为您提供培训和支持，帮助您在电子商务领域取得成功。",
+    "qualifications.item1": "企业资质",
+    "qualifications.item2": "印度企业资质",
+    "qualifications.item3": "伊拉克企业资质",
+    "activity.pageTit": "活动中心",
+    "activity.item1": "合作伙伴商店利润",
+    "storageLevel.pageTit": "商店级别",
+    "storageLevel.dollar": "美元",
+    "storageLevel.dailyRevenue": "每日收益",
+    "storageLevel.row1": "特许经营保证金",
+    "storageLevel.row2": "每日购买限额",
+    "storageLevel.row3": "月收入",
+    "recargar.pageTit": "充值",
+    "recargar.text1": "币",
+    "recargar.balanceItem1": "货币转换器 1 USDT = $1",
+    "recargar.balanceItem2": "货币转换器 1 BTC = $23918",
+    "recargar.recTxt3": "充值金额",
+    "recargar.inpPlaceholder": "输入金额",
+    "recargar.popupTips": "充值成功",
+    "withdraw.pageTit": "提现",
+    "withdraw.title": "提现方式",
+    "withdraw.pwdPlaceholder": "请输入交易密码",
+    "withdraw.tipsTit": "注意事项",
+    "withdraw.tips1": "1.最低出金金额为12美元，提交出金时必须为整数例如:12美元20美元30美元40美元，以此类推。",
+    "withdraw.tips2": "2.取款手续费: 单笔取款1~300美元收取5%手续费，301~500美元收取3%手续费，501~999美元收取2%手续费，超过1000美元不收手续费。",
+    "withdraw.tips3": "3.取款时间:从周一到周五的10: 00到21: 00之间，撤离将在72小时内贷记。",
+    "productDetail.pageTit": "商品详情",
+    "productDetail.title": "GGMARMONT超迷你缝皮革包",
+    "productDetail.text1": "成本价",
+    "productDetail.text2": "利润",
+    "productDetail.text3": "订单号",
+    "productDetail.btnText": "释放货物",
+    "app.price": "价格",
+    "app.balance": "平衡",
+    "app.TotalIncome": "总收入",
+    "app.deposit": "存款",
+    "app.myWallet": "我的钱包",
+    "app.financial": "财务细节",
+    "app.securityCenter": "安全中心",
+    "app.recharge": "我要充值",
+    "app.withdraw": "我要提现",
+    "app.basicFunctions": "基本功能",
+    "app.home": "首页",
+    "app.join": "加盟",
+    "app.classification": "分类",
+    "app.me": "我的"
   };
   const messages = {
     en,
