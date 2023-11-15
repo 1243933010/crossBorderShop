@@ -31,5 +31,10 @@
 	// 注册
 	"region.invitePlaceholder": "Please enter the invitation code",
 	"region.btn1": "REGISTER",
-	"region.btn2": "Existing account, please go to log in"
+	"region.btn2": "Existing account, please go to log in",
+	"app.name": "profi group",
+	"app.search":"Click to search for content",
+	"app.Product":"Product",
+	"app.Store":"Store",
+	"app.Sell":"Sell",
 }

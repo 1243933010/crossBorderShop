@@ -33,6 +33,7 @@ export default {
 			iconList: ["../../static/cn.png", "../../static/eg.png"],
 			imgSrc: "../../static/cn.png",
 			locale: { "zh-Hans": 0, en: 1 },
+			code: [ "zh-Hans", 'en' ],
 		};
 	},
 	mounted() {
@@ -42,11 +43,16 @@ export default {
 		if (code) {
 			this.imgSrc = this.iconList[this.locale[code]];
 		}
+		
+		
 	},
 	methods: {
 		bindPickerChange: function (e) {
-			// console.log('picker发送选择改变，携带值为', e.detail.value)
+			console.log(this.$t,'------')
+			console.log('picker发送选择改变，携带值为', this.code[e.detail.value])
 			this.imgSrc = this.iconList[e.detail.value];
+			uni.setLocale(this.code[e.detail.value])
+			this.$i18n.locale = this.code[e.detail.value];
 		},
 	},
 };

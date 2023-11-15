@@ -31,5 +31,10 @@
 	// 注册
 	"region.invitePlaceholder": "请输入邀请码",
 	"region.btn1": "注册",
-	"region.btn2": "已有账号，请前往登录"
+	"region.btn2": "已有账号，请前往登录",
+	"app.name": "普斯集团",
+	"app.search":"点击搜索内容",
+	"app.Product":"产品",
+	"app.Store":"店",
+	"app.Sell":"卖"
 }
