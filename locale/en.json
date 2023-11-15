@@ -21,6 +21,7 @@
   "schema.name": "Name",
   "schema.add": "Add",
   "schema.add-success": "Add success",
+  "loacal.chinaText": "English",
 
   // 登录
   "login.phonePlaceholder": "Please enter your phone number",
@@ -128,5 +129,8 @@
   "app.home": "home",
   "app.join": "join",
   "app.classification": "classification",
-  "app.me": "me"
+  "app.me": "me",
+  
+  // 团队加入详情
+  "teamInfo.pageTit": "Subordinate Details"
 }
