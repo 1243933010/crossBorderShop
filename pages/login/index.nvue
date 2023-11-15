@@ -1,6 +1,7 @@
 <template>
-	<view class="profi-page-container login-page">
-		<view class="login-scroll">
+	<view class="profix-page-container login-page">
+		<CustomHeader />
+		<view class="login-scroll page-scroll" :style="`padding-top: ${iStatusBarHeight + 142}rpx;`">
 			<view class="logo pic">
 				<image src="../../static/img/logo.png" mode="widthFix" class="img"></image>
 			</view>
@@ -45,13 +46,22 @@
 </template>
 
 <script>
+import CustomHeader from "@/components/customHeader/customHeader.nvue";
+
 export default {
+	components: {
+		CustomHeader,
+	},
 	data() {
 		return {
 			pNumberPerfixIndex: 0, // 手机前缀 角标
 			pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
 			pNumberPerfix: "+1", // 手机前缀
+			iStatusBarHeight: 0
 		};
+	},
+	mounted() {
+		this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 	},
 	methods: {
 		bindPickerChange(e) {
@@ -65,17 +75,14 @@ export default {
 
 <style lang="less">
 @import "../../static/less/variable.less";
+
 .login-page {
-	padding-top: 170rpx;
 	background: url("../../static/img/bg/gradient.png") no-repeat center center / 100% 100%;
-	width: 100vw;
-	height: 100vh;
 
 	.login-scroll {
-		height: 100%;
 
 		.logo {
-			margin: 0 auto 62rpx;
+			margin: 170rpx auto 62rpx;
 			border-radius: 50%;
 			width: 140rpx;
 		}
