@@ -1,0 +1,81 @@
+<template>
+	<view style="background: #FFFFFF;">
+		<customHeader style="z-index: 0;" headerText="普斯集团" />
+		<customHeader headerText="普斯集团"  style="width: 100%;position: absolute;top: 0;"/>
+
+<view class="search">
+	<view class="flex">
+		<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
+		<text>点击搜索内容</text>
+		<view class=""></view>
+	</view>
+</view>
+	<view class="tab">
+		<view class="hr"></view>
+		<view class="h-tab">
+			<view class="h-tab-item" style="color: #FD7A1F;">All</view>
+			<view class="h-tab-item" v-for="(item,index) in tabList" :key="index">{{item}}</view>
+		
+		</view>
+	</view>
+	</view>
+</template>
+
+<script>
+	import customHeader from '@/components/customHeader/customHeader.nvue'
+	export default {
+		components: {
+			customHeader
+		},
+		data() {
+			return {
+				index:0,
+				tabList:['产品','店','卖']
+			};
+		}
+	}
+</script>
+
+<style lang="less" scoped>
+	.flex{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.search{
+		width: calc(100% - 60rpx);
+		margin: 20rpx auto;
+		background: #F2F2F2;
+		.flex{
+			padding: 33rpx 30rpx;
+			color:#93959C;
+			font-size: 24rpx;
+			image{
+				width: 30rpx;
+			}
+		}
+	}
+	.tab{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 0 30rpx;
+		.hr{
+			width: 10rpx;
+			height: 54rpx;
+			background: #FD641F;
+			border-radius: 5rpx;
+		}
+		.h-tab{
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			// justify-content: center;
+			justify-content: space-around;
+			align-items: center;
+			font-size: 24rpx;
+		}
+	}
+	
+</style>
