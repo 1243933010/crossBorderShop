@@ -1,7 +1,7 @@
 <template>
 	<view class="profix-page-container index-page">
 		<customHeader style="z-index: 0" headerText="普斯集团" />
-		<customHeader headerText="普斯集团" style="position: fixed; top: 0; width: 100%; z-index: 1" />
+		<customHeader headerText="普斯集团" style="position: fixed; top: 0; z-index: 1" />
 		<view class="index-scroll page-scroll">
 			<view class="banner">
 				<swiper class="swiper" circular autoplay>
@@ -30,7 +30,7 @@
 			</view>
 
 			<view class="news-list">
-				<view class="left-tit">新闻</view>
+				<view class="left-tit">{{ $t("index.news") }}</view>
 				<view class="news-swiper">
 					<swiper class="swiper" vertical circular autoplay>
 						<swiper-item>
@@ -67,8 +67,8 @@
 			</view>
 
 			<view class="product-container">
-				<view class="tit">更多商品</view>
-				<view class="desc">顶级产品·令人难以置信的价格</view>
+				<view class="tit">{{ $t("index.moreProduct") }}</view>
+				<view class="desc">{{ $t("index.moreProductDesc") }}</view>
 
 				<view class="product-list">
 					<view class="product-item">
@@ -133,50 +133,7 @@ export default {
 	data() {
 		return {
 			title: "Hello",
-			menuList: [
-				[
-					{
-						iconUrl: "../../static/img/icon/index/1.png",
-						tit: "关于我们",
-					},
-					{
-						iconUrl: "../../static/img/icon/index/2.png",
-						tit: "企业资质",
-					},
-					{
-						iconUrl: "../../static/img/icon/index/3.png",
-						tit: "平台奖励",
-					},
-				],
-				[
-					{
-						iconUrl: "../../static/img/icon/index/4.png",
-						tit: "储存级别",
-					},
-					{
-						iconUrl: "../../static/img/icon/index/5.png",
-						tit: "钱包充值",
-					},
-					{
-						iconUrl: "../../static/img/icon/index/6.png",
-						tit: "我要提现",
-					},
-				],
-				[
-					{
-						iconUrl: "../../static/img/icon/index/7.png",
-						tit: "下载应用",
-					},
-					{
-						iconUrl: "../../static/img/icon/index/8.png",
-						tit: "平台活动",
-					},
-					{
-						iconUrl: "../../static/img/icon/index/9.png",
-						tit: "邀请好友",
-					},
-				],
-			],
+
 		};
 	},
 	onLoad() {},
@@ -205,6 +162,52 @@ export default {
 				},
 			];
 		},
+		menuList() {
+			return [
+				[
+					{
+						iconUrl: "../../static/img/icon/index/1.png",
+						tit: this.$t("index.menuBtn1"),
+					},
+					{
+						iconUrl: "../../static/img/icon/index/2.png",
+						tit: this.$t("index.menuBtn2"),
+					},
+					{
+						iconUrl: "../../static/img/icon/index/3.png",
+						tit: this.$t("index.menuBtn3"),
+					},
+				],
+				[
+					{
+						iconUrl: "../../static/img/icon/index/4.png",
+						tit: this.$t("index.menuBtn4"),
+					},
+					{
+						iconUrl: "../../static/img/icon/index/5.png",
+						tit: this.$t("index.menuBtn5"),
+					},
+					{
+						iconUrl: "../../static/img/icon/index/6.png",
+						tit: this.$t("index.menuBtn6"),
+					},
+				],
+				[
+					{
+						iconUrl: "../../static/img/icon/index/7.png",
+						tit: this.$t("index.menuBtn7"),
+					},
+					{
+						iconUrl: "../../static/img/icon/index/8.png",
+						tit: this.$t("index.menuBtn8"),
+					},
+					{
+						iconUrl: "../../static/img/icon/index/9.png",
+						tit: this.$t("index.menuBtn9"),
+					},
+				],
+			];
+		}
 	},
 	methods: {
 		onLocaleChange(e) {
@@ -255,7 +258,7 @@ export default {
 				margin-right: 38rpx;
 				border-radius: 0 50px 50px 0;
 				padding: 10rpx 30rpx;
-				background-color: #fa5633;
+				background: linear-gradient(0deg, #fd631f 0%, #fd7e1f 100%);
 				color: #fff;
 			}
 
@@ -316,7 +319,7 @@ export default {
 
 		.product-container {
 			padding-bottom: 26rpx;
-			
+
 			.tit {
 				margin-bottom: 8rpx;
 				color: @bodyColor;
@@ -355,9 +358,9 @@ export default {
 
 						.product-price-info {
 							.df(center, space-between);
-							
+
 							.rebate {
-								color: #FD384F;
+								color: #fd384f;
 								font-size: 36rpx;
 								font-weight: bold;
 							}

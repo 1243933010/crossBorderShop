@@ -5,7 +5,7 @@
 				:style="{ paddingTop: iStatusBarHeight + 'px'}"
 				<!-- #endif -->>
 				<view class="header-icon">
-					<image src="../../static/logo.png" mode="widthFix"></image>
+					<image src="../../static/img/logo.png" mode="widthFix"></image>
 				</view>
 				<view class="header-text">
 					<text>{{ headerText }}</text>
@@ -13,7 +13,7 @@
 				<picker @change="bindPickerChange" :value="index" :range="array">
 					<view class="header-select">
 						<image class="header-select-icon" :src="imgSrc" mode="widthFix"></image>
-						<image class="header-select-select" src="../../static/select_icon.png" mode="widthFix"></image>
+						<image class="header-select-select" src="../../static/img/select_icon.png" mode="widthFix"></image>
 					</view>
 				</picker>
 			</view>
@@ -30,8 +30,8 @@ export default {
 			iStatusBarHeight: 0,
 			array: ["中文", "English"],
 			index: 0,
-			iconList: ["../../static/cn.png", "../../static/eg.png"],
-			imgSrc: "../../static/cn.png",
+			iconList: ["../../static/img/cn.png", "../../static/img/eg.png"],
+			imgSrc: "../../static/img/cn.png",
 			locale: { "zh-Hans": 0, en: 1 },
 		};
 	},
@@ -59,7 +59,7 @@ export default {
 
 .image-width {
 	width: 100%;
-	background: url("/static/header_tabber.png") no-repeat center center / 100%;
+	background: url("/static/img/header_tabber.png") no-repeat center center / 100%;
 
 	.header {
 		display: flex;
