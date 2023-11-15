@@ -30,11 +30,10 @@ input {
 	color: #333;
 	font-size: 30rpx;
 	width: 100vw;
-	height: 100vh;
 
 	.page-scroll {
-		padding-left: 15rpx;
-		padding-right: 15rpx;
+		padding-left: 30rpx;
+		padding-right: 30rpx;
 		height: 100%;
 	}
 
