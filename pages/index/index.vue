@@ -1,7 +1,7 @@
 <template>
 	<view class="profix-page-container index-page">
-		<customHeader style="z-index: 0" headerText="普斯集团" :above="false" />
-		<customHeader headerText="普斯集团" style="position: fixed; top: 0; z-index: 1" :above="true" />
+		<customHeader style="z-index: 0" :headerText="$t('app.name')" :above="false" />
+		<customHeader :headerText="$t('app.name')" style="position: fixed; top: 0; z-index: 1" :above="true" />
 		<view class="index-scroll page-scroll">
 			<view class="banner">
 				<swiper class="swiper" circular autoplay>

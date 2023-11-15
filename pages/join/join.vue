@@ -1,7 +1,7 @@
 <template>
 	<view class="profix-page-container join-page">
-		<customHeader style="z-index: 0" headerText="普斯集团" />
-		<customHeader headerText="普斯集团" style="position: fixed; top: 0; width: 100%; z-index: 1" />
+		<customHeader style="z-index: 0" :headerText="$t('app.name')" />
+		<customHeader :headerText="$t('app.name')" style="position: fixed; top: 0; width: 100%; z-index: 1" />
 		<view class="join-scroll page-scroll">
 			<view class="banner">
 				<view class="banner-tit">{{ $t("join.bannerTit") }}</view>

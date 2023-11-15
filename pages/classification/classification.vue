@@ -33,7 +33,7 @@
 						</view>
 					</view>
 					<view class="con-box">
-						<scroll-view style="height: 1250rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
+						<scroll-view style="height: 1150rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
 							@scrolltolower="lower" @scroll="scroll">
 							<view class="item" v-if="tabBool" v-for="(item,index) in conBox" :key="index" @click="goDetail">
 								<view class="img" >
