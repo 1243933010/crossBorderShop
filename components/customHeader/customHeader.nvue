@@ -22,6 +22,7 @@
 </template>
 
 <script>
+	import {setTabbar} from '@/utils/utils.js'
 export default {
 	name: "customHeader",
 	props: ["headerText"],
@@ -53,6 +54,7 @@ export default {
 			this.imgSrc = this.iconList[e.detail.value];
 			uni.setLocale(this.code[e.detail.value])
 			this.$i18n.locale = this.code[e.detail.value];
+			setTabbar()
 		},
 	},
 };

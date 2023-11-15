@@ -19,7 +19,8 @@
 			"path": "pages/me/me",
 			"style": {
 				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -80,18 +81,18 @@
 		
 		}, {
 			"pagePath": "pages/join/join",
-			"iconPath": "static/image/icon_API.png",
-			"selectedIconPath": "static/image/icon_API_HL.png",
+			"iconPath": "",
+			"selectedIconPath": "",
 			"text": "加盟"
 		},{
 			"pagePath": "pages/classification/classification",
-			"iconPath": "static/image/icon_API.png",
-			"selectedIconPath": "static/image/icon_API_HL.png",
+			"iconPath": "",
+			"selectedIconPath": "",
 			"text": "分类"
 		},{
 			"pagePath": "pages/me/me",
-			"iconPath": "static/image/icon_API.png",
-			"selectedIconPath": "static/image/icon_API_HL.png",
+			"iconPath": "",
+			"selectedIconPath": "",
 			"text": "我的"
 		}]
 		
