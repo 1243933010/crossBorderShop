@@ -1,27 +1,46 @@
 <template>
-	<view style="background: #FFFFFF;">
-		<!-- <customHeader style="z-index: 0;" headerText="普斯集团" />
-		<customHeader headerText="普斯集团"  style="width: 100%;position: absolute;top: 0;"/> -->
-
-<view class="search">
-	<view class="flex" >
-		<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
-		<input type="text" placeholder="点击搜索内容" style="font-size: 24rpx;" confirm-type="search" @confirm="search" />
-		<view class=""></view>
-	</view>
-	<!-- <view class="flex" v-show="serachBool">
-		<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
-		<input type="text" />
-	</view> -->
-</view>
-	<view class="tab">
-		<view class="hr"></view>
-		<view class="h-tab">
-			<view class="h-tab-item" style="color: #FD7A1F;">All</view>
-			<view class="h-tab-item" v-for="(item,index) in tabList" :key="index">{{item}}</view>
-		
+	<view style="background: #FFFFFF;height: 100%;">
+		<view style="height: 100%;">
+			<customHeader style="z-index: 0;" headerText="普斯集团" />
+				<customHeader headerText="普斯集团" style="width: 100%;position: absolute;top: 0;" />
+			
+				<view class="search">
+					<view class="flex">
+						<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
+						<input type="text" placeholder="点击搜索内容" style="font-size: 24rpx;" confirm-type="search"
+							@confirm="search" />
+						<view class=""></view>
+					</view>
+					<!-- <view class="flex" v-show="serachBool">
+				<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
+				<input type="text" />
+			</view> -->
+				</view>
+				<view class="tab">
+					<view class="hr"></view>
+					<view class="h-tab">
+						<view class="h-tab-item" style="color: #FD7A1F;">All</view>
+						<view class="h-tab-item h-tab-item-active" @click="activeClick(index)" v-for="(item,index) in tabList" :key="index" :class="active==index?'active':''">{{item}}</view>
+			
+					</view>
+				</view>
+				<view class="content">
+					<view class="con-left">
+						<view class="item" v-for="(item,index) in conLeftList" :key="index">
+							{{item.title}}
+						</view>
+					</view>
+					<view class="con-box">
+						<view class="item" v-for="(item,index) in conBox" :key="index">
+							<view class="img">
+								<image :src="item.src" mode="widthFix"></image>
+							</view>
+							<text>{{item.title}}</text>
+							
+						</view>
+					</view>
+				</view>
 		</view>
-	</view>
 	</view>
 </template>
 
@@ -33,49 +52,72 @@
 		},
 		data() {
 			return {
-				index:0,
-				tabList:['产品','店','卖'],
+				active: 0,
+				tabList: ['产品', '店', '卖'],
+				conLeftList:[
+					{title:'lv1'},
+					{title:'lv2'},
+					],
+				conBox:[
+					{src:'../../static/logo.png',title:'New Balance Mens 411 V1 Training S..'}
+				]
 			};
 		},
-		methods:{
-			search(){
+		methods: {
+			search() {},
+			activeClick(index){
+				console.log(index)
+				this.active = index;
 			}
 		}
 	}
 </script>
 
 <style lang="less" scoped>
-	.flex{
+	page{
+		height:100% !important;
+	}
+	.active{
+		background: linear-gradient(0deg, #535262 0%, #1D1B1D 100%) !important;
+		color: #FFFFFF !important;
+	}
+	.flex {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
 	}
-	.search{
+
+	.search {
 		width: calc(100% - 60rpx);
 		margin: 20rpx auto;
 		background: #F2F2F2;
-		.flex{
+
+		.flex {
 			padding: 33rpx 30rpx;
-			color:#93959C;
+			color: #93959C;
 			font-size: 24rpx;
-			image{
+
+			image {
 				width: 30rpx;
 			}
 		}
 	}
-	.tab{
+
+	.tab {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		padding: 0 30rpx;
-		.hr{
+
+		.hr {
 			width: 10rpx;
 			height: 54rpx;
 			background: #FD641F;
 			border-radius: 5rpx;
 		}
-		.h-tab{
+
+		.h-tab {
 			width: 100%;
 			display: flex;
 			flex-direction: row;
@@ -83,7 +125,63 @@
 			justify-content: space-around;
 			align-items: center;
 			font-size: 24rpx;
+			.h-tab-item-active{
+				width: 140rpx;
+				height: 64rpx;
+				background: #F7F7F7;
+				text-align: center;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 32rpx;
+				font-size: 24rpx;
+				color: #504F5E;
+				font-weight: 800;
+			}
 		}
 	}
-	
+	.content{
+		width: 100%;
+		height: calc(100% - 260rpx);
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		.con-left{
+			width:180rpx;
+			background:#F7F7F7;
+			font-size:25rpx;
+			color:#504F5E;
+			text-align:center;
+			.item{
+				margin:45rpx 0;
+				font-weight: 600;
+			}
+		}
+		.con-box{
+			width: cale(100% - 26rpx);
+			margin:0 auto;
+			.item{
+				
+				margin: 25rpx 0;
+				display: flex;
+				flex-direction: column;
+				// align-items: center;
+				// text-align:center;
+				.img{
+					background-color: #F7F7F7;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					margin-bottom: 5rpx;
+					image{
+						width: 175rpx;
+					}
+				}
+				text{
+					font-size: 24rpx;
+					color: #535262;
+				}
+			}
+		}
+	}
 </style>
