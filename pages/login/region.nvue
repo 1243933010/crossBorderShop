@@ -1,6 +1,7 @@
 <template>
-	<view class="profi-page-container region-page">
-		<view class="region-scroll">
+	<view class="profix-page-container region-page">
+		<CustomHeader />
+		<view class="region-scroll page-scroll" :style="`padding-top: ${iStatusBarHeight + 142}rpx;`">
 			<view class="logo pic">
 				<image src="../../static/img/logo.png" mode="widthFix" class="img"></image>
 			</view>
@@ -50,12 +51,21 @@
 </template>
 
 <script>
+import CustomHeader from "@/components/customHeader/customHeader.nvue";
+
 export default {
+	components: {
+		CustomHeader,
+	},
 	data() {
 		return {
 			pNumberPerfix: "+1", // 手机前缀
 			pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
+			iStatusBarHeight: 0
 		};
+	},
+	mounted() {
+		this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 	},
 	methods: {
 		bindPickerChange() {},
