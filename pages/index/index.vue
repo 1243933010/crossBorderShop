@@ -263,8 +263,7 @@ export default {
 			padding: 10rpx 30rpx;
 			background-color: #fff;
 
-			flex-direction: row;
-			align-items: center;
+			.df(center, flex-start);
 
 			.left-tit {
 				margin-right: 38rpx;
@@ -298,8 +297,7 @@ export default {
 			.menu-list {
 				margin-bottom: 60rpx;
 
-				flex-direction: row;
-				justify-content: space-between;
+				.df(stretch, space-between);
 
 				&:last-child {
 					margin-bottom: 0;
@@ -346,7 +344,7 @@ export default {
 			}
 
 			.product-list {
-				flex-direction: row;
+				.df(stretch, flex-start);
 				flex-wrap: wrap;
 
 				.product-item {
