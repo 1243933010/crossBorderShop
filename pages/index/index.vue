@@ -42,12 +42,12 @@
 
 			<view class="menu-container">
 				<view class="menu-list" v-for="(item, index) in menuList" :key="index">
-					<navigator :url="e.link" class="menu-item" v-for="(e, i) in item" :key="i">
+					<view @click="goPage(e.link)" class="menu-item" v-for="(e, i) in item" :key="i">
 						<view class="pic">
 							<image :src="e.iconUrl" mode="widthFix" class="img"></image>
 						</view>
 						<view class="menu-tit">{{ e.tit }}</view>
-					</navigator>
+					</view>
 				</view>
 			</view>
 
@@ -166,51 +166,51 @@ export default {
 					{
 						iconUrl: "../../static/img/icon/index/1.png",
 						tit: this.$t("index.menuBtn1"),
-						link: '/pages/index/aboutUs'
+						link: "/pages/index/aboutUs",
 					},
 					{
 						iconUrl: "../../static/img/icon/index/2.png",
 						tit: this.$t("index.menuBtn2"),
-						link: '/pages/index/qualifications'
+						link: "/pages/index/qualifications",
 					},
 					{
 						iconUrl: "../../static/img/icon/index/3.png",
 						tit: this.$t("index.menuBtn3"),
-						link: ''
+						link: "/pages/index/activityInfo",
 					},
 				],
 				[
 					{
 						iconUrl: "../../static/img/icon/index/4.png",
 						tit: this.$t("index.menuBtn4"),
-						link: '/pages/index/storageLevel'
+						link: "/pages/index/storageLevel",
 					},
 					{
 						iconUrl: "../../static/img/icon/index/5.png",
 						tit: this.$t("index.menuBtn5"),
-						link: '/pages/index/recargar'
+						link: "/pages/index/recargar",
 					},
 					{
 						iconUrl: "../../static/img/icon/index/6.png",
 						tit: this.$t("index.menuBtn6"),
-						link: '/pages/index/withdraw'
+						link: "/pages/index/withdraw",
 					},
 				],
 				[
 					{
 						iconUrl: "../../static/img/icon/index/7.png",
 						tit: this.$t("index.menuBtn7"),
-						link: ''
+						link: "",
 					},
 					{
 						iconUrl: "../../static/img/icon/index/8.png",
 						tit: this.$t("index.menuBtn8"),
-						link: '/pages/index/activity'
+						link: "/pages/index/activity",
 					},
 					{
 						iconUrl: "../../static/img/icon/index/9.png",
 						tit: this.$t("index.menuBtn9"),
-						link: ''
+						link: "/pages/join/join",
 					},
 				],
 			];
@@ -235,8 +235,19 @@ export default {
 		goProductDetail(productId) {
 			uni.navigateTo({
 				url: `/pages/index/productDetail?id=${productId}`,
-			})
-		}
+			});
+		},
+		goPage(link) {
+			if (link.indexOf("join") !== -1) {
+				uni.switchTab({
+					url: link,
+				});
+			} else {
+				uni.navigateTo({
+					url: link,
+				});
+			}
+		},
 	},
 };
 </script>
@@ -304,8 +315,10 @@ export default {
 				}
 
 				.menu-item {
-					.df(center, flex-start);
+					.df(center, center);
 					flex-direction: column;
+					width: 33.33%;
+					text-align: center;
 
 					.pic {
 						width: 58rpx;

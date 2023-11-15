@@ -4,16 +4,16 @@
 		<view class="team-info-scroll page-scroll">
 			<view class="table">
 				<view class="th tr">
-					<view class="td mW28">电话</view>
-					<view class="td flex1">数量</view>
-					<view class="td mW35">报名时间</view>
+					<view class="td mW28">{{ $t("teamInfo.tableTh1") }}</view>
+					<view class="td flex1">{{ $t("teamInfo.tableTh2") }}</view>
+					<view class="td mW35">{{ $t("teamInfo.tableTh3") }}</view>
 				</view>
 				<view class="tr" @click="goProductDetail(1)">
 					<view class="td mW28">188****5468</view>
 					<view class="td flex1">28</view>
 					<view class="td mW35">2023.11.12 15:32</view>
 				</view>
-				<view class="tr">
+				<view class="tr" @click="goProductDetail(2)">
 					<view class="td mW28">188****5468</view>
 					<view class="td flex1">28</view>
 					<view class="td mW35">2023.11.12 15:32</view>
@@ -72,11 +72,11 @@ export default {
 	},
 	methods: {
 		goProductDetail(productId) {
-			// uni.navigateTo({
-			// 	url: `/pages/join/orderDetail?id=${productId}`,
-			// })
-		}
-	}
+			uni.navigateTo({
+				url: `/pages/classification/detail?id=${productId}`,
+			});
+		},
+	},
 };
 </script>
 

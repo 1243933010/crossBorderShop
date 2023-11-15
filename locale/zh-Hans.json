@@ -133,6 +133,9 @@
 
   // 团队加入详情
   "teamInfo.pageTit": "下级详细信息",
+  "teamInfo.tableTh1": "电话",
+  "teamInfo.tableTh2": "数量",
+  "teamInfo.tableTh3": "报名时间",
 
   "app.Exit": "退出登陆",
   "app.Agreement": "服务协议",
