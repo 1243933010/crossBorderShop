@@ -1,7 +1,8 @@
 <template>
 	<view class="profix-page-container region-page">
-		<CustomHeader />
-		<view class="region-scroll page-scroll" :style="`padding-top: ${iStatusBarHeight + 142}rpx;`">
+		<customHeader style="z-index: 0" />
+		<customHeader style="position: fixed; top: 0; width: 100%" />
+		<view class="region-scroll page-scroll">
 			<view class="logo pic">
 				<image src="../../static/img/logo.png" mode="widthFix" class="img"></image>
 			</view>
@@ -61,11 +62,7 @@ export default {
 		return {
 			pNumberPerfix: "+1", // 手机前缀
 			pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
-			iStatusBarHeight: 0
 		};
-	},
-	mounted() {
-		this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 	},
 	methods: {
 		bindPickerChange() {},
@@ -76,16 +73,14 @@ export default {
 <style lang="less">
 @import "../../static/less/variable.less";
 .region-page {
-	padding-top: 170rpx;
 	background: url("../../static/img/bg/gradient.png") no-repeat center center / 100% 100%;
 	width: 100vw;
-	height: 100vh;
 
 	.region-scroll {
 		height: 100%;
 
 		.logo {
-			margin: 0 auto 62rpx;
+			margin: 170rpx auto 62rpx;
 			border-radius: 50%;
 			width: 140rpx;
 		}
