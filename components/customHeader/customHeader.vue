@@ -1,9 +1,7 @@
 <template>
 	<view class="page">
 		<view class="image-width">
-			<view class="header" <!-- #ifdef APP-NVUE -->
-				:style="{ paddingTop: iStatusBarHeight + 'px'}"
-				<!-- #endif -->>
+			<view class="header" :style="{ paddingTop: iStatusBarHeight+10 + 'px'}">
 				<view class="header-icon" @click="openPop">
 					<image src="../../static/img/logo.png" mode="widthFix"></image>
 				</view>
@@ -60,7 +58,7 @@ export default {
 			this.imgSrc = this.iconList[e.detail.value];
 			uni.setLocale(this.code[e.detail.value]);
 			this.$i18n.locale = this.code[e.detail.value];
-			setTabbar()
+			setTabbar(this.$t)
 		},
 		openPop() {
 			this.$refs.popup.open("center");
@@ -92,9 +90,10 @@ export default {
 		margin: 0 auto;
 		/* #ifdef H5 */
 		padding-top: 44rpx;
-		padding-bottom: 30rpx;
+		
 
 		/* #endif */
+		padding-bottom: 30rpx;
 		.header-icon {
 			image {
 				width: 68rpx;
