@@ -1,14 +1,18 @@
 <template>
 	<view style="background: #FFFFFF;">
-		<customHeader style="z-index: 0;" headerText="普斯集团" />
-		<customHeader headerText="普斯集团"  style="width: 100%;position: absolute;top: 0;"/>
+		<!-- <customHeader style="z-index: 0;" headerText="普斯集团" />
+		<customHeader headerText="普斯集团"  style="width: 100%;position: absolute;top: 0;"/> -->
 
 <view class="search">
-	<view class="flex">
+	<view class="flex" >
 		<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
-		<text>点击搜索内容</text>
+		<input type="text" placeholder="点击搜索内容" style="font-size: 24rpx;" confirm-type="search" @confirm="search" />
 		<view class=""></view>
 	</view>
+	<!-- <view class="flex" v-show="serachBool">
+		<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
+		<input type="text" />
+	</view> -->
 </view>
 	<view class="tab">
 		<view class="hr"></view>
@@ -30,8 +34,12 @@
 		data() {
 			return {
 				index:0,
-				tabList:['产品','店','卖']
+				tabList:['产品','店','卖'],
 			};
+		},
+		methods:{
+			search(){
+			}
 		}
 	}
 </script>
