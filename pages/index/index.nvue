@@ -1,8 +1,33 @@
 <template>
 	<view class="profix-page-container index-page">
-		<customHeader headerText="普斯集团" />
-		<view class="login-scroll page-scroll" :style="`padding-top: ${iStatusBarHeight + 142}rpx;`">
-			
+		<customHeader style="z-index: 0" headerText="普斯集团" />
+		<customHeader headerText="普斯集团" style="position: fixed; top: 0; width: 100%" />
+		<view class="index-scroll page-scroll">
+			<view class="banner">
+				<swiper class="swiper" circular autoplay>
+					<swiper-item>
+						<view class="swiper-item">
+							<view class="pic">
+								<image src="../../static/img/banner/banner.png" mode="widthFix" class="img"></image>
+							</view>
+						</view>
+					</swiper-item>
+					<swiper-item>
+						<view class="swiper-item">
+							<view class="pic">
+								<image src="../../static/img/banner/banner.png" mode="widthFix" class="img"></image>
+							</view>
+						</view>
+					</swiper-item>
+					<swiper-item>
+						<view class="swiper-item">
+							<view class="pic">
+								<image src="../../static/img/banner/banner.png" mode="widthFix" class="img"></image>
+							</view>
+						</view>
+					</swiper-item>
+				</swiper>
+			</view>
 		</view>
 	</view>
 </template>
@@ -15,13 +40,9 @@ export default {
 	data() {
 		return {
 			title: "Hello",
-			iStatusBarHeight: 0,
 		};
 	},
 	onLoad() {},
-	mounted() {
-		this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-	},
 	computed: {
 		locales() {
 			return [
@@ -69,29 +90,12 @@ export default {
 </script>
 
 <style lang="less">
-.content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.logo {
-	height: 200rpx;
-	width: 200rpx;
-	margin-top: 200rpx;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 50rpx;
-}
-
-.text-area {
-	display: flex;
-	justify-content: center;
-}
-
-.title {
-	font-size: 36rpx;
-	color: #8f8f94;
+.index-page {
+	.index-scroll {
+		.banner {
+			margin-left: -30rpx;
+			margin-right: -30rpx;
+		}
+	}
 }
 </style>
