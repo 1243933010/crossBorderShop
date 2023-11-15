@@ -20,7 +20,7 @@
 	"api.message": "提示",
 	"schema.name": "姓名",
 	"schema.add": "新增",
-	"schema.add-success": "新增成功",
+	"loacal.chinaText":"英语",
 	
 	// 登录
 	"login.phonePlaceholder": "请输入手机号",
@@ -36,5 +36,35 @@
 	"app.search":"点击搜索内容",
 	"app.Product":"产品",
 	"app.Store":"店",
-	"app.Sell":"卖"
+	"app.Sell":"卖",
+	
+	// 首页
+	"index.news": "新闻",
+	"index.moreProduct": "更多商品",
+	"index.moreProductDesc": "顶级产品·令人难以置信的价格",
+	"index.menuBtn1": "关于我们",
+	"index.menuBtn2": "企业资质",
+	"index.menuBtn3": "平台奖励",
+	"index.menuBtn4": "储存级别",
+	"index.menuBtn5": "钱包充值",
+	"index.menuBtn6": "我要提现",
+	"index.menuBtn7": "下载应用",
+	"index.menuBtn8": "平台活动",
+	"index.menuBtn9": "邀请好友",
+	
+	// 加盟
+	"join.bannerTit": "立即加入, 永久加入团队",
+	"join.bannerTit1": "即可享受稳定的收入和奖金",
+	"join.joinTit1": "加入代码",
+	"join.joinTit2": "加入链接",
+	"join.copy": "复制",
+	"join.boxTit": "加入的统计数量",
+	"join.bonusText": "加盟店佣金",
+	"join.commissionText": "加盟店佣金",
+	"join.compensationText": "加盟店佣金",
+	"join.teamTit1": "A-level团队加入详情",
+	"join.teamTit2": "B级团队加入详情",
+	"join.teamTit3": "C级团队加入详情",
+	"join.committee": "委员会",
+	"join.partners": "合伙人数量"
 }

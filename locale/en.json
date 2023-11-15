@@ -21,6 +21,7 @@
 	"schema.name": "Name",
 	"schema.add": "Add",
 	"schema.add-success": "Add success",
+	"loacal.chinaText": "English",
 
 	// 登录
 	"login.phonePlaceholder": "Please enter your phone number",
@@ -37,4 +38,33 @@
 	"app.Product":"Product",
 	"app.Store":"Store",
 	"app.Sell":"Sell",
-}
+
+	// 首页
+	"index.news": "News",
+	"index.moreProduct": "More Products",
+	"index.moreProductDesc": "Top products at incredible prices",
+	"index.menuBtn1": "About us",
+	"index.menuBtn2": "Enterprise Qualification",
+	"index.menuBtn3": "Platform rewards",
+	"index.menuBtn4": "Storage level",
+	"index.menuBtn5": "Wallet recharge",
+	"index.menuBtn6": "I need to withdraw cash",
+	"index.menuBtn7": "Download apps",
+	"index.menuBtn8": "Platform activities",
+	"index.menuBtn9": "Invite friends",
+
+	// 加盟
+	"join.bannerTit": "Join now and permanently join the team",
+	"join.bannerTit1": "Enjoy stable income and bonuses",
+	"join.joinTit1": "Added code",
+	"join.joinTit2": "Joined Link",
+	"join.copy": "copy",
+	"join.boxTit": "Number of added statistics",
+	"join.bonusText": "Franchise store bonus",
+	"join.commissionText": "Franchise store commission",
+	"join.compensationText": "Total compensation",
+	"join.teamTit1": "A-level team joining details",
+	"join.teamTit2": "B-level team joining details",
+	"join.teamTit3": "Details of joining a C - level team ",
+	"join.committee": "committee ",
+	"join.partners": "Number of partners"
