@@ -1,6 +1,9 @@
 <template>
 	<view style="background: #FFFFFF;height: 100%;">
 		<view style="height: 100%;">
+		<view class="">
+			11112
+		</view>
 			<customHeader style="z-index: 0;" :headerText="$t('app.name')" />
 			<customHeader :headerText="$t('app.name')" style="width: 100%;position: absolute;top: 0;" />
 
@@ -11,16 +14,11 @@
 						@confirm="search" />
 					<view class=""></view>
 				</view>
-				<!-- <view class="flex" v-show="serachBool">
-				<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
-				<input type="text" />
-			</view> -->
 			</view>
 			<view style="display: flex;justify-content: space-between; flex-flow: nowrap;">
-				<view class="con-left" v-show="tabBool">
+				<view class="con-left" v-if="tabBool">
 					<view  class="item" v-for="(item,index) in conLeftList" :key="index" @click="leftClick(index)">
 						<view :class="leftIndex==index?'hr':'hr1'"></view>
-						<!-- <view class="" v-show="leftIndex!==index"></view> -->
 						<view class="item-text">
 							{{item.title}}
 						</view>
@@ -39,7 +37,7 @@
 					<view class="con-box">
 						<scroll-view style="height: 1250rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
 							@scrolltolower="lower" @scroll="scroll">
-							<view class="item" v-show="tabBool" v-for="(item,index) in conBox" :key="index">
+							<view class="item" v-if="tabBool" v-for="(item,index) in conBox" :key="index">
 								<view class="img" >
 									<image :src="item.src" mode="widthFix"></image>
 								</view>
@@ -48,7 +46,7 @@
 								
 								<text>{{item.title}}</text>
 							</view>
-							<view class="item1" v-show="!tabBool" v-for="(item,index) in conBox" :key="index">
+							<view class="item1" v-if="!tabBool" v-for="(item,index) in conBox" :key="index">
 								<view class="img" >
 									<image :src="item.src" mode="widthFix"></image>
 								</view>
@@ -58,7 +56,6 @@
 									<text class="label">{{item.label}}</text>
 									<text class="price1">{{item.price}}</text>
 								</view>
-								<!-- <text>{{item.title}}</text> -->
 							</view>
 						</scroll-view>
 
@@ -72,7 +69,7 @@
 </template>
 
 <script>
-	import customHeader from '@/components/customHeader/customHeader.nvue'
+	import customHeader from '@/components/customHeader/customHeader.vue'
 	export default {
 		components: {
 			customHeader

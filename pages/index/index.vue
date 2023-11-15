@@ -126,7 +126,7 @@
 </template>
 
 <script>
-import customHeader from "@/components/customHeader/customHeader.nvue";
+import customHeader from "@/components/customHeader/customHeader.vue";
 
 export default {
 	components: { customHeader },

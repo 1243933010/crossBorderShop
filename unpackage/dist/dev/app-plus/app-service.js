@@ -29,45 +29,8 @@ if (typeof uni !== "undefined" && uni && uni.requireGlobal) {
 if (uni.restoreGlobal) {
   uni.restoreGlobal(Vue, weex, plus, setTimeout, clearTimeout, setInterval, clearInterval);
 }
-(function(vue) {
+(function(vue, shared) {
   "use strict";
-  const _export_sfc = (sfc, props) => {
-    const target = sfc.__vccOpts || sfc;
-    for (const [key, val] of props) {
-      target[key] = val;
-    }
-    return target;
-  };
-  const _sfc_main$3 = {
-    data() {
-      return {};
-    }
-  };
-  function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view");
-  }
-  const PagesJoinJoin = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "D:/私人文件夹/crossBorderShop/pages/join/join.vue"]]);
-  const _sfc_main$2 = {
-    data() {
-      return {};
-    }
-  };
-  function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view");
-  }
-  const PagesClassificationClassification = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__file", "D:/私人文件夹/crossBorderShop/pages/classification/classification.vue"]]);
-  const _sfc_main$1 = {
-    data() {
-      return {};
-    }
-  };
-  function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("view");
-  }
-  const PagesMeMe = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "D:/私人文件夹/crossBorderShop/pages/me/me.vue"]]);
-  __definePage("pages/join/join", PagesJoinJoin);
-  __definePage("pages/classification/classification", PagesClassificationClassification);
-  __definePage("pages/me/me", PagesMeMe);
   function formatAppLog(type, filename, ...args) {
     if (uni.__log__) {
       uni.__log__(type, filename, ...args);
@@ -75,6 +38,2161 @@ if (uni.restoreGlobal) {
       console[type].apply(console, [...args, filename]);
     }
   }
+  function resolveEasycom(component, easycom) {
+    return shared.isString(component) ? easycom : component;
+  }
+  const setTabbar = () => {
+    formatAppLog("log", "at utils/utils.js:4", "111");
+    [{
+      "pagePath": "pages/index/index",
+      "iconPath": "static/img/tabbar/home.png",
+      "selectedIconPath": "static/img/tabbar/home_select.png",
+      "text": `${globalThis.$t("app.home")}`
+    }, {
+      "pagePath": "pages/join/join",
+      "iconPath": "static/img/tabbar/join.png",
+      "selectedIconPath": "static/img/tabbar/join_select.png",
+      "text": `${globalThis.$t("app.join")}`
+    }, {
+      "pagePath": "pages/classification/classification",
+      "iconPath": "static/img/tabbar/classification.png",
+      "selectedIconPath": "static/img/tabbar/classification_select.png",
+      "text": `${globalThis.$t("app.classification_select")}`
+    }, {
+      "pagePath": "pages/me/me",
+      "iconPath": "static/img/tabbar/me.png",
+      "selectedIconPath": "static/img/tabbar/me_select.png",
+      "text": `${globalThis.$t("app.me")}`
+    }];
+    uni.setTabBarItem({
+      index: 1,
+      pagePath: "pages/index/index",
+      text: "xxx",
+      iconPath: "static/img/tabbar/home.png",
+      selectedIconPath: "static/img/tabbar/join_select.png",
+      success: (res) => {
+        formatAppLog("log", "at utils/utils.js:44", res, "======");
+      },
+      fail: (fail) => {
+        formatAppLog("log", "at utils/utils.js:46", fail, "------}}");
+      }
+    });
+  };
+  const _export_sfc = (sfc, props) => {
+    const target = sfc.__vccOpts || sfc;
+    for (const [key, val] of props) {
+      target[key] = val;
+    }
+    return target;
+  };
+  const _sfc_main$8 = {
+    name: "customHeader",
+    props: ["headerText"],
+    data() {
+      return {
+        iStatusBarHeight: 0,
+        array: ["中文", "English"],
+        index: 0,
+        iconList: ["../../static/img/cn.png", "../../static/img/eg.png"],
+        imgSrc: "../../static/img/cn.png",
+        locale: { "zh-Hans": 0, en: 1 },
+        code: ["zh-Hans", "en"]
+      };
+    },
+    mounted() {
+      this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
+      formatAppLog("log", "at components/customHeader/customHeader.vue:42", this.iStatusBarHeight, "系统栏高度");
+      let code = uni.getLocale();
+      if (code) {
+        this.imgSrc = this.iconList[this.locale[code]];
+      }
+    },
+    methods: {
+      bindPickerChange: function(e) {
+        formatAppLog("log", "at components/customHeader/customHeader.vue:52", this.$t, "------");
+        formatAppLog("log", "at components/customHeader/customHeader.vue:53", "picker发送选择改变，携带值为", this.code[e.detail.value]);
+        this.imgSrc = this.iconList[e.detail.value];
+        uni.setLocale(this.code[e.detail.value]);
+        this.$i18n.locale = this.code[e.detail.value];
+        setTabbar();
+      }
+    }
+  };
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", { class: "page" }, [
+      vue.createElementVNode("view", { class: "image-width" }, [
+        vue.createElementVNode("view", { class: "header" }, [
+          vue.createElementVNode("view", { class: "header-icon" }, [
+            vue.createElementVNode("image", {
+              src: "/static/img/logo.png",
+              mode: "widthFix"
+            })
+          ]),
+          vue.createElementVNode("view", { class: "header-text" }, [
+            vue.createElementVNode(
+              "text",
+              null,
+              vue.toDisplayString($props.headerText),
+              1
+              /* TEXT */
+            )
+          ]),
+          vue.createElementVNode("picker", {
+            onChange: _cache[0] || (_cache[0] = (...args) => $options.bindPickerChange && $options.bindPickerChange(...args)),
+            value: $data.index,
+            range: $data.array
+          }, [
+            vue.createElementVNode("view", { class: "header-select" }, [
+              vue.createElementVNode("image", {
+                class: "header-select-icon",
+                src: $data.imgSrc,
+                mode: "widthFix"
+              }, null, 8, ["src"]),
+              vue.createElementVNode("image", {
+                class: "header-select-select",
+                src: "/static/img/select_icon.png",
+                mode: "widthFix"
+              })
+            ])
+          ], 40, ["value", "range"])
+        ])
+      ])
+    ]);
+  }
+  const __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$7], ["__scopeId", "data-v-07ba079a"], ["__file", "D:/私人文件夹/crossBorderShop/components/customHeader/customHeader.vue"]]);
+  const _sfc_main$7 = {
+    components: { customHeader: __easycom_0 },
+    data() {
+      return {
+        title: "Hello"
+      };
+    },
+    onLoad() {
+    },
+    computed: {
+      locales() {
+        return [
+          {
+            text: this.$t("locale.auto"),
+            code: "auto"
+          },
+          {
+            text: this.$t("locale.en"),
+            code: "en"
+          },
+          {
+            text: this.$t("locale.zh-hans"),
+            code: "zh-Hans"
+          },
+          {
+            text: this.$t("locale.zh-hant"),
+            code: "zh-Hant"
+          },
+          {
+            text: this.$t("locale.ja"),
+            code: "ja"
+          }
+        ];
+      },
+      menuList() {
+        return [
+          [
+            {
+              iconUrl: "../../static/img/icon/index/1.png",
+              tit: this.$t("index.menuBtn1")
+            },
+            {
+              iconUrl: "../../static/img/icon/index/2.png",
+              tit: this.$t("index.menuBtn2")
+            },
+            {
+              iconUrl: "../../static/img/icon/index/3.png",
+              tit: this.$t("index.menuBtn3")
+            }
+          ],
+          [
+            {
+              iconUrl: "../../static/img/icon/index/4.png",
+              tit: this.$t("index.menuBtn4")
+            },
+            {
+              iconUrl: "../../static/img/icon/index/5.png",
+              tit: this.$t("index.menuBtn5")
+            },
+            {
+              iconUrl: "../../static/img/icon/index/6.png",
+              tit: this.$t("index.menuBtn6")
+            }
+          ],
+          [
+            {
+              iconUrl: "../../static/img/icon/index/7.png",
+              tit: this.$t("index.menuBtn7")
+            },
+            {
+              iconUrl: "../../static/img/icon/index/8.png",
+              tit: this.$t("index.menuBtn8")
+            },
+            {
+              iconUrl: "../../static/img/icon/index/9.png",
+              tit: this.$t("index.menuBtn9")
+            }
+          ]
+        ];
+      }
+    },
+    methods: {
+      onLocaleChange(e) {
+        if (this.isAndroid) {
+          uni.showModal({
+            content: this.$t("index.language-change-confirm"),
+            success: (res) => {
+              if (res.confirm) {
+                uni.setLocale(e.code);
+              }
+            }
+          });
+        } else {
+          uni.setLocale(e.code);
+          this.$i18n.locale = e.code;
+        }
+      }
+    }
+  };
+  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_customHeader = resolveEasycom(vue.resolveDynamicComponent("customHeader"), __easycom_0);
+    return vue.openBlock(), vue.createElementBlock("view", { class: "profix-page-container index-page" }, [
+      vue.createVNode(_component_customHeader, {
+        style: { "z-index": "0" },
+        headerText: "普斯集团"
+      }),
+      vue.createVNode(_component_customHeader, {
+        headerText: "普斯集团",
+        style: { "position": "fixed", "top": "0", "z-index": "1" }
+      }),
+      vue.createElementVNode("view", { class: "index-scroll page-scroll" }, [
+        vue.createElementVNode("view", { class: "banner" }, [
+          vue.createElementVNode("swiper", {
+            class: "swiper",
+            circular: "",
+            autoplay: ""
+          }, [
+            vue.createElementVNode("swiper-item", null, [
+              vue.createElementVNode("view", { class: "swiper-item" }, [
+                vue.createElementVNode("view", { class: "pic" }, [
+                  vue.createElementVNode("image", {
+                    src: "/static/img/banner/banner.png",
+                    mode: "widthFix",
+                    class: "img"
+                  })
+                ])
+              ])
+            ]),
+            vue.createElementVNode("swiper-item", null, [
+              vue.createElementVNode("view", { class: "swiper-item" }, [
+                vue.createElementVNode("view", { class: "pic" }, [
+                  vue.createElementVNode("image", {
+                    src: "/static/img/banner/banner.png",
+                    mode: "widthFix",
+                    class: "img"
+                  })
+                ])
+              ])
+            ]),
+            vue.createElementVNode("swiper-item", null, [
+              vue.createElementVNode("view", { class: "swiper-item" }, [
+                vue.createElementVNode("view", { class: "pic" }, [
+                  vue.createElementVNode("image", {
+                    src: "/static/img/banner/banner.png",
+                    mode: "widthFix",
+                    class: "img"
+                  })
+                ])
+              ])
+            ])
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "news-list" }, [
+          vue.createElementVNode(
+            "view",
+            { class: "left-tit" },
+            vue.toDisplayString(_ctx.$t("index.news")),
+            1
+            /* TEXT */
+          ),
+          vue.createElementVNode("view", { class: "news-swiper" }, [
+            vue.createElementVNode("swiper", {
+              class: "swiper",
+              vertical: "",
+              circular: "",
+              autoplay: ""
+            }, [
+              vue.createElementVNode("swiper-item", null, [
+                vue.createElementVNode("view", { class: "swiper-item" }, "lual or a team, whether you have e-co1lual or a team, whether you have e-co1")
+              ]),
+              vue.createElementVNode("swiper-item", null, [
+                vue.createElementVNode("view", { class: "swiper-item" }, "lual or a team, whether you have e-co1lual or a team, whether you have e-co1")
+              ]),
+              vue.createElementVNode("swiper-item", null, [
+                vue.createElementVNode("view", { class: "swiper-item" }, "lual or a team, whether you have")
+              ])
+            ])
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "menu-container" }, [
+          (vue.openBlock(true), vue.createElementBlock(
+            vue.Fragment,
+            null,
+            vue.renderList($options.menuList, (item, index) => {
+              return vue.openBlock(), vue.createElementBlock("view", {
+                class: "menu-list",
+                key: index
+              }, [
+                (vue.openBlock(true), vue.createElementBlock(
+                  vue.Fragment,
+                  null,
+                  vue.renderList(item, (e, i) => {
+                    return vue.openBlock(), vue.createElementBlock("view", {
+                      class: "menu-item",
+                      key: i
+                    }, [
+                      vue.createElementVNode("view", { class: "pic" }, [
+                        vue.createElementVNode("image", {
+                          src: e.iconUrl,
+                          mode: "widthFix",
+                          class: "img"
+                        }, null, 8, ["src"])
+                      ]),
+                      vue.createElementVNode(
+                        "view",
+                        { class: "menu-tit" },
+                        vue.toDisplayString(e.tit),
+                        1
+                        /* TEXT */
+                      )
+                    ]);
+                  }),
+                  128
+                  /* KEYED_FRAGMENT */
+                ))
+              ]);
+            }),
+            128
+            /* KEYED_FRAGMENT */
+          ))
+        ]),
+        vue.createElementVNode("view", { class: "paper-card-list" }, [
+          vue.createElementVNode("view", { class: "paper-card pic" }, [
+            vue.createElementVNode("image", {
+              src: "/static/img/paperCard/join.png",
+              mode: "widthFix",
+              class: "img"
+            })
+          ]),
+          vue.createElementVNode("view", { class: "paper-card pic" }, [
+            vue.createElementVNode("image", {
+              src: "/static/img/paperCard/paper_air.png",
+              mode: "widthFix",
+              class: "img"
+            })
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "product-container" }, [
+          vue.createElementVNode(
+            "view",
+            { class: "tit" },
+            vue.toDisplayString(_ctx.$t("index.moreProduct")),
+            1
+            /* TEXT */
+          ),
+          vue.createElementVNode(
+            "view",
+            { class: "desc" },
+            vue.toDisplayString(_ctx.$t("index.moreProductDesc")),
+            1
+            /* TEXT */
+          ),
+          vue.createElementVNode("view", { class: "product-list" }, [
+            vue.createElementVNode("view", { class: "product-item" }, [
+              vue.createElementVNode("view", { class: "product-img pic" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/product/1.png",
+                  mode: "widthFix",
+                  class: "img"
+                })
+              ]),
+              vue.createElementVNode("view", { class: "product-info" }, [
+                vue.createElementVNode("view", { class: "product-tit" }, "GGMARMONT超保暖羽绒服限时发售GGMARMONT超保暖羽绒服限时发售"),
+                vue.createElementVNode("view", { class: "product-price-info" }, [
+                  vue.createElementVNode("view", { class: "rebate" }, "$ 198"),
+                  vue.createElementVNode("view", { class: "brfore-rebate" }, "$ 1980")
+                ])
+              ])
+            ]),
+            vue.createElementVNode("view", { class: "product-item" }, [
+              vue.createElementVNode("view", { class: "product-img pic" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/product/2.png",
+                  mode: "widthFix",
+                  class: "img"
+                })
+              ]),
+              vue.createElementVNode("view", { class: "product-info" }, [
+                vue.createElementVNode("view", { class: "product-tit" }, "古驰限量绝版包包限时发售古驰限量绝版包包限时发售古驰限量绝版包包限时发售"),
+                vue.createElementVNode("view", { class: "product-price-info" }, [
+                  vue.createElementVNode("view", { class: "rebate" }, "$ 198"),
+                  vue.createElementVNode("view", { class: "brfore-rebate" }, "$ 1980")
+                ])
+              ])
+            ]),
+            vue.createElementVNode("view", { class: "product-item" }, [
+              vue.createElementVNode("view", { class: "product-img pic" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/product/1.png",
+                  mode: "widthFix",
+                  class: "img"
+                })
+              ]),
+              vue.createElementVNode("view", { class: "product-info" }, [
+                vue.createElementVNode("view", { class: "product-tit" }, "GGMARMONT超保暖羽绒服限时发售GGMARMONT超保暖羽绒服限时发售"),
+                vue.createElementVNode("view", { class: "product-price-info" }, [
+                  vue.createElementVNode("view", { class: "rebate" }, "$ 198"),
+                  vue.createElementVNode("view", { class: "brfore-rebate" }, "$ 1980")
+                ])
+              ])
+            ]),
+            vue.createElementVNode("view", { class: "product-item" }, [
+              vue.createElementVNode("view", { class: "product-img pic" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/product/2.png",
+                  mode: "widthFix",
+                  class: "img"
+                })
+              ]),
+              vue.createElementVNode("view", { class: "product-info" }, [
+                vue.createElementVNode("view", { class: "product-tit" }, "古驰限量绝版包包限时发售古驰限量绝版包包限时发售古驰限量绝版包包限时发售"),
+                vue.createElementVNode("view", { class: "product-price-info" }, [
+                  vue.createElementVNode("view", { class: "rebate" }, "$ 198"),
+                  vue.createElementVNode("view", { class: "brfore-rebate" }, "$ 1980")
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]);
+  }
+  const PagesIndexIndex = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$6], ["__file", "D:/私人文件夹/crossBorderShop/pages/index/index.vue"]]);
+  const _sfc_main$6 = {
+    components: {
+      customHeader: __easycom_0
+    },
+    computed: {
+      tabList() {
+        return [this.$t("app.Product"), this.$t("app.Store"), this.$t("app.Sell")];
+      }
+    },
+    data() {
+      return {
+        active: 0,
+        leftIndex: 0,
+        tabBool: true,
+        conLeftList: [
+          {
+            title: "All"
+          },
+          {
+            title: "lv1"
+          },
+          {
+            title: "lv2"
+          }
+        ],
+        conBox: [{
+          src: "../../static/img/logo.png",
+          title: "New Balance Mens 411 V1 Training S..",
+          price: "55",
+          price1: "1",
+          label: "促销"
+        }, {
+          src: "../../static/img/logo.png",
+          title: "New Balance Mens 411 V1 Training S..",
+          price: "55",
+          price1: "1",
+          label: "促销"
+        }, {
+          src: "../../static/img/logo.png",
+          title: "New Balance Mens 411 V1 Training S..",
+          price: "55",
+          price1: "1",
+          label: "促销"
+        }, {
+          src: "../../static/img/logo.png",
+          title: "New Balance Mens 411 V1 Training S..",
+          price: "55",
+          price1: "1",
+          label: "促销"
+        }, {
+          src: "../../static/img/logo.png",
+          title: "New Balance Mens 411 V1 Training S..",
+          price: "55",
+          price1: "1",
+          label: "促销"
+        }, {
+          src: "../../static/img/logo.png",
+          title: "New Balance Mens 411 V1 Training S..",
+          price: "55",
+          price1: "1",
+          label: "促销"
+        }, {
+          src: "../../static/img/logo.png",
+          title: "New   411 V1 Training S..",
+          price: "55",
+          price1: "1",
+          label: "促销"
+        }]
+      };
+    },
+    mounted() {
+    },
+    methods: {
+      search() {
+      },
+      activeClick(index) {
+        formatAppLog("log", "at pages/classification/classification.vue:145", index);
+        this.active = index;
+        if (index > 0) {
+          this.tabBool = false;
+        } else {
+          this.tabBool = true;
+        }
+      },
+      leftClick(index) {
+        this.leftIndex = index;
+      }
+    }
+  };
+  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_customHeader = resolveEasycom(vue.resolveDynamicComponent("customHeader"), __easycom_0);
+    return vue.openBlock(), vue.createElementBlock("view", { style: { "background": "#FFFFFF", "height": "100%" } }, [
+      vue.createElementVNode("view", { style: { "height": "100%" } }, [
+        vue.createElementVNode("view", { class: "" }, " 11112 "),
+        vue.createVNode(_component_customHeader, {
+          style: { "z-index": "0" },
+          headerText: _ctx.$t("app.name")
+        }, null, 8, ["headerText"]),
+        vue.createVNode(_component_customHeader, {
+          headerText: _ctx.$t("app.name"),
+          style: { "width": "100%", "position": "absolute", "top": "0" }
+        }, null, 8, ["headerText"]),
+        vue.createElementVNode("view", { class: "search" }, [
+          vue.createElementVNode("view", { class: "flex" }, [
+            vue.createElementVNode("image", {
+              src: "/static/img/icon/icon_search.png",
+              mode: "widthFix"
+            }),
+            vue.createElementVNode("input", {
+              type: "text",
+              placeholder: _ctx.$t("app.search"),
+              style: { "font-size": "24rpx" },
+              "confirm-type": "search",
+              onConfirm: _cache[0] || (_cache[0] = (...args) => $options.search && $options.search(...args))
+            }, null, 40, ["placeholder"]),
+            vue.createElementVNode("view", { class: "" })
+          ])
+        ]),
+        vue.createElementVNode("view", { style: { "display": "flex", "justify-content": "space-between", "flex-flow": "nowrap" } }, [
+          $data.tabBool ? (vue.openBlock(), vue.createElementBlock("view", {
+            key: 0,
+            class: "con-left"
+          }, [
+            (vue.openBlock(true), vue.createElementBlock(
+              vue.Fragment,
+              null,
+              vue.renderList($data.conLeftList, (item, index) => {
+                return vue.openBlock(), vue.createElementBlock("view", {
+                  class: "item",
+                  key: index,
+                  onClick: ($event) => $options.leftClick(index)
+                }, [
+                  vue.createElementVNode(
+                    "view",
+                    {
+                      class: vue.normalizeClass($data.leftIndex == index ? "hr" : "hr1")
+                    },
+                    null,
+                    2
+                    /* CLASS */
+                  ),
+                  vue.createElementVNode(
+                    "view",
+                    { class: "item-text" },
+                    vue.toDisplayString(item.title),
+                    1
+                    /* TEXT */
+                  )
+                ], 8, ["onClick"]);
+              }),
+              128
+              /* KEYED_FRAGMENT */
+            ))
+          ])) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode(
+            "view",
+            {
+              class: "content",
+              style: vue.normalizeStyle({ width: $data.tabBool ? "" : "100%" })
+            },
+            [
+              vue.createElementVNode("view", { class: "tab" }, [
+                vue.createElementVNode("view", { class: "h-tab" }, [
+                  (vue.openBlock(true), vue.createElementBlock(
+                    vue.Fragment,
+                    null,
+                    vue.renderList($options.tabList, (item, index) => {
+                      return vue.openBlock(), vue.createElementBlock("view", {
+                        class: vue.normalizeClass(["h-tab-item h-tab-item-active", $data.active == index ? "active" : ""]),
+                        onClick: ($event) => $options.activeClick(index),
+                        key: index
+                      }, vue.toDisplayString(item), 11, ["onClick"]);
+                    }),
+                    128
+                    /* KEYED_FRAGMENT */
+                  ))
+                ])
+              ]),
+              vue.createElementVNode("view", { class: "con-box" }, [
+                vue.createElementVNode(
+                  "scroll-view",
+                  {
+                    style: { "height": "1250rpx" },
+                    "scroll-y": "true",
+                    class: "scroll-Y",
+                    onScrolltoupper: _cache[1] || (_cache[1] = (...args) => _ctx.upper && _ctx.upper(...args)),
+                    onScrolltolower: _cache[2] || (_cache[2] = (...args) => _ctx.lower && _ctx.lower(...args)),
+                    onScroll: _cache[3] || (_cache[3] = (...args) => _ctx.scroll && _ctx.scroll(...args))
+                  },
+                  [
+                    $data.tabBool ? (vue.openBlock(true), vue.createElementBlock(
+                      vue.Fragment,
+                      { key: 0 },
+                      vue.renderList($data.conBox, (item, index) => {
+                        return vue.openBlock(), vue.createElementBlock("view", {
+                          class: "item",
+                          key: index
+                        }, [
+                          vue.createElementVNode("view", { class: "img" }, [
+                            vue.createElementVNode("image", {
+                              src: item.src,
+                              mode: "widthFix"
+                            }, null, 8, ["src"])
+                          ]),
+                          vue.createElementVNode(
+                            "text",
+                            null,
+                            vue.toDisplayString(item.title),
+                            1
+                            /* TEXT */
+                          ),
+                          vue.createElementVNode(
+                            "text",
+                            null,
+                            vue.toDisplayString(item.title),
+                            1
+                            /* TEXT */
+                          )
+                        ]);
+                      }),
+                      128
+                      /* KEYED_FRAGMENT */
+                    )) : vue.createCommentVNode("v-if", true),
+                    !$data.tabBool ? (vue.openBlock(true), vue.createElementBlock(
+                      vue.Fragment,
+                      { key: 1 },
+                      vue.renderList($data.conBox, (item, index) => {
+                        return vue.openBlock(), vue.createElementBlock("view", {
+                          class: "item1",
+                          key: index
+                        }, [
+                          vue.createElementVNode("view", { class: "img" }, [
+                            vue.createElementVNode("image", {
+                              src: item.src,
+                              mode: "widthFix"
+                            }, null, 8, ["src"])
+                          ]),
+                          vue.createElementVNode("view", { class: "item1-text" }, [
+                            vue.createElementVNode(
+                              "text",
+                              { class: "title" },
+                              vue.toDisplayString(item.title),
+                              1
+                              /* TEXT */
+                            ),
+                            vue.createElementVNode(
+                              "text",
+                              { class: "price" },
+                              vue.toDisplayString(_ctx.$t("app.price")) + ":" + vue.toDisplayString(item.price),
+                              1
+                              /* TEXT */
+                            ),
+                            vue.createElementVNode(
+                              "text",
+                              { class: "label" },
+                              vue.toDisplayString(item.label),
+                              1
+                              /* TEXT */
+                            ),
+                            vue.createElementVNode(
+                              "text",
+                              { class: "price1" },
+                              vue.toDisplayString(item.price),
+                              1
+                              /* TEXT */
+                            )
+                          ])
+                        ]);
+                      }),
+                      128
+                      /* KEYED_FRAGMENT */
+                    )) : vue.createCommentVNode("v-if", true)
+                  ],
+                  32
+                  /* HYDRATE_EVENTS */
+                )
+              ])
+            ],
+            4
+            /* STYLE */
+          )
+        ])
+      ])
+    ]);
+  }
+  const PagesClassificationClassification = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$5], ["__scopeId", "data-v-5fbab323"], ["__file", "D:/私人文件夹/crossBorderShop/pages/classification/classification.vue"]]);
+  const _sfc_main$5 = {
+    data() {
+      return {
+        userInfo: {
+          name: "昵称",
+          id: "111111",
+          vip: 1,
+          num1: 1,
+          num2: 1,
+          num3: 1
+        }
+      };
+    },
+    computed: {
+      linkList() {
+        return [
+          { url: "", title: this.$t("app.myWallet"), src: "../../static/img/lc.png" },
+          { url: "", title: this.$t("app.financial"), src: "../../static/img/cw.png" },
+          { url: "", title: this.$t("app.securityCenter"), src: "../../static/img/ws.png" },
+          { url: "", title: this.$t("app.recharge"), src: "../../static/img/cz.png" },
+          { url: "", title: this.$t("app.withdraw"), src: "../../static/img/tx.png" },
+          { url: "", title: this.$t("app.basicFunctions"), src: "../../static/img/jz.png" }
+        ];
+      }
+    }
+  };
+  function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createElementVNode("view", { class: "bk" }, [
+        vue.createElementVNode("view", { class: "userinfo" }, [
+          vue.createElementVNode("view", { class: "logo" }, [
+            vue.createElementVNode("image", {
+              src: "/static/img/logo.png",
+              mode: "widthFix"
+            })
+          ]),
+          vue.createElementVNode("view", { class: "msg" }, [
+            vue.createElementVNode("view", { class: "name" }, [
+              vue.createElementVNode(
+                "text",
+                { class: "name-text" },
+                vue.toDisplayString($data.userInfo.name),
+                1
+                /* TEXT */
+              ),
+              vue.createElementVNode(
+                "view",
+                { class: "vip" },
+                "VIP" + vue.toDisplayString($data.userInfo.vip),
+                1
+                /* TEXT */
+              )
+            ]),
+            vue.createElementVNode("view", { class: "id" }, [
+              vue.createElementVNode(
+                "text",
+                null,
+                vue.toDisplayString($data.userInfo.id),
+                1
+                /* TEXT */
+              )
+            ])
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "number" }, [
+          vue.createElementVNode("view", { class: "item" }, [
+            vue.createElementVNode("view", { class: "num" }, [
+              vue.createElementVNode("text", null, "1")
+            ]),
+            vue.createElementVNode("view", { class: "text" }, [
+              vue.createElementVNode("text", null, "平衡 (U)")
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "item" }, [
+            vue.createElementVNode("view", { class: "num" }, [
+              vue.createElementVNode("text", null, "1")
+            ]),
+            vue.createElementVNode("view", { class: "text" }, [
+              vue.createElementVNode("text", null, "总收入 (U)")
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "item" }, [
+            vue.createElementVNode("view", { class: "num" }, [
+              vue.createElementVNode("text", null, "1")
+            ]),
+            vue.createElementVNode("view", { class: "text" }, [
+              vue.createElementVNode("text", null, "存款 (U)")
+            ])
+          ])
+        ])
+      ]),
+      vue.createElementVNode("view", { class: "list" }, [
+        (vue.openBlock(true), vue.createElementBlock(
+          vue.Fragment,
+          null,
+          vue.renderList($options.linkList, (item, index) => {
+            return vue.openBlock(), vue.createElementBlock("view", {
+              class: "item",
+              key: index
+            }, [
+              vue.createElementVNode("view", { class: "left" }, [
+                vue.createElementVNode("image", {
+                  src: item.src,
+                  mode: "widthFix"
+                }, null, 8, ["src"]),
+                vue.createElementVNode("view", { class: "text" }, [
+                  vue.createElementVNode(
+                    "text",
+                    null,
+                    vue.toDisplayString(item.title),
+                    1
+                    /* TEXT */
+                  )
+                ])
+              ]),
+              vue.createElementVNode("view", { class: "right" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/right_arrow.png",
+                  mode: "widthFix"
+                })
+              ])
+            ]);
+          }),
+          128
+          /* KEYED_FRAGMENT */
+        ))
+      ]),
+      vue.createElementVNode("view", { class: "btn-box" }, [
+        vue.createElementVNode("view", { class: "box" }, [
+          vue.createElementVNode("view", { class: "exit" }, [
+            vue.createElementVNode("text", null, "退出登陆")
+          ]),
+          vue.createElementVNode("view", { class: "agreement" }, [
+            vue.createElementVNode("text", null, "服务协议")
+          ])
+        ])
+      ])
+    ]);
+  }
+  const PagesMeMe = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$4], ["__scopeId", "data-v-19c123a7"], ["__file", "D:/私人文件夹/crossBorderShop/pages/me/me.vue"]]);
+  const _sfc_main$4 = {
+    name: "hxNavbar",
+    components: {},
+    data() {
+      return {
+        title: "",
+        backgroundColorRgba: "",
+        backgroundColorRgb: "rgb(222,222,222)",
+        backgroundImage: null,
+        backgroundImageEnd: null,
+        //当前使用文字颜色
+        txtColor: "#333333",
+        // 背景颜色过度数组
+        bgArr: [],
+        // 文字颜色过度数组
+        colorArr: [],
+        // 状态栏颜色
+        statusBarBackground: "",
+        // 背景透明
+        bgTransparent: 1,
+        // 背景图片透明
+        bgImgTransparent: [1, 1],
+        // 小程序 胶囊宽度
+        jnWidth: 0,
+        // 背景颜色是否为线性渐变
+        bgIsLine: false,
+        // 插槽过度透明度
+        slotSwitchOpacity: 1,
+        // 默认设置
+        conf: {
+          // 标题
+          title: "",
+          // nav 高度
+          height: 44,
+          // 是否固定头部
+          fixed: true,
+          // 是否包含状态栏
+          statusBar: true,
+          // 状态栏字体颜色，只支持黑（#000000）和白（#FFFFFF）两种颜色。为数组则是滑动变色
+          statusBarFontColor: "#000000",
+          //状态栏背景颜色
+          statusBarBackground: null,
+          // 字体
+          font: "hxicon",
+          // 字体大小
+          fontSize: "18px",
+          // 文字颜色，可以数组和string，为数组则是滑动变色 ["#000000","#ff9900"]
+          color: "#333333",
+          //背景颜色;参数一：透明度;参数二：背景颜色（array则为线性渐变，string为单色背景）、
+          // [1,['#24bdab','#80c54c']]
+          backgroundColor: [1, "#ffffff"],
+          // 背景图片（array则为滑动切换背景图，string为单一背景图）
+          // 普通背景
+          // ['/static/xj.jpg']
+          // 切换功能参数说明：第一张图片，第二张图，第一张图透明度，第二张图透明度
+          // ['/static/xj.jpg','/static/xk.jpg',1,1]
+          backgroundImg: null,
+          // 线性渐变角度
+          backgroundColorLinearDeg: "to right",
+          // 滑动距离
+          slideHeight: 100,
+          // 滑动后背景颜色;参数一：透明度;参数二：背景颜色（array则为线性渐变，string为单色背景）
+          slideBackgroundColor: null,
+          // 是否需要返回按钮
+          back: true,
+          // 返回文本 '返回',小程序无效
+          backTxt: null,
+          // 返回tab页面
+          backTabPage: null,
+          // 返回普通页面
+          backPage: null,
+          // 左侧按钮组，icon参数为必填
+          leftButton: null,
+          // 右侧按钮组，icon参数为必填
+          rightButton: null,
+          // rightButton:[{
+          //	key: 'address',		// 标识，方便事件识别是哪一个按钮触发
+          // 	icon: '&#xe64b;',	// 图标代码
+          //	txt: '文本',			// 文本，常用于城市选择
+          // 	color: '#ff9900',	// 图标颜色
+          //  position: 'left', // 图标居于文字left 或 right
+          // },{
+          //	key: 'address',		// 标识，方便事件识别是哪一个按钮触发
+          // 	icon: '&#xe650;', 
+          // 	txt: '文本',
+          // 	color: '#894574',
+          // },]
+          // 搜索框
+          search: null,
+          // search: {
+          // 	value:'',
+          // 	placeholder: '',
+          // 	disabled: false
+          // }
+          // 阴影
+          shadow: false,
+          // 底边框
+          border: false,
+          // 导航栏占位符
+          barPlaceholder: true,
+          // 插槽滑动切换
+          slotSwitch: 0,
+          // 右插槽
+          rightSlot: false,
+          // 右插槽切换
+          rightSlotSwitch: false
+        }
+      };
+    },
+    props: {
+      config: {
+        type: Object,
+        default: () => ({})
+      }
+    },
+    computed: {
+      //获取系统状态栏高度
+      statusBarHeight() {
+        return uni.getSystemInfoSync().statusBarHeight;
+      },
+      navbarHeight() {
+        var that = this;
+        return uni.getSystemInfoSync().statusBarHeight + that.conf.height + "px";
+      },
+      screenWidth() {
+        return uni.getSystemInfoSync().screenWidth;
+      }
+    },
+    created() {
+      var that = this;
+      that.init();
+    },
+    mounted() {
+    },
+    watch: {
+      // 'conf.leftButton': {
+      // 	handler(newVal, oldVal) {
+      // 		__f__('log','at components/hx-navbar.vue:316',"出发了")
+      // 		//this.init()
+      // 		this.conf.leftButton = newVal
+      // 	},
+      // 	// 启用深度监听
+      // 	deep: true
+      // }
+    },
+    methods: {
+      iconHandle(icon) {
+        icon = icon.replace(/(&#x|;)/g, "");
+        return unescape("%u" + icon);
+      },
+      init() {
+        var that = this;
+        that.conf = Object.assign(that.conf, that.config);
+        if (that.conf.title != "") {
+          uni.setNavigationBarTitle({
+            title: that.conf.title
+          });
+        }
+        if (that.conf.title) {
+          if (typeof that.conf.title == "object" && that.conf.title.length == 2) {
+            that.title = that.conf.title[0];
+          } else {
+            that.title = that.conf.title;
+          }
+        }
+        if (that.conf.statusBarBackground) {
+          if (typeof that.conf.statusBarBackground == "object" && that.conf.statusBarBackground.length == 2) {
+            that.statusBarBackground = that.conf.statusBarBackground[0];
+          } else {
+            that.statusBarBackground = that.conf.statusBarBackground;
+          }
+        }
+        if (that.conf.statusBarFontColor) {
+          uni.setNavigationBarColor({
+            frontColor: typeof that.conf.statusBarFontColor == "object" ? that.conf.statusBarFontColor[0] : that.conf.statusBarFontColor,
+            backgroundColor: "#000000"
+          });
+        }
+        if (that.conf.color != "") {
+          if (typeof that.conf.color == "object" && that.conf.color.length == 2) {
+            that.txtColor = that.conf.color[0];
+            that.colorArr = that.gradientColor(that.conf.color[0], that.conf.color[1], that.conf.slideHeight);
+          } else {
+            that.txtColor = that.conf.color;
+          }
+        }
+        if (that.conf.backgroundImg) {
+          let img = "";
+          if (typeof that.conf.backgroundImg == "object") {
+            img = that.conf.backgroundImg[0];
+            if (that.conf.backgroundImg.length > 2) {
+              that.bgTransparent = that.conf.backgroundImg[2];
+            }
+          } else {
+            img = that.conf.backgroundImg;
+            that.bgTransparent = 1;
+          }
+          that.backgroundImage = that.bgImgStringHandle(img);
+        }
+        if (that.conf.backgroundColor) {
+          let transparent = that.conf.backgroundColor[0];
+          let background = that.conf.backgroundColor[1];
+          if (typeof background == "object" && background.length > 1) {
+            that.bgIsLine = true;
+          }
+          if (that.conf.slideBackgroundColor) {
+            let backgroundEnd = that.conf.slideBackgroundColor[1];
+            that.bgArr = [];
+            if (background && typeof background == "object" && background.length > 0) {
+              for (var i in background) {
+                that.bgArr.push(that.gradientColor(background[i], backgroundEnd[i], that.conf.slideHeight));
+              }
+            } else {
+              that.bgArr.push(that.gradientColor(background, backgroundEnd, that.conf.slideHeight));
+            }
+          }
+          that.bgTransparent = transparent;
+          that.setBgColor(background, transparent);
+        }
+        if (that.conf.rightButton && that.conf.rightButton.length > 0)
+          ;
+      },
+      // 返回
+      onBack() {
+        var that = this;
+        if (that.conf.backTabPage) {
+          uni.switchTab({
+            url: that.conf.backTabPage
+          });
+        } else if (that.conf.backPage) {
+          uni.redirectTo({
+            url: that.conf.backPage
+          });
+        } else if (getCurrentPages().length > 1) {
+          uni.navigateBack();
+        } else
+          ;
+      },
+      onClickBtn(e) {
+        this.$emit("clickBtn", e);
+      },
+      pageScroll(e) {
+        var that = this;
+        const st = parseFloat(e.scrollTop.toFixed(2));
+        let slideHeight = that.conf.slideHeight;
+        let a = Math.round(st);
+        if (a > 0) {
+          a -= 1;
+        } else {
+          a = 0;
+        }
+        if (that.conf.title && typeof that.conf.title == "object" && that.conf.title.length == 2) {
+          if (st <= slideHeight) {
+            that.title = that.conf.title[0];
+          } else {
+            that.title = that.conf.title[1];
+          }
+        }
+        if (that.conf.color && typeof that.conf.color == "object" && that.conf.color.length == 2) {
+          let colorArr = that.colorArr;
+          let rgb = a <= colorArr.length - 1 ? colorArr[a] : colorArr[colorArr.length - 1];
+          that.txtColor = rgb;
+        }
+        that.slotSwitchOpacity = that.transHandle(st, slideHeight, 1, 0);
+        if (that.conf.statusBarFontColor && typeof that.conf.statusBarFontColor == "object" && that.conf.statusBarFontColor.length == 2) {
+          if (st <= slideHeight) {
+            uni.setNavigationBarColor({
+              frontColor: that.conf.statusBarFontColor[0],
+              backgroundColor: "#ffffff"
+            });
+          } else {
+            uni.setNavigationBarColor({
+              frontColor: that.conf.statusBarFontColor[1],
+              backgroundColor: "#ffffff"
+            });
+          }
+        }
+        if (that.conf.statusBarBackground && typeof that.conf.statusBarBackground == "object" && that.conf.statusBarBackground.length == 2) {
+          if (st <= slideHeight) {
+            that.statusBarBackground = that.conf.statusBarBackground[0];
+          } else {
+            that.statusBarBackground = that.conf.statusBarBackground[1];
+          }
+        }
+        let BI = that.conf.backgroundImg;
+        if (that.conf.backgroundImg && typeof that.conf.backgroundImg == "object" && BI.length > 1) {
+          let BIL = BI.length;
+          that.bgTransparent = BIL <= 3 ? 1 : that.transHandle(st, slideHeight, BI[2], BI[3]);
+          that.bgImgTransparent[0] = BIL <= 3 ? 1 : that.transHandle(st, slideHeight, BI[2], 0);
+          that.bgImgTransparent[1] = BI[3];
+          if (st <= slideHeight) {
+            BI[0];
+          } else {
+            BI[1];
+          }
+          that.backgroundImage = that.bgImgStringHandle(BI[0]);
+          that.backgroundImageEnd = that.bgImgStringHandle(BI[1]);
+        }
+        if (that.conf.slideBackgroundColor) {
+          let bgArr = that.bgArr;
+          var bgData = [];
+          for (var i in that.bgArr) {
+            let rgb = a <= bgArr[i].length - 1 ? bgArr[i][a] : bgArr[i][bgArr[i].length - 1];
+            bgData.push(rgb.replace(/(?:\(|\)|rgb|RGB)*/g, "").split(","));
+          }
+          let transparentStart = that.conf.backgroundColor[0];
+          let transparentEnd = that.conf.slideBackgroundColor[0];
+          let transparent = transparentEnd;
+          if (st <= slideHeight) {
+            let cVal = Math.abs(transparentEnd - transparentStart);
+            let tVal = parseFloat(cVal / slideHeight).toFixed(4);
+            let curVal = parseFloat(tVal * st).toFixed(2);
+            transparent = transparentStart > transparentEnd ? transparentStart - curVal : transparentStart + curVal;
+            transparent = parseFloat(transparent).toFixed(2);
+          }
+          let backgroundEnd = that.conf.slideBackgroundColor[1];
+          let rgbStr = "";
+          if (typeof backgroundEnd == "object" && backgroundEnd.length > 1) {
+            rgbStr = "linear-gradient(" + that.conf.backgroundColorLinearDeg + ",";
+            let l = bgData.length;
+            for (var i in bgData) {
+              let c = bgData[i];
+              rgbStr += "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + transparent + ")";
+              if (l != i * 1 + 1) {
+                rgbStr += ",";
+              }
+            }
+            rgbStr += ")";
+          } else {
+            rgbStr = "rgba(" + bgData[0][0] + "," + bgData[0][1] + "," + bgData[0][2] + "," + transparent + ")";
+          }
+          that.bgTransparent = transparent;
+          that.backgroundColorRgba = rgbStr;
+        }
+      },
+      // 透明度计算，
+      // 起始位置，结束位置，起始透明度，目标透明度
+      transHandle(hStart, hEnd, tStart, tEnd) {
+        let transparent = tEnd;
+        if (hStart <= hEnd) {
+          let cVal = Math.abs(tEnd - tStart);
+          let tVal = parseFloat(cVal / hEnd).toFixed(4);
+          let curVal = parseFloat(tVal * hStart).toFixed(2);
+          transparent = tStart > tEnd ? tStart - curVal : tStart + curVal;
+          transparent = parseFloat(transparent).toFixed(2);
+        }
+        return transparent;
+      },
+      // 起始颜色，结束颜色，过渡数量
+      gradientColor(startColor, endColor, step) {
+        var that = this;
+        let startRGB = that.colorRgb(startColor);
+        let startR = startRGB[0];
+        let startG = startRGB[1];
+        let startB = startRGB[2];
+        let endRGB = that.colorRgb(endColor);
+        let endR = endRGB[0];
+        let endG = endRGB[1];
+        let endB = endRGB[2];
+        let sR = (endR - startR) / step;
+        let sG = (endG - startG) / step;
+        let sB = (endB - startB) / step;
+        let colorArr = [];
+        for (let i = 0; i < step; i++) {
+          var str = "rgb(" + parseInt(sR * i + startR) + "," + parseInt(sG * i + startG) + "," + parseInt(sB * i + startB) + ")";
+          let hex = that.colorHex(str);
+          colorArr.push(hex);
+        }
+        return colorArr;
+      },
+      // 转换函数
+      colorRgb(sColor) {
+        var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+        var sColor = sColor.toLowerCase();
+        if (sColor && reg.test(sColor)) {
+          if (sColor.length === 4) {
+            var sColorNew = "#";
+            for (var i = 1; i < 4; i += 1) {
+              sColorNew += sColor.slice(i, i + 1).concat(sColor.slice(i, i + 1));
+            }
+            sColor = sColorNew;
+          }
+          var sColorChange = [];
+          for (var i = 1; i < 7; i += 2) {
+            sColorChange.push(parseInt("0x" + sColor.slice(i, i + 2)));
+          }
+          return sColorChange;
+        } else {
+          return sColor;
+        }
+      },
+      colorHex(rgb) {
+        var _this = rgb;
+        var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+        if (/^(rgb|RGB)/.test(_this)) {
+          var aColor = _this.replace(/(?:(|)|rgb|RGB)*/g, "").split(",");
+          var strHex = "#";
+          for (var i = 0; i < aColor.length; i++) {
+            var hex = Number(aColor[i]).toString(16);
+            hex = hex < 10 ? "0" + hex : hex;
+            if (hex === "0") {
+              hex += hex;
+            }
+            strHex += hex;
+          }
+          if (strHex.length !== 7) {
+            strHex = _this;
+          }
+          return strHex;
+        } else if (reg.test(_this)) {
+          var aNum = _this.replace(/#/, "").split("");
+          if (aNum.length === 6) {
+            return _this;
+          } else if (aNum.length === 3) {
+            var numHex = "#";
+            for (var i = 0; i < aNum.length; i += 1) {
+              numHex += aNum[i] + aNum[i];
+            }
+            return numHex;
+          }
+        } else {
+          return _this;
+        }
+      },
+      //背景颜色初始化
+      // 透明度，背景颜色string ，array
+      setBgColor(background, transparent) {
+        var that = this;
+        if (typeof background == "object" && background.length > 0) {
+          let rgbStr = "linear-gradient(" + that.conf.backgroundColorLinearDeg + ",";
+          let c = null;
+          for (var i in background) {
+            c = background[i];
+            let o = that.colorRgb(c);
+            rgbStr += `rgba(${o[0]}, ${o[1]}, ${o[2]}, ${transparent})`;
+            if (background.length != i * 1 + 1) {
+              rgbStr += ",";
+            }
+          }
+          rgbStr += ")";
+          that.backgroundColorRgba = rgbStr;
+        } else {
+          let c = background;
+          let o = that.colorRgb(c);
+          that.backgroundColorRgba = `rgba(${o[0]}, ${o[1]}, ${o[2]}, ${transparent})`;
+        }
+      },
+      bgImgStringHandle(img) {
+        return img;
+      },
+      // 搜索框，点击完成时触发
+      searchConfirm(event) {
+        this.$emit("searchConfirm", event.detail);
+      },
+      // 搜索框点击事件
+      searchClick(event) {
+        this.$emit("searchClick", true);
+      }
+    }
+  };
+  function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock(
+      "view",
+      {
+        class: "hx-navbar",
+        style: vue.normalizeStyle({ width: $options.screenWidth + "px" })
+      },
+      [
+        vue.createElementVNode(
+          "view",
+          {
+            class: vue.normalizeClass(["hx-navbar__content", { "hx-navbar__fixed": $data.conf.fixed, "hx-navbar__shadow": $data.conf.shadow, "hx-navbar__border": $data.conf.border }]),
+            style: vue.normalizeStyle({ width: $options.screenWidth + "px", "background-color": !$data.bgIsLine ? $data.backgroundColorRgba : "", "background-image": $data.bgIsLine ? $data.backgroundColorRgba : "", height: $options.navbarHeight, color: $data.txtColor })
+          },
+          [
+            vue.createCommentVNode(` <block v-if="backgroundImage">\r
+				<view class="hx-navbar__img" :style="{'background-image': backgroundImageEnd,'opacity': bgImgTransparent[1]}"></view>\r
+				<view class="hx-navbar__img" :style="{'background-image': backgroundImage,'opacity': bgImgTransparent[0]}"></view>\r
+			</block> `),
+            $data.backgroundImage ? (vue.openBlock(), vue.createElementBlock(
+              "view",
+              {
+                key: 0,
+                class: "hx-navbar__content__imgctn",
+                style: vue.normalizeStyle({ "opacity": $data.bgImgTransparent[1] })
+              },
+              [
+                vue.createElementVNode("image", {
+                  class: "hx-navbar__imgctn__img",
+                  style: vue.normalizeStyle({ "height": $data.conf.height + $options.statusBarHeight + "px", width: $options.screenWidth + "px" }),
+                  src: $data.backgroundImageEnd,
+                  mode: "scaleToFill"
+                }, null, 12, ["src"])
+              ],
+              4
+              /* STYLE */
+            )) : vue.createCommentVNode("v-if", true),
+            $data.backgroundImage ? (vue.openBlock(), vue.createElementBlock(
+              "view",
+              {
+                key: 1,
+                class: "hx-navbar__content__imgctn",
+                style: vue.normalizeStyle({ "opacity": $data.bgImgTransparent[0] })
+              },
+              [
+                vue.createElementVNode("image", {
+                  class: "hx-navbar__imgctn__img",
+                  style: vue.normalizeStyle({ "height": $data.conf.height + $options.statusBarHeight + "px", width: $options.screenWidth + "px" }),
+                  src: $data.backgroundImage,
+                  mode: "scaleToFill"
+                }, null, 12, ["src"])
+              ],
+              4
+              /* STYLE */
+            )) : vue.createCommentVNode("v-if", true),
+            vue.createCommentVNode(" 状态栏 "),
+            $data.conf.statusBar ? (vue.openBlock(), vue.createElementBlock(
+              "view",
+              {
+                key: 2,
+                style: vue.normalizeStyle("height:" + $options.statusBarHeight + "px;" + ($data.statusBarBackground ? "background-color:" + $data.statusBarBackground : "")),
+                class: "hx-navbar__status"
+              },
+              null,
+              4
+              /* STYLE */
+            )) : vue.createCommentVNode("v-if", true),
+            vue.createCommentVNode(" 小程序分开编译 "),
+            vue.createElementVNode(
+              "view",
+              {
+                class: "hx-navbar__content__main",
+                style: vue.normalizeStyle({ height: $data.conf.height + "px", fontSize: $data.conf.fontSize })
+              },
+              [
+                vue.createCommentVNode(" 不是app的时候中返回和left在前面 "),
+                $data.conf.back ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 0,
+                  class: "hx-navbar__content__main_back",
+                  onClick: _cache[0] || (_cache[0] = (...args) => $options.onBack && $options.onBack(...args))
+                }, [
+                  vue.createElementVNode(
+                    "text",
+                    {
+                      class: vue.normalizeClass(["hxicon hx-navbar__icon", { "hx-navbar__icontran": $data.bgTransparent == 0 }]),
+                      style: vue.normalizeStyle({ color: $data.txtColor })
+                    },
+                    "",
+                    6
+                    /* CLASS, STYLE */
+                  ),
+                  $data.conf.backTxt ? (vue.openBlock(), vue.createElementBlock(
+                    "text",
+                    {
+                      key: 0,
+                      class: "hx_font_size",
+                      style: vue.normalizeStyle({ color: $data.txtColor })
+                    },
+                    vue.toDisplayString($data.conf.backTxt),
+                    5
+                    /* TEXT, STYLE */
+                  )) : vue.createCommentVNode("v-if", true)
+                ])) : vue.createCommentVNode("v-if", true),
+                $data.conf.leftSlot ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 1,
+                  class: "hx-navbar__content__main_left",
+                  style: { "padding": "0", "margin": "0 13px 0 0" }
+                }, [
+                  $data.conf.leftSlotSwitch && $data.slotSwitchOpacity == 0 ? vue.renderSlot(_ctx.$slots, "leftSwitch", { key: 0 }, void 0, true) : vue.renderSlot(_ctx.$slots, "left", { key: 1 }, void 0, true)
+                ])) : vue.createCommentVNode("v-if", true),
+                $data.conf.leftButton ? (vue.openBlock(), vue.createElementBlock(
+                  "view",
+                  {
+                    key: 2,
+                    class: "hx-navbar__content__main_left",
+                    style: vue.normalizeStyle({ "padding": $data.conf.back || $data.conf.leftSlot ? "0" : "0 9px 0 13px;" })
+                  },
+                  [
+                    (vue.openBlock(true), vue.createElementBlock(
+                      vue.Fragment,
+                      null,
+                      vue.renderList($data.conf.leftButton, (btn, index) => {
+                        return vue.openBlock(), vue.createElementBlock("view", {
+                          key: index,
+                          class: vue.normalizeClass(["hx-navbar__content__main_left_btn", { "hx-navbar__btntran": $data.bgTransparent == 0 }]),
+                          onClick: ($event) => $options.onClickBtn(btn)
+                        }, [
+                          btn.position && btn.position == "left" ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 0,
+                              class: vue.normalizeClass(["hx-navbar__icon", $data.conf.font]),
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : $data.txtColor, marginRight: btn.txt ? "2px" : "0" })
+                            },
+                            vue.toDisplayString($options.iconHandle(btn.icon)),
+                            7
+                            /* TEXT, CLASS, STYLE */
+                          )) : vue.createCommentVNode("v-if", true),
+                          btn.txt ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 1,
+                              class: "hx-navbar__content__main_lefticon_txt hx_font_size",
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : $data.txtColor })
+                            },
+                            vue.toDisplayString(btn.txt),
+                            5
+                            /* TEXT, STYLE */
+                          )) : vue.createCommentVNode("v-if", true),
+                          !btn.position || btn.position != "left" ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 2,
+                              class: vue.normalizeClass(["hx-navbar__icon", $data.conf.font]),
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : $data.txtColor, marginLeft: btn.txt ? "2px" : "0" })
+                            },
+                            vue.toDisplayString($options.iconHandle(btn.icon)),
+                            7
+                            /* TEXT, CLASS, STYLE */
+                          )) : vue.createCommentVNode("v-if", true)
+                        ], 10, ["onClick"]);
+                      }),
+                      128
+                      /* KEYED_FRAGMENT */
+                    ))
+                  ],
+                  4
+                  /* STYLE */
+                )) : vue.createCommentVNode("v-if", true),
+                !$data.conf.search && !$data.conf.maxSlot ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 3,
+                  class: "hx-navbar__content__main_center"
+                }, [
+                  vue.createElementVNode("view", { class: "hx-navbar__content__main_center_flex" }),
+                  vue.createElementVNode("view", { class: "hx-navbar__content__main_center_txt" }, [
+                    !$data.conf.centerSlot && $data.title ? (vue.openBlock(), vue.createElementBlock(
+                      "text",
+                      {
+                        key: 0,
+                        class: "hx_font_size hx_text_overflow",
+                        style: vue.normalizeStyle({ color: $data.txtColor })
+                      },
+                      vue.toDisplayString($data.title),
+                      5
+                      /* TEXT, STYLE */
+                    )) : vue.createCommentVNode("v-if", true),
+                    $data.conf.centerSlotSwitch && $data.slotSwitchOpacity == 0 ? vue.renderSlot(_ctx.$slots, "centerSwitch", { key: 1 }, void 0, true) : vue.renderSlot(_ctx.$slots, "center", { key: 2 }, void 0, true)
+                  ]),
+                  vue.createElementVNode("view", { class: "hx-navbar__content__main_center_flex" })
+                ])) : vue.createCommentVNode("v-if", true),
+                !$data.conf.search && $data.conf.maxSlot ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 4,
+                  class: "hx-navbar__content__main_center",
+                  style: { "overflow": "hidden" }
+                }, [
+                  $data.conf.maxSlotSwitch && $data.slotSwitchOpacity == 0 ? vue.renderSlot(_ctx.$slots, "maxSwitch", { key: 0 }, void 0, true) : vue.renderSlot(_ctx.$slots, "max", { key: 1 }, void 0, true)
+                ])) : vue.createCommentVNode("v-if", true),
+                $data.conf.search ? (vue.openBlock(), vue.createElementBlock(
+                  "view",
+                  {
+                    key: 5,
+                    class: "hx-navbar__content__main_search",
+                    style: vue.normalizeStyle({ "padding-left": $data.conf.leftButton ? "9px" : "13px", "padding-right": $data.conf.rightButton ? "9px" : "13px" }),
+                    onClick: _cache[2] || (_cache[2] = (...args) => $options.searchClick && $options.searchClick(...args))
+                  },
+                  [
+                    vue.createElementVNode("text", {
+                      class: "hxicon hx-navbar__content__main_search_hxicon",
+                      style: { "color": "#dbdbdb" }
+                    }, ""),
+                    vue.createElementVNode("input", {
+                      type: "text",
+                      class: "hx-navbar__content__main_search_input hx_font_size",
+                      "placeholder-style": "color:#dbdbdb;",
+                      "confirm-type": "search",
+                      value: $data.conf.search.value,
+                      placeholder: $data.conf.search.placeholder ? $data.conf.search.placeholder : "请输入搜索内容",
+                      disabled: $data.conf.search.disabled,
+                      onConfirm: _cache[1] || (_cache[1] = (...args) => $options.searchConfirm && $options.searchConfirm(...args))
+                    }, null, 40, ["value", "placeholder", "disabled"])
+                  ],
+                  4
+                  /* STYLE */
+                )) : vue.createCommentVNode("v-if", true),
+                !$data.conf.search ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 6,
+                  class: "",
+                  style: { "flex": "1" }
+                })) : vue.createCommentVNode("v-if", true),
+                $data.conf.rightButton ? (vue.openBlock(), vue.createElementBlock(
+                  "view",
+                  {
+                    key: 7,
+                    class: "hx-navbar__content__main_right",
+                    style: vue.normalizeStyle({ padding: $data.conf.rightSlot ? "0" : "0 13px 0 9px;" })
+                  },
+                  [
+                    (vue.openBlock(true), vue.createElementBlock(
+                      vue.Fragment,
+                      null,
+                      vue.renderList($data.conf.rightButton, (btn, index) => {
+                        return vue.openBlock(), vue.createElementBlock("view", {
+                          key: index,
+                          class: vue.normalizeClass(["hx-navbar__content__main_right_btn", { "hx-navbar__btntran": $data.bgTransparent == 0 }]),
+                          onClick: ($event) => $options.onClickBtn(btn)
+                        }, [
+                          btn.position && btn.position == "left" ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 0,
+                              class: vue.normalizeClass(["hxicon hx-navbar__content__main_right_icon hx-navbar__icon", $data.conf.font]),
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : "", marginRight: btn.txt ? "2px" : "0" })
+                            },
+                            vue.toDisplayString($options.iconHandle(btn.icon)),
+                            7
+                            /* TEXT, CLASS, STYLE */
+                          )) : vue.createCommentVNode("v-if", true),
+                          btn.txt ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 1,
+                              class: "hx-navbar__content__main_right_txt hx_font_size",
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : $data.txtColor })
+                            },
+                            vue.toDisplayString(btn.txt),
+                            5
+                            /* TEXT, STYLE */
+                          )) : vue.createCommentVNode("v-if", true),
+                          !btn.position || btn.position != "left" ? (vue.openBlock(), vue.createElementBlock(
+                            "text",
+                            {
+                              key: 2,
+                              class: vue.normalizeClass(["hxicon hx-navbar__content__main_right_icon hx-navbar__icon", $data.conf.font]),
+                              style: vue.normalizeStyle({ color: btn.color ? btn.color : "", marginLeft: btn.txt ? "2px" : "0" })
+                            },
+                            vue.toDisplayString($options.iconHandle(btn.icon)),
+                            7
+                            /* TEXT, CLASS, STYLE */
+                          )) : vue.createCommentVNode("v-if", true)
+                        ], 10, ["onClick"]);
+                      }),
+                      128
+                      /* KEYED_FRAGMENT */
+                    ))
+                  ],
+                  4
+                  /* STYLE */
+                )) : vue.createCommentVNode("v-if", true),
+                $data.conf.rightSlot ? (vue.openBlock(), vue.createElementBlock("view", {
+                  key: 8,
+                  class: "hx-navbar__content__main_right",
+                  style: { "padding": "0", "margin": "0" }
+                }, [
+                  $data.conf.rightSlotSwitch && $data.slotSwitchOpacity == 0 ? vue.renderSlot(_ctx.$slots, "rightSwitch", { key: 0 }, void 0, true) : vue.renderSlot(_ctx.$slots, "right", { key: 1 }, void 0, true),
+                  vue.createCommentVNode(" 滑动过度 和 突变两种模式，因不实用在此先注释 "),
+                  vue.createCommentVNode(` <view v-if="conf.rightSlotSwitch && (conf.slotSwitch == 1 || conf.slotSwitch == 2 && slotSwitchOpacity == 0) " :style="{'opacity': 1 - slotSwitchOpacity,top:statusBarHeight+ 1 + 'px'}">\r
+						<slot name="rightSwitch" />\r
+					</view>\r
+					<view v-if="conf.slotSwitch == 1 || (conf.slotSwitch == 2 && slotSwitchOpacity != 0)"   :style="{'opacity': conf.slotSwitch == 1 ? slotSwitchOpacity : 1,top:statusBarHeight + 1 + 'px'}">\r
+						<slot name="right" />\r
+					</view> `)
+                ])) : vue.createCommentVNode("v-if", true)
+              ],
+              4
+              /* STYLE */
+            )
+          ],
+          6
+          /* CLASS, STYLE */
+        ),
+        vue.createCommentVNode(" 占位符，一般都需要 "),
+        $data.conf.barPlaceholder && $data.conf.fixed ? (vue.openBlock(), vue.createElementBlock("view", { key: 0 }, [
+          $data.conf.statusBar ? (vue.openBlock(), vue.createElementBlock(
+            "view",
+            {
+              key: 0,
+              style: vue.normalizeStyle({ height: $options.statusBarHeight + "px" })
+            },
+            null,
+            4
+            /* STYLE */
+          )) : vue.createCommentVNode("v-if", true),
+          vue.createElementVNode(
+            "view",
+            {
+              style: vue.normalizeStyle({ height: $data.conf.height + "px" })
+            },
+            null,
+            4
+            /* STYLE */
+          )
+        ])) : vue.createCommentVNode("v-if", true)
+      ],
+      4
+      /* STYLE */
+    );
+  }
+  const hxNavbar = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$3], ["__scopeId", "data-v-4614d97c"], ["__file", "D:/私人文件夹/crossBorderShop/components/hx-navbar.vue"]]);
+  const _sfc_main$3 = {
+    components: { hxNavbar },
+    data() {
+      return {
+        config: {
+          title: "这里是新疆",
+          color: "#ffffff",
+          backgroundColor: [1, "#24bdab"],
+          // 背景图片（array则为滑动切换背景图，string为单一背景图）
+          // backgroundImg: ['/static/xj.jpg','/static/logo.png'],
+          backgroundImg: "../../static/header_tabber.png"
+        }
+      };
+    }
+  };
+  function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_hx_navbar = vue.resolveComponent("hx-navbar");
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createVNode(_component_hx_navbar, { config: $data.config }, null, 8, ["config"]),
+      vue.createElementVNode("view", { class: "" }, " 1111 ")
+    ]);
+  }
+  const PagesMeWalletWallet = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$2], ["__file", "D:/私人文件夹/crossBorderShop/pages/me/wallet/wallet.vue"]]);
+  const _sfc_main$2 = {
+    components: {
+      CustomHeader: __easycom_0
+    },
+    data() {
+      return {
+        pNumberPerfix: "+1",
+        // 手机前缀
+        pNumberPerfixArr: ["+1", "+2", "+3"]
+        // 手机前缀可选数组
+      };
+    },
+    methods: {
+      bindPickerChange() {
+      }
+    }
+  };
+  function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_customHeader = resolveEasycom(vue.resolveDynamicComponent("customHeader"), __easycom_0);
+    return vue.openBlock(), vue.createElementBlock("view", { class: "profix-page-container region-page" }, [
+      vue.createVNode(_component_customHeader, { style: { "z-index": "0" } }),
+      vue.createVNode(_component_customHeader, { style: { "position": "fixed", "top": "0", "width": "100%" } }),
+      vue.createElementVNode("view", { class: "region-scroll page-scroll" }, [
+        vue.createElementVNode("view", { class: "logo pic" }, [
+          vue.createElementVNode("image", {
+            src: "/static/img/logo.png",
+            mode: "widthFix",
+            class: "img"
+          })
+        ]),
+        vue.createElementVNode("view", { class: "form-container" }, [
+          vue.createElementVNode("view", { class: "form-tit" }, "PUTH GROUP"),
+          vue.createElementVNode("view", { class: "input-con account" }, [
+            vue.createElementVNode("view", { class: "image-icon" }),
+            vue.createElementVNode("view", { class: "prefix-con" }, [
+              vue.createElementVNode(
+                "view",
+                { class: "number-prefix" },
+                vue.toDisplayString($data.pNumberPerfix),
+                1
+                /* TEXT */
+              ),
+              vue.createElementVNode("view", { class: "arrow" })
+            ]),
+            vue.createElementVNode("view", { class: "inp" }, [
+              vue.createElementVNode("input", {
+                type: "number",
+                placeholder: _ctx.$t("login.phonePlaceholder")
+              }, null, 8, ["placeholder"])
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "input-con password" }, [
+            vue.createElementVNode("view", { class: "image-icon" }),
+            vue.createElementVNode("view", { class: "inp" }, [
+              vue.createElementVNode("input", {
+                type: "text",
+                password: "",
+                placeholder: _ctx.$t("login.pwdPlaceholder")
+              }, null, 8, ["placeholder"])
+            ]),
+            vue.createElementVNode("view", { class: "eye-icon" })
+          ]),
+          vue.createElementVNode("view", { class: "input-con invite-code" }, [
+            vue.createElementVNode("view", { class: "image-icon" }),
+            vue.createElementVNode("view", { class: "inp" }, [
+              vue.createElementVNode("input", {
+                type: "number",
+                placeholder: _ctx.$t("region.invitePlaceholder")
+              }, null, 8, ["placeholder"])
+            ]),
+            vue.createElementVNode("view", { class: "eye-icon" })
+          ]),
+          vue.createElementVNode("view", { class: "btn-list" }, [
+            vue.createElementVNode(
+              "button",
+              { class: "button login-btn" },
+              vue.toDisplayString(_ctx.$t("region.btn1")),
+              1
+              /* TEXT */
+            ),
+            vue.createElementVNode(
+              "button",
+              { class: "button region-btn" },
+              vue.toDisplayString(_ctx.$t("region.btn2")),
+              1
+              /* TEXT */
+            )
+          ])
+        ]),
+        vue.createCommentVNode(" 手机号前缀选择器 "),
+        vue.createElementVNode("picker", {
+          onChange: _cache[0] || (_cache[0] = (...args) => $options.bindPickerChange && $options.bindPickerChange(...args)),
+          value: $data.pNumberPerfix,
+          range: $data.pNumberPerfixArr
+        }, [
+          vue.createElementVNode(
+            "view",
+            { class: "uni-input" },
+            vue.toDisplayString($data.pNumberPerfixArr[$data.pNumberPerfix]),
+            1
+            /* TEXT */
+          )
+        ], 40, ["value", "range"])
+      ])
+    ]);
+  }
+  const PagesLoginRegion = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$1], ["__file", "D:/私人文件夹/crossBorderShop/pages/login/region.vue"]]);
+  const _sfc_main$1 = {
+    components: {
+      customHeader: __easycom_0
+    },
+    data() {
+      return {};
+    }
+  };
+  function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
+    const _component_customHeader = resolveEasycom(vue.resolveDynamicComponent("customHeader"), __easycom_0);
+    return vue.openBlock(), vue.createElementBlock("view", { class: "profix-page-container join-page" }, [
+      vue.createVNode(_component_customHeader, {
+        style: { "z-index": "0" },
+        headerText: "普斯集团"
+      }),
+      vue.createVNode(_component_customHeader, {
+        headerText: "普斯集团",
+        style: { "position": "fixed", "top": "0", "width": "100%", "z-index": "1" }
+      }),
+      vue.createElementVNode("view", { class: "join-scroll page-scroll" }, [
+        vue.createElementVNode("view", { class: "banner" }, [
+          vue.createElementVNode(
+            "view",
+            { class: "banner-tit" },
+            vue.toDisplayString(_ctx.$t("join.bannerTit")),
+            1
+            /* TEXT */
+          ),
+          vue.createElementVNode(
+            "view",
+            { class: "banner-tit" },
+            vue.toDisplayString(_ctx.$t("join.bannerTit1")),
+            1
+            /* TEXT */
+          ),
+          vue.createElementVNode("view", { class: "banner-img pic" }, [
+            vue.createElementVNode("image", {
+              src: "/static/img/banner/renwu.png",
+              mode: "widthFix",
+              class: "img"
+            })
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "join-info" }, [
+          vue.createElementVNode(
+            "view",
+            { class: "join-tit" },
+            vue.toDisplayString(_ctx.$t("join.joinTit1")),
+            1
+            /* TEXT */
+          ),
+          vue.createElementVNode("view", { class: "info-box" }, [
+            vue.createElementVNode("view", { class: "icon-text" }, [
+              vue.createElementVNode("view", { class: "icon pic" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/icon/code.png",
+                  mode: "widthFix",
+                  class: "img"
+                })
+              ]),
+              vue.createElementVNode(
+                "view",
+                { class: "text" },
+                "LboEgPy6 (" + vue.toDisplayString(_ctx.$t("loacal.chinaText")) + ")",
+                1
+                /* TEXT */
+              )
+            ]),
+            vue.createElementVNode(
+              "view",
+              { class: "copy-btn" },
+              vue.toDisplayString(_ctx.$t("join.copy")),
+              1
+              /* TEXT */
+            )
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "join-info" }, [
+          vue.createElementVNode(
+            "view",
+            { class: "join-tit" },
+            vue.toDisplayString(_ctx.$t("join.joinTit2")),
+            1
+            /* TEXT */
+          ),
+          vue.createElementVNode("view", { class: "info-box" }, [
+            vue.createElementVNode("view", { class: "icon-text" }, [
+              vue.createElementVNode("view", { class: "icon pic" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/icon/code.png",
+                  mode: "widthFix",
+                  class: "img"
+                })
+              ]),
+              vue.createElementVNode("view", { class: "text" }, "https://puth1.com/#/pages/ashdiashda/asdjuhf")
+            ]),
+            vue.createElementVNode(
+              "view",
+              { class: "copy-btn" },
+              vue.toDisplayString(_ctx.$t("join.copy")),
+              1
+              /* TEXT */
+            )
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "census-box" }, [
+          vue.createElementVNode("view", { class: "census-tit" }, [
+            vue.createElementVNode("view", { class: "icon pic" }, [
+              vue.createElementVNode("image", {
+                src: "/static/img/icon/wallet.png",
+                mode: "widthFix",
+                class: "img"
+              })
+            ]),
+            vue.createElementVNode(
+              "view",
+              { class: "tit" },
+              vue.toDisplayString(_ctx.$t("join.boxTit")),
+              1
+              /* TEXT */
+            )
+          ]),
+          vue.createElementVNode("view", { class: "chart-con" }, [
+            vue.createElementVNode("view", { class: "left" }, [
+              vue.createElementVNode("view", { class: "chart-box" }, [
+                vue.createElementVNode("view", {
+                  class: "color-line",
+                  style: { "background-color": "#ffba1f" }
+                }),
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.bonusText")),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "chart-box" }, [
+                vue.createElementVNode("view", {
+                  class: "color-line",
+                  style: { "background-color": "#fd7e1f" }
+                }),
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.commissionText")),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ]),
+            vue.createElementVNode("view", { class: "right" }, [
+              vue.createElementVNode("view", { class: "pic" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/pig.png",
+                  mode: "widthFix",
+                  class: "img"
+                })
+              ]),
+              vue.createElementVNode("view", { class: "count" }, "0"),
+              vue.createElementVNode(
+                "view",
+                { class: "text" },
+                vue.toDisplayString(_ctx.$t("join.compensationText")),
+                1
+                /* TEXT */
+              )
+            ])
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "census-box" }, [
+          vue.createElementVNode("view", { class: "census-tit" }, [
+            vue.createElementVNode("view", { class: "icon pic" }, [
+              vue.createElementVNode("image", {
+                src: "/static/img/icon/wallet.png",
+                mode: "widthFix",
+                class: "img"
+              })
+            ]),
+            vue.createElementVNode(
+              "view",
+              { class: "tit" },
+              vue.toDisplayString(_ctx.$t("join.boxTit")),
+              1
+              /* TEXT */
+            )
+          ]),
+          vue.createElementVNode("view", { class: "chart-con" }, [
+            vue.createElementVNode("view", { class: "left" }, [
+              vue.createElementVNode("view", { class: "chart-box" }, [
+                vue.createElementVNode("view", {
+                  class: "color-line",
+                  style: { "background-color": "#6e1fff" }
+                }),
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.bonusText")),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "chart-box" }, [
+                vue.createElementVNode("view", {
+                  class: "color-line",
+                  style: { "background-color": "#1f5efd" }
+                }),
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.commissionText")),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ]),
+            vue.createElementVNode("view", { class: "right" }, [
+              vue.createElementVNode("view", { class: "pic" }, [
+                vue.createElementVNode("image", {
+                  src: "/static/img/person.png",
+                  mode: "widthFix",
+                  class: "img"
+                })
+              ]),
+              vue.createElementVNode("view", { class: "count" }, "0"),
+              vue.createElementVNode(
+                "view",
+                { class: "text" },
+                vue.toDisplayString(_ctx.$t("join.compensationText")),
+                1
+                /* TEXT */
+              )
+            ])
+          ])
+        ]),
+        vue.createElementVNode("view", { class: "team-info" }, [
+          vue.createElementVNode("view", { class: "info-box" }, [
+            vue.createElementVNode("view", { class: "info-tit" }, [
+              vue.createElementVNode("view", { class: "line" }),
+              vue.createElementVNode(
+                "view",
+                { class: "tit" },
+                vue.toDisplayString(_ctx.$t("join.teamTit1")),
+                1
+                /* TEXT */
+              ),
+              vue.createElementVNode("view", { class: "arrow-icon" })
+            ]),
+            vue.createElementVNode("view", { class: "box-num" }, [
+              vue.createElementVNode("view", { class: "count-info san" }, [
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.partners")),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "count-info yi" }, [
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.committee")),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "info-box" }, [
+            vue.createElementVNode("view", { class: "info-tit" }, [
+              vue.createElementVNode("view", { class: "line" }),
+              vue.createElementVNode(
+                "view",
+                { class: "tit" },
+                vue.toDisplayString(_ctx.$t("join.teamTit2")),
+                1
+                /* TEXT */
+              ),
+              vue.createElementVNode("view", { class: "arrow-icon" })
+            ]),
+            vue.createElementVNode("view", { class: "box-num" }, [
+              vue.createElementVNode("view", { class: "count-info san" }, [
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.partners")),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "count-info yi" }, [
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.committee")),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ])
+          ]),
+          vue.createElementVNode("view", { class: "info-box" }, [
+            vue.createElementVNode("view", { class: "info-tit" }, [
+              vue.createElementVNode("view", { class: "line" }),
+              vue.createElementVNode(
+                "view",
+                { class: "tit" },
+                vue.toDisplayString(_ctx.$t("join.teamTit3")),
+                1
+                /* TEXT */
+              ),
+              vue.createElementVNode("view", { class: "arrow-icon" })
+            ]),
+            vue.createElementVNode("view", { class: "box-num" }, [
+              vue.createElementVNode("view", { class: "count-info san" }, [
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.partners")),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              vue.createElementVNode("view", { class: "count-info yi" }, [
+                vue.createElementVNode("view", { class: "count" }, "0"),
+                vue.createElementVNode(
+                  "view",
+                  { class: "text" },
+                  vue.toDisplayString(_ctx.$t("join.committee")),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]);
+  }
+  const PagesJoinJoin = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render], ["__file", "D:/私人文件夹/crossBorderShop/pages/join/join.vue"]]);
+  __definePage("pages/index/index", PagesIndexIndex);
+  __definePage("pages/classification/classification", PagesClassificationClassification);
+  __definePage("pages/me/me", PagesMeMe);
+  __definePage("pages/me/wallet/wallet", PagesMeWalletWallet);
+  __definePage("pages/login/region", PagesLoginRegion);
+  __definePage("pages/join/join", PagesJoinJoin);
   const _sfc_main = {
     onLaunch: function() {
       formatAppLog("log", "at App.vue:4", "App Launch");
@@ -114,7 +2232,33 @@ if (uni.restoreGlobal) {
     "api.message": "Message",
     "schema.name": "Name",
     "schema.add": "Add",
-    "schema.add-success": "Add success"
+    "schema.add-success": "Add success",
+    "login.phonePlaceholder": "Please enter your phone number",
+    "login.pwdPlaceholder": "Please enter the password",
+    "login.btn1": "LOGIN",
+    "login.radioText": "remember password",
+    "region.invitePlaceholder": "Please enter the invitation code",
+    "region.btn1": "REGISTER",
+    "region.btn2": "Existing account, please go to log in",
+    "app.name": "profi group",
+    "app.search": "Click to search for content",
+    "app.Product": "Product",
+    "app.Store": "Store",
+    "app.Sell": "Sell",
+    "app.price": "price",
+    "app.balance": "balance",
+    "app.TotalIncome": "Total income",
+    "app.deposit": "deposit",
+    "app.myWallet": "My wallet",
+    "app.financial": "Financial details",
+    "app.securityCenter": "Security Center",
+    "app.recharge": "I need to recharge",
+    "app.withdraw": " I need to withdraw",
+    "app.basicFunctions": " Basic functions",
+    "app.home": "home",
+    "app.join": "join",
+    "app.classification": "classification",
+    "app.me": "me"
   };
   const zhHans = {
     "locale.auto": "系统",
@@ -138,7 +2282,59 @@ if (uni.restoreGlobal) {
     "api.message": "提示",
     "schema.name": "姓名",
     "schema.add": "新增",
-    "schema.add-success": "新增成功"
+    "loacal.chinaText": "英语",
+    "login.phonePlaceholder": "请输入手机号",
+    "login.pwdPlaceholder": "请输入密码",
+    "login.btn1": "登录",
+    "login.radioText": "记住密码",
+    "region.invitePlaceholder": "请输入邀请码",
+    "region.btn1": "注册",
+    "region.btn2": "已有账号，请前往登录",
+    "app.name": "普斯集团",
+    "app.search": "点击搜索内容",
+    "app.Product": "产品",
+    "app.Store": "店",
+    "app.Sell": "卖",
+    "app.price": "价格",
+    "app.balance": "平衡",
+    "app.TotalIncome": "总收入",
+    "app.deposit": "存款",
+    "app.myWallet": "我的钱包",
+    "app.financial": "财务细节",
+    "app.securityCenter": "安全中心",
+    "app.recharge": "我要充值",
+    "app.withdraw": "我要提现",
+    "app.basicFunctions": "基本功能",
+    "app.home": "首页",
+    "app.join": "加盟",
+    "app.classification": "分类",
+    "app.me": "我的",
+    "index.news": "新闻",
+    "index.moreProduct": "更多商品",
+    "index.moreProductDesc": "顶级产品·令人难以置信的价格",
+    "index.menuBtn1": "关于我们",
+    "index.menuBtn2": "企业资质",
+    "index.menuBtn3": "平台奖励",
+    "index.menuBtn4": "储存级别",
+    "index.menuBtn5": "钱包充值",
+    "index.menuBtn6": "我要提现",
+    "index.menuBtn7": "下载应用",
+    "index.menuBtn8": "平台活动",
+    "index.menuBtn9": "邀请好友",
+    "join.bannerTit": "立即加入, 永久加入团队",
+    "join.bannerTit1": "即可享受稳定的收入和奖金",
+    "join.joinTit1": "加入代码",
+    "join.joinTit2": "加入链接",
+    "join.copy": "复制",
+    "join.boxTit": "加入的统计数量",
+    "join.bonusText": "加盟店佣金",
+    "join.commissionText": "加盟店佣金",
+    "join.compensationText": "加盟店佣金",
+    "join.teamTit1": "A-level团队加入详情",
+    "join.teamTit2": "B级团队加入详情",
+    "join.teamTit3": "C级团队加入详情",
+    "join.committee": "委员会",
+    "join.partners": "合伙人数量"
   };
   const messages = {
     en,
@@ -3676,4 +5872,4 @@ ${codeFrame}` : message);
   __app__._component.render = () => {
   };
   __app__.mount("#app");
-})(Vue);
+})(Vue, uni.VueShared);
