@@ -8,13 +8,6 @@
 			}
 		},
 		{
-			"path": "pages/join/join",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/classification/classification",
 			"style": {
 				"navigationBarTitleText": "",
@@ -51,6 +44,14 @@
         "navigationBarTitleText": "",
         "enablePullDownRefresh": false
       }
+    },
+    {
+    	"path" : "pages/join/join",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : "",
+    		"enablePullDownRefresh" : false
+    	}
     }
 	],
 	"globalStyle": {
