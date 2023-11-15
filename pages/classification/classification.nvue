@@ -37,14 +37,28 @@
 						</view>
 					</view>
 					<view class="con-box">
-						<scroll-view style="height: 1200rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
+						<scroll-view style="height: 1250rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
 							@scrolltolower="lower" @scroll="scroll">
-							<view class="item" v-for="(item,index) in conBox" :key="index">
-								<view class="img">
+							<view class="item" v-show="tabBool" v-for="(item,index) in conBox" :key="index">
+								<view class="img" >
 									<image :src="item.src" mode="widthFix"></image>
 								</view>
 								<text>{{item.title}}</text>
-
+								
+								
+								<text>{{item.title}}</text>
+							</view>
+							<view class="item1" v-show="!tabBool" v-for="(item,index) in conBox" :key="index">
+								<view class="img" >
+									<image :src="item.src" mode="widthFix"></image>
+								</view>
+								<view class="item1-text">
+									<text class="title">{{item.title}}</text>
+									<text class="price">{{$t('app.price')}}:{{item.price}}</text>
+									<text class="label">{{item.label}}</text>
+									<text class="price1">{{item.price}}</text>
+								</view>
+								<!-- <text>{{item.title}}</text> -->
 							</view>
 						</scroll-view>
 
@@ -83,27 +97,48 @@
 					},
 				],
 				conBox: [{
-					src: '../../static/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..'
-				}, {
-					src: '../../static/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..'
-				}, {
-					src: '../../static/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..'
-				}, {
-					src: '../../static/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..'
-				}, {
-					src: '../../static/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..'
-				}, {
-					src: '../../static/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..'
-				}, {
-					src: '../../static/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..'
-				}]
+					src: '../../static/img/logo.png',
+					title: 'New Balance Mens 411 V1 Training S..',
+					price:'55',
+					price1:'1',
+					label:'促销'
+				},{
+					src: '../../static/img/logo.png',
+					title: 'New Balance Mens 411 V1 Training S..',
+					price:'55',
+					price1:'1',
+					label:'促销'
+				},{
+					src: '../../static/img/logo.png',
+					title: 'New Balance Mens 411 V1 Training S..',
+					price:'55',
+					price1:'1',
+					label:'促销'
+				},{
+					src: '../../static/img/logo.png',
+					title: 'New Balance Mens 411 V1 Training S..',
+					price:'55',
+					price1:'1',
+					label:'促销'
+				},{
+					src: '../../static/img/logo.png',
+					title: 'New Balance Mens 411 V1 Training S..',
+					price:'55',
+					price1:'1',
+					label:'促销'
+				},{
+					src: '../../static/img/logo.png',
+					title: 'New Balance Mens 411 V1 Training S..',
+					price:'55',
+					price1:'1',
+					label:'促销'
+				},{
+					src: '../../static/img/logo.png',
+					title: 'New   411 V1 Training S..',
+					price:'55',
+					price1:'1',
+					label:'促销'
+				},]
 			};
 		},
 		mounted() {},
@@ -131,7 +166,7 @@
 	}
 
 	.scroll-Y {
-		height: calc(100%-260rpx);
+		height: calc(100%-20rpx);
 	}
 
 	.active {
@@ -268,10 +303,70 @@
 						width: 175rpx;
 					}
 				}
+				
 
 				text {
 					font-size: 24rpx;
 					color: #535262;
+				}
+			}
+			.item1 {
+			
+				margin: 30rpx 0;
+				display: flex;
+				flex-direction: row;
+			
+				// align-items: center;
+				// text-align:center;
+				.img {
+					// background-color: #F7F7F7;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					margin-bottom: 5rpx;
+					padding: 0rpx 0 13rpx 0;
+			
+					image {
+						width: 145rpx;
+						margin-right: 30rpx;
+					}
+				}
+				
+			
+				text {
+					font-size: 24rpx;
+					color: #535262;
+				}
+				.item1-text{
+					width: auto;
+					display: flex;
+					flex-direction: column;
+					.title{
+						font-size: 28rpx;
+						color: #535262;
+						font-weight: 800;
+						line-height: 36rpx;
+					}
+					.price{
+						font-size: 24rpx;
+						color: #A6A39F;
+						line-height: 36rpx;
+					}
+					.label{
+						width: 80rpx;
+						border-radius: 6rpx;
+						text-align: center;
+						padding: 5rpx;
+						background: #19BE6B;
+						color: white;
+						display: inline;
+						margin: 5rpx 0;
+					}
+					.price1{
+						color: #FD641F;
+						font-size: 30rpx;
+						font-weight: 600;
+					}
 				}
 			}
 		}
