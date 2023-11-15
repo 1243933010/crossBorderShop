@@ -20,24 +20,24 @@
 	"api.message": "提示",
 	"schema.name": "姓名",
 	"schema.add": "新增",
-	"loacal.chinaText":"英语",
-	
+	"loacal.chinaText": "英语",
+
 	// 登录
 	"login.phonePlaceholder": "请输入手机号",
 	"login.pwdPlaceholder": "请输入密码",
 	"login.btn1": "登录",
 	"login.radioText": "记住密码",
-	
+
 	// 注册
 	"region.invitePlaceholder": "请输入邀请码",
 	"region.btn1": "注册",
 	"region.btn2": "已有账号，请前往登录",
 	"app.name": "普斯集团",
-	"app.search":"点击搜索内容",
-	"app.Product":"产品",
-	"app.Store":"店",
-	"app.Sell":"卖",
-	
+	"app.search": "点击搜索内容",
+	"app.Product": "产品",
+	"app.Store": "店",
+	"app.Sell": "卖",
+
 	// 首页
 	"index.news": "新闻",
 	"index.moreProduct": "更多商品",
@@ -51,7 +51,7 @@
 	"index.menuBtn7": "下载应用",
 	"index.menuBtn8": "平台活动",
 	"index.menuBtn9": "邀请好友",
-	
+
 	// 加盟
 	"join.bannerTit": "立即加入, 永久加入团队",
 	"join.bannerTit1": "即可享受稳定的收入和奖金",
@@ -66,5 +66,52 @@
 	"join.teamTit2": "B级团队加入详情",
 	"join.teamTit3": "C级团队加入详情",
 	"join.committee": "委员会",
-	"join.partners": "合伙人数量"
+	"join.partners": "合伙人数量",
+
+	// 关于我们
+	"aboutUs.pageTit": "关于我们",
+	"aboutUs.content": "作为在线无源电子商务合作伙伴。您将能够与PT公司分享电子商务市场的红利。无需囤货，无需冒险，只需进行促销，即可获得丰厚的利润。无论你是个人还是团队，无论你有没有电子商务经验，只要你有一定的销售能力和热情，我们都欢迎你加入我们。我们将为您提供培训和支持，帮助您在电子商务领域取得成功。",
+
+	// 企业资质
+	"qualifications.item1": "企业资质",
+	"qualifications.item2": "印度企业资质",
+	"qualifications.item3": "伊拉克企业资质",
+
+	// 平台活动
+	"activity.pageTit": "活动中心",
+	"activity.item1": "合作伙伴商店利润",
+	
+	// 商店级别
+	"storageLevel.pageTit": "商店级别",
+	"storageLevel.dollar": "美元",
+	"storageLevel.dailyRevenue": "每日收益",
+	"storageLevel.row1": "特许经营保证金",
+	"storageLevel.row2": "每日购买限额",
+	"storageLevel.row3": "月收入",
+	
+	// 充值
+	"recargar.pageTit": "充值",
+	"recargar.text1": "币",
+	"recargar.balanceItem1": "货币转换器 1 USDT = $1",
+	"recargar.balanceItem2": "货币转换器 1 BTC = $23918",
+	"recargar.recTxt3": "充值金额",
+	"recargar.inpPlaceholder": "输入金额",
+	"recargar.popupTips": "充值成功",
+	
+	// 提现
+	"withdraw.pageTit": "提现",
+	"withdraw.title": "提现方式",
+	"withdraw.pwdPlaceholder": "请输入交易密码",
+	"withdraw.tipsTit": "注意事项",
+	"withdraw.tips1": "1.最低出金金额为12美元，提交出金时必须为整数例如:12美元20美元30美元40美元，以此类推。",
+	"withdraw.tips2": "2.取款手续费: 单笔取款1~300美元收取5%手续费，301~500美元收取3%手续费，501~999美元收取2%手续费，超过1000美元不收手续费。",
+	"withdraw.tips3": "3.取款时间:从周一到周五的10: 00到21: 00之间，撤离将在72小时内贷记。",
+	
+	// 商品详情
+	"productDetail.pageTit":"商品详情",
+	"productDetail.title":"GGMARMONT超迷你缝皮革包",
+	"productDetail.text1":"成本价",
+	"productDetail.text2":"利润",
+	"productDetail.text3":"订单号",
+	"productDetail.btnText":"释放货物"
 }

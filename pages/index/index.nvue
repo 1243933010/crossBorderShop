@@ -1,7 +1,7 @@
 <template>
 	<view class="profix-page-container index-page">
-		<customHeader style="z-index: 0" headerText="普斯集团" />
-		<customHeader headerText="普斯集团" style="position: fixed; top: 0; z-index: 1" />
+		<customHeader style="z-index: 0" headerText="普斯集团" :above="false" />
+		<customHeader headerText="普斯集团" style="position: fixed; top: 0; z-index: 1" :above="true" />
 		<view class="index-scroll page-scroll">
 			<view class="banner">
 				<swiper class="swiper" circular autoplay>
@@ -33,14 +33,8 @@
 				<view class="left-tit">{{ $t("index.news") }}</view>
 				<view class="news-swiper">
 					<swiper class="swiper" vertical circular autoplay>
-						<swiper-item>
-							<view class="swiper-item">lual or a team, whether you have e-co1lual or a team, whether you have e-co1</view>
-						</swiper-item>
-						<swiper-item>
-							<view class="swiper-item">lual or a team, whether you have e-co1lual or a team, whether you have e-co1</view>
-						</swiper-item>
-						<swiper-item>
-							<view class="swiper-item">lual or a team, whether you have</view>
+						<swiper-item v-for="(item, index) in newsList" :key="index">
+							<view class="swiper-item">{{ item }}</view>
 						</swiper-item>
 					</swiper>
 				</view>
@@ -48,12 +42,12 @@
 
 			<view class="menu-container">
 				<view class="menu-list" v-for="(item, index) in menuList" :key="index">
-					<view class="menu-item" v-for="(e, i) in item" :key="i">
+					<navigator :url="e.link" class="menu-item" v-for="(e, i) in item" :key="i">
 						<view class="pic">
 							<image :src="e.iconUrl" mode="widthFix" class="img"></image>
 						</view>
 						<view class="menu-tit">{{ e.tit }}</view>
-					</view>
+					</navigator>
 				</view>
 			</view>
 
@@ -71,7 +65,7 @@
 				<view class="desc">{{ $t("index.moreProductDesc") }}</view>
 
 				<view class="product-list">
-					<view class="product-item">
+					<view @click="goProductDetail(1)" class="product-item">
 						<view class="product-img pic">
 							<image src="../../static/img/product/1.png" mode="widthFix" class="img"></image>
 						</view>
@@ -133,7 +127,11 @@ export default {
 	data() {
 		return {
 			title: "Hello",
-
+			newsList: [
+				"lual or a team, whether you have e-co1lual or a team, whether you have e-co1",
+				"lual or a team, whether you have e-co1lual or a team, whether you have e-co1",
+				"lual or a team, whether you have",
+			],
 		};
 	},
 	onLoad() {},
@@ -168,46 +166,55 @@ export default {
 					{
 						iconUrl: "../../static/img/icon/index/1.png",
 						tit: this.$t("index.menuBtn1"),
+						link: '/pages/index/aboutUs'
 					},
 					{
 						iconUrl: "../../static/img/icon/index/2.png",
 						tit: this.$t("index.menuBtn2"),
+						link: '/pages/index/qualifications'
 					},
 					{
 						iconUrl: "../../static/img/icon/index/3.png",
 						tit: this.$t("index.menuBtn3"),
+						link: ''
 					},
 				],
 				[
 					{
 						iconUrl: "../../static/img/icon/index/4.png",
 						tit: this.$t("index.menuBtn4"),
+						link: '/pages/index/storageLevel'
 					},
 					{
 						iconUrl: "../../static/img/icon/index/5.png",
 						tit: this.$t("index.menuBtn5"),
+						link: '/pages/index/recargar'
 					},
 					{
 						iconUrl: "../../static/img/icon/index/6.png",
 						tit: this.$t("index.menuBtn6"),
+						link: '/pages/index/withdraw'
 					},
 				],
 				[
 					{
 						iconUrl: "../../static/img/icon/index/7.png",
 						tit: this.$t("index.menuBtn7"),
+						link: ''
 					},
 					{
 						iconUrl: "../../static/img/icon/index/8.png",
 						tit: this.$t("index.menuBtn8"),
+						link: '/pages/index/activity'
 					},
 					{
 						iconUrl: "../../static/img/icon/index/9.png",
 						tit: this.$t("index.menuBtn9"),
+						link: ''
 					},
 				],
 			];
-		}
+		},
 	},
 	methods: {
 		onLocaleChange(e) {
@@ -225,6 +232,11 @@ export default {
 				this.$i18n.locale = e.code;
 			}
 		},
+		goProductDetail(productId) {
+			uni.navigateTo({
+				url: `/pages/index/productDetail?id=${productId}`,
+			})
+		}
 	},
 };
 </script>
@@ -294,7 +306,8 @@ export default {
 				}
 
 				.menu-item {
-					align-items: center;
+					.df(center, flex-start);
+					flex-direction: column;
 
 					.pic {
 						width: 58rpx;

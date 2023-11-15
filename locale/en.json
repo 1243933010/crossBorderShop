@@ -67,4 +67,52 @@
 	"join.teamTit2": "B-level team joining details",
 	"join.teamTit3": "Details of joining a C - level team ",
 	"join.committee": "committee ",
-	"join.partners": "Number of partners"
+	"join.partners": "Number of partners",
+	
+	// 关于我们
+	"aboutUs.pageTit": "About Us",
+	"aboutUs.content": "As an online passive e-commerce partner. You will be able to share the dividends of the e-commerce market with PT Company. No need to hoard, no need to take risks, just carry out promotions and earn generous profits. Whether you are an individual or a team, whether you have experience in e-commerce or not, as long as you have a certain level of sales ability and enthusiasm, we welcome you to join us. We will provide you with training and support to help you achieve success in the field of e-commerce.",
+
+	// 企业资质
+	"qualifications.item1": "Enterprise Qualification",
+	"qualifications.item2": "Indian Enterprise Qualifications",
+	"qualifications.item3": "Qualification of Iraqi Enterprises",
+
+	// 平台活动
+	"activity.pageTit": "Activity Center",
+	"activity.item1": "Partner store profit",
+	
+	// 商店级别
+	"storageLevel.pageTit": "Store Level",
+	"storageLevel.dollar": "dollar",
+	"storageLevel.dailyRevenue": "Daily Revenue",
+	"storageLevel.row1": "Franchise deposit",
+	"storageLevel.row2": "Daily purchase limit",
+	"storageLevel.row3": "Monthly income",
+	
+	// 充值
+	"recargar.pageTit": "Recargar",
+	"recargar.text1": "",
+	"recargar.balanceItem1": "Convertidor de moneda 1 USDT = $1",
+	"recargar.balanceItem2": "Convertidor de moneda 1 BTC = $239188",
+	"recargar.recTxt3": "Monto de recarga",
+	"recargar.inpPlaceholder": "Introduce la cantidad",
+	"recargar.popupTips": "充值成功",
+	
+	// 提现
+	"withdraw.pageTit": "withdraw",
+	"withdraw.title": "Withdrawal method",
+	"withdraw.pwdPlaceholder": "Please enter the transaction password",
+	"withdraw.tipsTit": "Withdrawal instructions",
+	"withdraw.tips1": "1. The minimum withdrawal amount is 12USDT, which must be an integer when submitting withdrawal, for example: 12USDT 20USDT 30USDT 40USDT, etc., and so on.",
+	"withdraw.tips2": "2. Withdrawal fee: 5% for a single withdrawal of 1~300USDT, 3% for 301~500USDT, 2% for 501~999USDT, no handling fee for more than 1000USDT.",
+	"withdraw.tips3": "3. Withdrawal time: Between 10:00 and 21:00 from Monday to Friday, the withdrawal will be credited within 72 hours.",
+	
+	// 商品详情
+	"productDetail.pageTit":"Product Details",
+	"productDetail.title":"GGARMONT Mini Stitched Leather Bag",
+	"productDetail.text1":"Cost Price",
+	"productDetail.text2":"Profit",
+	"productDetail.text3":"Order Number",
+	"productDetail.btnText":"Release of goods"
+}

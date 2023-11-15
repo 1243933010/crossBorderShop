@@ -4,7 +4,7 @@
 			<view class="header" <!-- #ifdef APP-NVUE -->
 				:style="{ paddingTop: iStatusBarHeight + 'px'}"
 				<!-- #endif -->>
-				<view class="header-icon">
+				<view class="header-icon" @click="openPop">
 					<image src="../../static/img/logo.png" mode="widthFix"></image>
 				</view>
 				<view class="header-text">
@@ -18,13 +18,21 @@
 				</picker>
 			</view>
 		</view>
+
+		<uni-popup ref="popup" type="center" background-color="#fff" v-if="above">
+			<view class="popup-container">
+				<view class="popup-tit">普斯集团</view>
+				<view class="popup-content">{{$t("aboutUs.content")}}</view>
+				<view class="popup-close-btn" @click="closePop">关闭</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
 export default {
 	name: "customHeader",
-	props: ["headerText"],
+	props: ["headerText", "above"],
 	data() {
 		return {
 			iStatusBarHeight: 0,
@@ -33,32 +41,38 @@ export default {
 			iconList: ["../../static/img/cn.png", "../../static/img/eg.png"],
 			imgSrc: "../../static/img/cn.png",
 			locale: { "zh-Hans": 0, en: 1 },
-			code: [ "zh-Hans", 'en' ],
+			code: ["zh-Hans", "en"],
 		};
 	},
 	mounted() {
 		this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-		console.log(this.iStatusBarHeight, '系统栏高度');
+		console.log(this.iStatusBarHeight, "系统栏高度");
 		let code = uni.getLocale();
 		if (code) {
 			this.imgSrc = this.iconList[this.locale[code]];
 		}
-		
-		
 	},
 	methods: {
 		bindPickerChange: function (e) {
-			console.log(this.$t,'------')
-			console.log('picker发送选择改变，携带值为', this.code[e.detail.value])
+			console.log(this.$t, "------");
+			console.log("picker发送选择改变，携带值为", this.code[e.detail.value]);
 			this.imgSrc = this.iconList[e.detail.value];
-			uni.setLocale(this.code[e.detail.value])
+			uni.setLocale(this.code[e.detail.value]);
 			this.$i18n.locale = this.code[e.detail.value];
+		},
+		openPop() {
+			this.$refs.popup.open("center");
+		},
+		closePop() {
+			this.$refs.popup.close();
 		},
 	},
 };
 </script>
 
 <style lang="less" scoped>
+@import "../../static/less/variable.less";
+
 .page {
 	width: 100%;
 }
@@ -106,6 +120,38 @@ export default {
 				margin-left: 9rpx;
 			}
 		}
+	}
+}
+
+.popup-container {
+	border-radius: 20rpx;
+	padding: 30rpx 25rpx 55rpx;
+	width: calc(100vw - 184rpx);
+	
+	align-items: center;
+
+	.popup-tit {
+		margin-bottom: 36rpx;
+		text-align: center;
+		font-size: @bodySize;
+		color: @bodyColor;
+		font-weight: bold;
+	}
+
+	.popup-content {
+		color: #666;
+		font-size: 24rpx;
+		line-height: 1.41;
+	}
+
+	.popup-close-btn {
+		margin-top: 126rpx;
+		border-radius: 50rpx;
+		padding: 30rpx 80rpx;
+		background-color: #FD7E1F;
+		color: #fff;
+		font-size: 26rpx;
+		
 	}
 }
 </style>
