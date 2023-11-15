@@ -22,7 +22,7 @@
 						<text>1</text>
 					</view>
 					<view class="text">
-						<text>平衡 (U)</text>
+						<text>{{$t('app.price')}} (U)</text>
 					</view>
 				</view>
 				<view class="item">
@@ -30,7 +30,7 @@
 						<text>1</text>
 					</view>
 					<view class="text">
-						<text>总收入 (U)</text>
+						<text>{{$t('app.balance')}} (U)</text>
 					</view>
 				</view>
 				<view class="item">
@@ -38,7 +38,7 @@
 						<text>1</text>
 					</view>
 					<view class="text">
-						<text>存款 (U)</text>
+						<text>{{$t('app.TotalIncome')}} (U)</text>
 					</view>
 				</view>
 			</view>
@@ -59,10 +59,10 @@
 		<view class="btn-box">
 			<view class="box">
 				<view class="exit">
-					<text>退出登陆</text>
+					<text>{{$t('app.Exit')}}</text>
 				</view>
 				<view class="agreement">
-					<text>服务协议</text>
+					<text>{{$t('app.Agreement')}}</text>
 				</view>
 				
 			</view>
@@ -211,6 +211,11 @@
 		justify-content: space-between;
 		align-items: center;
 		.box{
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
 			.exit,.agreement{
 				width: 284rpx;
 				height: 89rpx;
@@ -219,6 +224,14 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				font-size: 25rpx;
+			}
+			.exit{
+				color: #383838;
+			}
+			.agreement{
+				background: #FD8124;
+				color: white;
 			}
 		}
 		

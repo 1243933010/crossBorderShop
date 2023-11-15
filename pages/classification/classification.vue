@@ -1,11 +1,9 @@
 <template>
 	<view style="background: #FFFFFF;height: 100%;">
 		<view style="height: 100%;">
-		<view class="">
-			11112
-		</view>
+
 			<customHeader style="z-index: 0;" :headerText="$t('app.name')" />
-			<customHeader :headerText="$t('app.name')" style="width: 100%;position: absolute;top: 0;" />
+			<customHeader :headerText="$t('app.name')" style="width: 100%;position: fixed;top: 0;z-index: 10;" />
 
 			<view class="search">
 				<view class="flex">
@@ -35,15 +33,12 @@
 						</view>
 					</view>
 					<view class="con-box">
-						<scroll-view style="height: 1250rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
+						<scroll-view style="height: 1150rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
 							@scrolltolower="lower" @scroll="scroll">
-							<view class="item" v-if="tabBool" v-for="(item,index) in conBox" :key="index">
+							<view class="item" v-if="tabBool" v-for="(item,index) in conBox" :key="index" @click="goDetail">
 								<view class="img" >
 									<image :src="item.src" mode="widthFix"></image>
 								</view>
-								<text>{{item.title}}</text>
-								
-								
 								<text>{{item.title}}</text>
 							</view>
 							<view class="item1" v-if="!tabBool" v-for="(item,index) in conBox" :key="index">
@@ -152,6 +147,11 @@
 			},
 			leftClick(index) {
 				this.leftIndex = index;
+			},
+			goDetail(){
+				uni.navigateTo({
+					url:'./detail'
+				})
 			}
 		}
 	}
@@ -336,30 +336,34 @@
 				}
 				.item1-text{
 					width: auto;
-					display: flex;
-					flex-direction: column;
+					// display: flex;
+					// flex-direction: column;
 					.title{
 						font-size: 28rpx;
 						color: #535262;
 						font-weight: 800;
 						line-height: 36rpx;
+						display: block;
 					}
 					.price{
+						display: block;
 						font-size: 24rpx;
 						color: #A6A39F;
 						line-height: 36rpx;
 					}
 					.label{
-						width: 80rpx;
+						display: block;
+						// width: 80rpx;
 						border-radius: 6rpx;
 						text-align: center;
-						padding: 5rpx;
+						padding: 5rpx 8rpx;
 						background: #19BE6B;
 						color: white;
 						display: inline;
 						margin: 5rpx 0;
 					}
 					.price1{
+						display: block;
 						color: #FD641F;
 						font-size: 30rpx;
 						font-weight: 600;

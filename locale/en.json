@@ -130,7 +130,18 @@
   "app.join": "join",
   "app.classification": "classification",
   "app.me": "me",
-  
+
   // 团队加入详情
-  "teamInfo.pageTit": "Subordinate Details"
+  "teamInfo.pageTit": "Subordinate Details",
+
+  "app.Exit": "Exit login",
+  "app.Agreement": "Service Agreement",
+  "app.orderDetail": "order detail",
+  "app.costPrice": "cost price",
+  "app.profit": "profit",
+  "app.quantity": "quantity",
+  "app.totalPrice": "Total price",
+  "app.orderNumber": "Order number",
+  "app.PaymentTime": "Payment time",
+  "app.orderTime": "order time"
 }

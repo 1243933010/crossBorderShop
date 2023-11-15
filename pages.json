@@ -116,12 +116,18 @@
       }
     },
     {
-    	"path" : "pages/join/teamInfo",
-    	"style" : 
-    	{
-    		"navigationBarTitleText" : "",
-    		"enablePullDownRefresh" : false
-    	}
+      "path": "pages/join/teamInfo",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/classification/detail",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "globalStyle": {
@@ -145,26 +151,26 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "",
-        "selectedIconPath": "",
+        "iconPath": "static/img/tabbar/home.png",
+        "selectedIconPath": "static/img/tabbar/home_select.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/join/join",
-        "iconPath": "",
-        "selectedIconPath": "",
+        "iconPath": "static/img/tabbar/join.png",
+        "selectedIconPath": "static/img/tabbar/join_select.png",
         "text": "加盟"
       },
       {
         "pagePath": "pages/classification/classification",
-        "iconPath": "",
-        "selectedIconPath": "",
+        "iconPath": "static/img/tabbar/classification.png",
+        "selectedIconPath": "static/img/tabbar/classification_select.png",
         "text": "分类"
       },
       {
         "pagePath": "pages/me/me",
-        "iconPath": "",
-        "selectedIconPath": "",
+        "iconPath": "static/img/tabbar/me.png",
+        "selectedIconPath": "static/img/tabbar/me_select.png",
         "text": "我的"
       }
     ]

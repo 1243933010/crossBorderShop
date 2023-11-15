@@ -1,7 +1,7 @@
 <template>
   <view class="profix-page-container join-page">
-    <customHeader style="z-index: 0" headerText="普斯集团" />
-    <customHeader headerText="普斯集团" style="position: fixed; top: 0; width: 100%; z-index: 1" />
+    <customHeader style="z-index: 0" :headerText="$t('app.name')" />
+    <customHeader :headerText="$t('app.name')" style="position: fixed; top: 0; width: 100%; z-index: 1" />
     <view class="join-scroll page-scroll">
       <view class="banner">
         <view class="banner-tit">{{ $t("join.bannerTit") }}</view>
@@ -165,12 +165,12 @@ export default {
     return {};
   },
   methods: {
-	  goTeamInfo(index) {
-		  uni.navigateTo({
-		  	url: `/pages/join/teamInfo?id=${index}`,
-		  });
-	  }
-  }
+    goTeamInfo(index) {
+      uni.navigateTo({
+        url: `/pages/join/teamInfo?id=${index}`,
+      });
+    },
+  },
 };
 </script>
 
@@ -368,7 +368,7 @@ export default {
           .arrow-icon {
             width: 14rpx;
             height: 25rpx;
-          background: url("../../static/img/right_arrow.png") no-repeat top left / 100% 100%;
+            background: url("../../static/img/right_arrow.png") no-repeat top left / 100% 100%;
           }
         }
 
