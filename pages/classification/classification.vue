@@ -13,8 +13,24 @@
 					<view class=""></view>
 				</view>
 			</view>
+			<view style="position: fixed;top: 0;width: 100%;z-index: 100;">
+				<customHeader style="z-index: 0;" :headerText="$t('app.name')" />
+				<customHeader :headerText="$t('app.name')" style="width: 100%;position: fixed;top: 0;z-index: 10;" />
+				
+				<view class="search">
+					<view class="flex">
+						<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
+						<input type="text" :placeholder="$t('app.search')" style="font-size: 24rpx;" confirm-type="search"
+							@confirm="search" />
+						<view class=""></view>
+					</view>
+				</view>
+			</view>
+			
+			<!-- <view class="" style="clear: both;"></view> -->
+			<!--  -->
 			<view style="display: flex;justify-content: space-between; flex-flow: nowrap;">
-				<view class="con-left" v-if="tabBool">
+				<view class="con-left" v-if="tabBool" style="position: fixed;top: 300rpx;height: 100%;">
 					<view  class="item" v-for="(item,index) in conLeftList" :key="index" @click="leftClick(index)">
 						<view :class="leftIndex==index?'hr':'hr1'"></view>
 						<view class="item-text">
@@ -22,8 +38,10 @@
 						</view>
 					</view>
 				</view>
+				<!-- <view class="" v-if="!tabBool"></view> -->
+				<view class=""></view>
 				<view class="content"  :style="{width:tabBool?'':'100%'}">
-					<view class="tab">
+					<view class="tab" style="position: fixed;top: 300rpx;z-index: 100;" :style="{left:!tabBool?'20%':''}">
 						<view class="h-tab">
 							<view class="h-tab-item h-tab-item-active" @click="activeClick(index)"
 								v-for="(item,index) in tabList" :key="index" :class="active==index?'active':''">
@@ -33,8 +51,8 @@
 						</view>
 					</view>
 					<view class="con-box">
-						<scroll-view style="height: 1150rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
-							@scrolltolower="lower" @scroll="scroll">
+						<!-- <scroll-view style="height: 1150rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
+							@scrolltolower="lower" @scroll="scroll"> -->
 							<view class="item" v-if="tabBool" v-for="(item,index) in conBox" :key="index" @click="goDetail">
 								<view class="img" >
 									<image :src="item.src" mode="widthFix"></image>
@@ -52,7 +70,7 @@
 									<text class="price1">{{item.price}}</text>
 								</view>
 							</view>
-						</scroll-view>
+						<!-- </scroll-view> -->
 
 					</view>
 				</view>
@@ -100,7 +118,8 @@
 					price:'55',
 					price1:'1',
 					label:'促销'
-				},{
+				}
+				,{
 					src: '../../static/img/logo.png',
 					title: 'New Balance Mens 411 V1 Training S..',
 					price:'55',
@@ -130,7 +149,8 @@
 					price:'55',
 					price1:'1',
 					label:'促销'
-				},]
+				},
+				]
 			};
 		},
 		mounted() {},
@@ -160,6 +180,7 @@
 <style lang="less" scoped>
 	page {
 		height: 100% !important;
+		
 	}
 
 	.scroll-Y {
@@ -214,7 +235,7 @@
 
 	.con-left {
 		width: 180rpx;
-		height: calc(100% - 260rpx);
+		// height: calc(100% - 260rpx);
 		background: #F7F7F7;
 		font-size: 25rpx;
 		color: #504F5E;
@@ -271,15 +292,19 @@
 
 	.content {
 		width: calc(100% - 180rpx);
-		height: calc(100% - 260rpx);
+		// height: calc(100% - 200rpx);
+		// background: red;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 
 		.con-box {
 			width: cale(100% - 26rpx);
+			/* #ifdef H5 */
+			padding-bottom: 100rpx;
+			/* #endif */
 			margin: 0 auto;
-
+			padding-top: 100rpx;
 			.item {
 
 				margin: 30rpx 0;
