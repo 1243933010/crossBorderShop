@@ -33,7 +33,7 @@
 				</view>
 
 				<label class="remember-me">
-					<checkbox class="radio" value="1" checked="true" color="#FD862C" />
+					<checkbox v-model="isMember" class="radio" value="1" checked="true" color="#FD862C" />
 					{{ $t("login.radioText") }}
 				</label>
 				<view class="btn-list">
@@ -60,6 +60,7 @@ export default {
 			pNumberPerfix: "+86", // 手机前缀
 			iStatusBarHeight: 0,
 			pwdType: true,
+			isMember: true,
 			formData: {
 				mobile: undefined,
 				password: "",
@@ -69,6 +70,10 @@ export default {
 	},
 	mounted() {
 		this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
+		
+		// 获取缓存里面的手机号和密码
+		this.formData.mobile = uni.getStorageSync('mobile');
+		this.formData.password = uni.getStorageSync('password');
 	},
 	methods: {
 		bindPickerChange(e) {
@@ -88,25 +93,32 @@ export default {
 		loginHandle() {
 			$request("login", this.formData).then(res => {
 				let { data, code, msg } = res.data;
-				
-				if(code !== 0) {
+				let { token } = data;
+
+				if (code !== 0) {
 					// 登录失败
 					uni.showToast({
 						title: this.$t("login.error"),
-						icon: "error"
+						icon: "error",
 					});
-					
+
 					return;
 				}
-				
+
 				// 登录成功
+				uni.setStorageSync("token", `Bearer ${token}`); // 存储token
+				
+				// 记住密码
+				let {mobile, password} = this.formData;
+				uni.setStorageSync("mobile", mobile); // 存储手机号
+				this.isMember ? uni.setStorageSync("password", password) : ''; // 存储密码
 				uni.showToast({
 					title: this.$t("login.seccuss"),
 					success: () => {
 						uni.reLaunch({
-							url: "/pages/index/index"
-						})
-					}
+							url: "/pages/index/index",
+						});
+					},
 				});
 			});
 		},
