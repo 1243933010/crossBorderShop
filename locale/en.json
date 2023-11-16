@@ -29,6 +29,8 @@
 	"login.pwdPlaceholder": "Please enter the password",
 	"login.btn1": "LOGIN",
 	"login.radioText": "remember password",
+	"login.error": "Account/password error",
+	"login.seccuss": "Login seccuss",
 
 	// 注册
 	"region.invitePlaceholder": "Please enter the invitation code",

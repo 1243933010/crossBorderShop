@@ -15,31 +15,30 @@
 					<view class="prefix-con" @click="openpNumberPicker">
 						<!-- 手机号前缀选择器 -->
 						<picker @change="bindPickerChange" :value="pNumberPerfixIndex" :range="pNumberPerfixArr">
-							<view class="number-prefix">{{ pNumberPerfix }}</view>
+							<view class="number-prefix">{{ formData.country_code }}</view>
 						</picker>
 						<view class="arrow"></view>
 					</view>
 					<view class="inp">
-						<input type="number" :placeholder="$t('login.phonePlaceholder')" />
+						<input type="number" v-model="formData.mobile" :placeholder="$t('login.phonePlaceholder')" />
 					</view>
 				</view>
 
 				<view class="input-con password">
 					<view class="image-icon"></view>
 					<view class="inp">
-						<input type="text" :password="pwdType" :placeholder="$t('login.pwdPlaceholder')" />
+						<input type="text" v-model="formData.password" :password="pwdType" :placeholder="$t('login.pwdPlaceholder')" />
 					</view>
-					<view class="eye-icon" :class="{close: pwdType}" @click="handleEye"></view>
+					<view class="eye-icon" :class="{ close: pwdType }" @click="handleEye"></view>
 				</view>
 
 				<label class="remember-me">
-					<radio class="radio" value="rememberMe" checked="true" color="color" />
+					<checkbox v-model="isMember" class="radio" value="1" checked="true" color="#FD862C" />
 					{{ $t("login.radioText") }}
 				</label>
-
 				<view class="btn-list">
-					<button class="button login-btn">{{ $t("login.btn1") }}</button>
-					<button class="button region-btn">{{ $t("region.btn1") }}</button>
+					<button class="button login-btn" :disabled="!(formData.mobile && formData.password)" @click="loginHandle">{{ $t("login.btn1") }}</button>
+					<button class="button region-btn" @click="goRegion">{{ $t("region.btn1") }}</button>
 				</view>
 			</view>
 		</view>
@@ -48,6 +47,7 @@
 
 <script>
 import CustomHeader from "@/components/customHeader/customHeader.vue";
+import { $request } from "../../utils/request";
 
 export default {
 	components: {
@@ -56,24 +56,72 @@ export default {
 	data() {
 		return {
 			pNumberPerfixIndex: 0, // 手机前缀 角标
-			pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
-			pNumberPerfix: "+1", // 手机前缀
+			pNumberPerfixArr: ["+86"], // 手机前缀可选数组
+			pNumberPerfix: "+86", // 手机前缀
 			iStatusBarHeight: 0,
-			pwdType: true
+			pwdType: true,
+			isMember: true,
+			formData: {
+				mobile: undefined,
+				password: "",
+				country_code: "+86", // 手机前缀
+			},
 		};
 	},
 	mounted() {
 		this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
+		
+		// 获取缓存里面的手机号和密码
+		this.formData.mobile = uni.getStorageSync('mobile');
+		this.formData.password = uni.getStorageSync('password');
 	},
 	methods: {
 		bindPickerChange(e) {
 			this.pNumberPerfixIndex = e.detail.value;
-			this.pNumberPerfix = this.pNumberPerfixArr[this.pNumberPerfixIndex];
+			this.formData.country_code = this.pNumberPerfixArr[this.pNumberPerfixIndex];
 		},
 		openpNumberPicker() {},
 		handleEye() {
 			this.pwdType = !this.pwdType;
-		}
+		},
+		goRegion() {
+			// 去往注册页面
+			uni.navigateTo({
+				url: "/pages/login/region",
+			});
+		},
+		loginHandle() {
+			$request("login", this.formData).then(res => {
+				let { data, code, msg } = res.data;
+				let { token } = data;
+
+				if (code !== 0) {
+					// 登录失败
+					uni.showToast({
+						title: this.$t("login.error"),
+						icon: "error",
+					});
+
+					return;
+				}
+
+				// 登录成功
+				uni.setStorageSync("token", `Bearer ${token}`); // 存储token
+				
+				// 记住密码
+				let {mobile, password} = this.formData;
+				uni.setStorageSync("mobile", mobile); // 存储手机号
+				this.isMember ? uni.setStorageSync("password", password) : ''; // 存储密码
+				uni.showToast({
+					title: this.$t("login.seccuss"),
+					success: () => {
+						uni.reLaunch({
+							url: "/pages/index/index",
+						});
+					},
+				});
+			});
+		},
 	},
 };
 </script>
@@ -164,7 +212,7 @@ export default {
 						width: 29rpx;
 						height: 22rpx;
 						background: url("../../static/img/icon/eye.png") no-repeat center center / 100%;
-						
+
 						&.close {
 							background-image: url("../../static/img/icon/c_eye.png");
 						}
@@ -198,6 +246,10 @@ export default {
 						border-color: #383838;
 						color: #fff;
 						background-color: #383838;
+
+						&[disabled] {
+							background-color: #585858;
+						}
 					}
 
 					&.region-btn {

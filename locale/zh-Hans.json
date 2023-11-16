@@ -28,6 +28,8 @@
 	"login.pwdPlaceholder": "请输入密码",
 	"login.btn1": "登录",
 	"login.radioText": "记住密码",
+	"login.error": "账号/密码错误",
+	"login.seccuss": "登录成功",
 
 	// 注册
 	"region.invitePlaceholder": "请输入邀请码",

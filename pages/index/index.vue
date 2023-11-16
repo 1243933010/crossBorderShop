@@ -12,20 +12,6 @@
 							</view>
 						</view>
 					</swiper-item>
-					<swiper-item>
-						<view class="swiper-item">
-							<view class="pic">
-								<image src="../../static/img/banner/banner.png" mode="widthFix" class="img"></image>
-							</view>
-						</view>
-					</swiper-item>
-					<swiper-item>
-						<view class="swiper-item">
-							<view class="pic">
-								<image src="../../static/img/banner/banner.png" mode="widthFix" class="img"></image>
-							</view>
-						</view>
-					</swiper-item>
 				</swiper>
 			</view>
 
@@ -132,6 +118,7 @@ export default {
 				"lual or a team, whether you have e-co1lual or a team, whether you have e-co1",
 				"lual or a team, whether you have",
 			],
+			swiperList: []
 		};
 	},
 	onLoad() {},
@@ -221,8 +208,9 @@ export default {
 	},
 	methods: {
 		async adverts(){
-			let res = await $request('adverts',{})
-			console.log(res)
+			$request('adverts',{}).then(res => {
+				
+			})
 		},
 		onLocaleChange(e) {
 			if (this.isAndroid) {

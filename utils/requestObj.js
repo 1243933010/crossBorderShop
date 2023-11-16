@@ -1,8 +1,15 @@
 let requestObj = {
 	region:{
+		name: "注册",
 		url:'/api/register',
 		type:'POST'
 	},
+	login:{
+		name: "登录",
+		url:'/api/login',
+		type:'POST'
+	},
+	
 	bankAccounts:{
 		url:'/api/bank_accounts/index',
 		type:'POST'
