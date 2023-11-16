@@ -5,10 +5,10 @@
     <view class="index-scroll page-scroll has-tabbar">
       <view class="banner">
         <swiper class="swiper" circular autoplay>
-          <swiper-item>
-            <view class="swiper-item" v-for="(item, index) in swiperList" :key="index">
+          <swiper-item v-for="(item, index) in swiperList" :key="index">
+            <view class="swiper-item">
               <view class="pic">
-                <image :src="item.image" mode="widthFix" class="img"></image>
+                <image @click="linkImg(item)" :src="item.image" class="img" mode="widthFix"></image>
               </view>
             </view>
           </swiper-item>
@@ -113,17 +113,8 @@ export default {
   data() {
     return {
       title: "Hello",
-      newsList: [
-        "lual or a team, whether you have e-co1lual or a team, whether you have e-co1",
-        "lual or a team, whether you have e-co1lual or a team, whether you have e-co1",
-        "lual or a team, whether you have",
-      ],
-      swiperList: [
-        {
-          image: "../../static/img/banner/banner.png",
-          title: "广告1",
-        },
-      ],
+      newsList: [],
+      swiperList: [],
     };
   },
   onLoad() {},
