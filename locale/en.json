@@ -25,7 +25,7 @@
 	"opening.popupTips": "Developing...",
 
 	// 登录
-	"login.phonePlaceholder": "Please enter your phone number",
+	"login.phonePlaceholder": "Please enter your phone",
 	"login.pwdPlaceholder": "Please enter the password",
 	"login.btn1": "LOGIN",
 	"login.radioText": "remember password",

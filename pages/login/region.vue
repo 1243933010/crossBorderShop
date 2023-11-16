@@ -26,9 +26,9 @@
 				<view class="input-con password">
 					<view class="image-icon"></view>
 					<view class="inp">
-						<input type="text" password :placeholder="$t('login.pwdPlaceholder')" />
+						<input type="text" :password="pwdType" :placeholder="$t('login.pwdPlaceholder')" />
 					</view>
-					<view class="eye-icon"></view>
+					<view class="eye-icon" :class="{close: pwdType}" @click="handleEye"></view>
 				</view>
 
 				<view class="input-con invite-code">
@@ -60,6 +60,7 @@ export default {
 			pNumberPerfixIndex: 0, // 手机前缀 角标
 			pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
 			pNumberPerfix: "+1", // 手机前缀
+			pwdType: true
 		};
 	},
 	methods: {
@@ -67,6 +68,10 @@ export default {
 			this.pNumberPerfixIndex = e.detail.value;
 			this.pNumberPerfix = this.pNumberPerfixArr[this.pNumberPerfixIndex];
 		},
+		openpNumberPicker() {},
+		handleEye() {
+			this.pwdType = !this.pwdType;
+		}
 	},
 };
 </script>
@@ -159,6 +164,10 @@ export default {
 						width: 29rpx;
 						height: 22rpx;
 						background: url("../../static/img/icon/eye.png") no-repeat center center / 100%;
+						
+						&.close {
+							background-image: url("../../static/img/icon/c_eye.png");
+						}
 					}
 				}
 
