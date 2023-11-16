@@ -89,6 +89,7 @@
 			margin-bottom: 44rpx;
 		}
 		.box{
+			padding-bottom: 100rpx;
 			width: calc(100% - 30rpx);
 			margin: 0 auto;
 			.item{

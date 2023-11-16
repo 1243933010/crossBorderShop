@@ -289,14 +289,16 @@ export default {
 				flex-grow: 1;
 
 				.swiper {
-					height: 18px;
+					height: 36rpx;
 
 					.swiper-item {
 						overflow: hidden;
 						white-space: nowrap;
 						text-overflow: ellipsis;
+						
 						color: #908f9a;
 						font-size: @descSize;
+						line-height: 36rpx;
 					}
 				}
 			}
