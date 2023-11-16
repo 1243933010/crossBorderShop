@@ -18,6 +18,22 @@ let requestObj = {
 		url:'/api/adverts',
 		type:'POST'
 	},
+	notices:{
+		url:'/api/notices',
+		type:'POST'
+	},
+	invitation:{
+		url:'/api/user/invitation',
+		type:'POST'
+	},
+	myTeam:{
+		url:'/api/user/my_team',
+		type:'POST'
+	},
+	getUserInfo:{
+		url:'/api/user_info',
+		type:'POST'
+	},
 	
 	
 	

@@ -8,40 +8,10 @@
 					<view class="td flex1">{{ $t("teamInfo.tableTh2") }}</view>
 					<view class="td mW35">{{ $t("teamInfo.tableTh3") }}</view>
 				</view>
-				<view class="tr" @click="goProductDetail(1)">
-					<view class="td mW28">188****5468</view>
-					<view class="td flex1">28</view>
-					<view class="td mW35">2023.11.12 15:32</view>
-				</view>
-				<view class="tr" @click="goProductDetail(2)">
-					<view class="td mW28">188****5468</view>
-					<view class="td flex1">28</view>
-					<view class="td mW35">2023.11.12 15:32</view>
-				</view>
-				<view class="tr">
-					<view class="td mW28">188****5468</view>
-					<view class="td flex1">28</view>
-					<view class="td mW35">2023.11.12 15:32</view>
-				</view>
-				<view class="tr">
-					<view class="td mW28">188****5468</view>
-					<view class="td flex1">28</view>
-					<view class="td mW35">2023.11.12 15:32</view>
-				</view>
-				<view class="tr">
-					<view class="td mW28">188****5468</view>
-					<view class="td flex1">28</view>
-					<view class="td mW35">2023.11.12 15:32</view>
-				</view>
-				<view class="tr">
-					<view class="td mW28">188****5468</view>
-					<view class="td flex1">28</view>
-					<view class="td mW35">2023.11.12 15:32</view>
-				</view>
-				<view class="tr">
-					<view class="td mW28">188****5468</view>
-					<view class="td flex1">28</view>
-					<view class="td mW35">2023.11.12 15:32</view>
+				<view class="tr"  v-for="(item,index) in list" :key="index">
+					<view class="td mW28">{{item.mobile}}</view>
+					<view class="td flex1">{{item.order_count}}</view>
+					<view class="td mW35">{{item.created_at}}</view>
 				</view>
 			</view>
 		</view>
@@ -50,13 +20,19 @@
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
-
+import {$request} from '@/utils/request.js'
 export default {
 	components: {
 		hxNavbar,
 	},
 	data() {
-		return {};
+		return {
+			pageing:{
+				page:1,
+				page_size:15
+			},
+			list:[]
+		};
 	},
 	computed: {
 		config() {
@@ -70,7 +46,27 @@ export default {
 			};
 		},
 	},
+	onLoad(e) {
+		console.log(e)
+		this.myTeam(+e)
+	},
+	onReachBottom(e){
+		this.pageing.page++;
+		this.myTeam();
+	},
 	methods: {
+		async myTeam(num){
+			let res = await  $request('myTeam',{level:num,...this.pageing})
+			console.log(res)
+			if(res.data.code===0){
+				this.list.push(...res.data.data.list);
+				return
+			}
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
+		},
 		goProductDetail(productId) {
 			uni.navigateTo({
 				url: `/pages/classification/detail?id=${productId}`,

@@ -165,6 +165,14 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
+		},
+		{
+			"path" : "pages/index/notices",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {
