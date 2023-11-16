@@ -41,7 +41,7 @@
 				<!-- <view class="" v-if="!tabBool"></view> -->
 				<view class=""></view>
 				<view class="content"  :style="{width:tabBool?'':'100%'}">
-					<view class="tab" style="position: fixed;top: 300rpx;z-index: 100;" :style="{left:!tabBool?'20%':''}">
+					<view class="tab" :style="{left:!tabBool?'20%':''}">
 						<view class="h-tab">
 							<view class="h-tab-item h-tab-item-active" @click="activeClick(index)"
 								v-for="(item,index) in tabList" :key="index" :class="active==index?'active':''">
@@ -218,14 +218,14 @@
 	}
 
 	.search {
-		width: calc(100% - 60rpx);
-		margin: 20rpx auto;
-		background: #F2F2F2;
+		padding: 20rpx 30rpx;
+		background-color: #fff;
 
 		.flex {
 			padding: 33rpx 30rpx;
 			color: #93959C;
 			font-size: 24rpx;
+			background-color: #F2F2F2;
 
 			image {
 				width: 30rpx;
@@ -261,9 +261,12 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		padding: 0 30rpx;
-
-
+		padding: 30rpx;
+		left: 180rpx;
+		right: 0;
+		position: fixed;
+		z-index: 100;
+		background-color: #fff;
 
 		.h-tab {
 			width: 100%;

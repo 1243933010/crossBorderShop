@@ -45,6 +45,13 @@ body {
 		padding-left: 30rpx;
 		padding-right: 30rpx;
 		height: 100%;
+		
+		&.has-tabbar {
+			// #ifdef H5
+			// 用于处理tabbar
+			padding-bottom: 100rpx;
+			// #endif
+		}
 	}
 
 	.pic {

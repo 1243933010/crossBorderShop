@@ -22,7 +22,7 @@
         </view>
       </view>
 
-      <button class="sub-btn">申请提现</button>
+      <button class="sub-btn">{{$t("withdraw.btnText")}}</button>
     </view>
   </view>
 </template>

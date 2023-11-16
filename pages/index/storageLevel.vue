@@ -10,7 +10,7 @@
           <view class="level-info">
             <view class="info-row">
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row1") }}</text>
               </view>
               <view class="row-item">
@@ -18,14 +18,14 @@
                 <text>{{ $t("storageLevel.row2") }}</text>
               </view>
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row3") }}</text>
               </view>
             </view>
             <view class="level-income">
               <view class="level">LV0</view>
               <view class="income">
-                <text>5.00{{ $t("storageLevel.dollar") }}</text>
+                <text>5.00 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.dailyRevenue") }}</text>
               </view>
             </view>
@@ -39,7 +39,7 @@
           <view class="level-info">
             <view class="info-row">
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row1") }}</text>
               </view>
               <view class="row-item">
@@ -47,14 +47,14 @@
                 <text>{{ $t("storageLevel.row2") }}</text>
               </view>
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row3") }}</text>
               </view>
             </view>
             <view class="level-income">
               <view class="level">LV0</view>
               <view class="income">
-                <text>5.00{{ $t("storageLevel.dollar") }}</text>
+                <text>5.00 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.dailyRevenue") }}</text>
               </view>
             </view>
@@ -68,7 +68,7 @@
           <view class="level-info">
             <view class="info-row">
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row1") }}</text>
               </view>
               <view class="row-item">
@@ -76,14 +76,14 @@
                 <text>{{ $t("storageLevel.row2") }}</text>
               </view>
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row3") }}</text>
               </view>
             </view>
             <view class="level-income">
               <view class="level">LV0</view>
               <view class="income">
-                <text>5.00{{ $t("storageLevel.dollar") }}</text>
+                <text>5.00 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.dailyRevenue") }}</text>
               </view>
             </view>
@@ -97,7 +97,7 @@
           <view class="level-info">
             <view class="info-row">
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row1") }}</text>
               </view>
               <view class="row-item">
@@ -105,14 +105,14 @@
                 <text>{{ $t("storageLevel.row2") }}</text>
               </view>
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row3") }}</text>
               </view>
             </view>
             <view class="level-income">
               <view class="level">LV0</view>
               <view class="income">
-                <text>5.00{{ $t("storageLevel.dollar") }}</text>
+                <text>5.00 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.dailyRevenue") }}</text>
               </view>
             </view>
@@ -126,7 +126,7 @@
           <view class="level-info">
             <view class="info-row">
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row1") }}</text>
               </view>
               <view class="row-item">
@@ -134,14 +134,14 @@
                 <text>{{ $t("storageLevel.row2") }}</text>
               </view>
               <view class="row-item">
-                <text>0{{ $t("storageLevel.dollar") }}</text>
+                <text>0 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.row3") }}</text>
               </view>
             </view>
             <view class="level-income">
               <view class="level">LV0</view>
               <view class="income">
-                <text>5.00{{ $t("storageLevel.dollar") }}</text>
+                <text>5.00 {{ $t("storageLevel.dollar") }}</text>
                 <text>{{ $t("storageLevel.dailyRevenue") }}</text>
               </view>
             </view>
@@ -198,6 +198,7 @@ page {
     .storage-list {
       margin-right: -10rpx;
       margin-left: -10rpx;
+	  padding-bottom: 1rpx;
 
       .storage-item {
         margin-bottom: 20rpx;
@@ -273,9 +274,11 @@ page {
             .row-item {
               text-align: center;
               font-size: 24rpx;
+			  width: calc(33.33% - 8rpx);
 
               text {
                 margin-bottom: 14rpx;
+				display: block;
 
                 &:last-child {
                   margin-bottom: 0;
