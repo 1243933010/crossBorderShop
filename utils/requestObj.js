@@ -1,4 +1,13 @@
 let requestObj = {
+	region:{
+		url:'/api/register',
+		type:'POST'
+	},
+	bankAccounts:{
+		url:'/api/bank_accounts/index',
+		type:'POST'
+	},
+	
 	getMailOrderList:{
 		url:'/yoursender/api/mailOrder/getMailOrderList',
 		type:'GET'
@@ -13,40 +22,5 @@ let requestObj = {
 		type:'GET',
 		otherGet:true
 	},
-	mailInfo:{
-		url:'/yoursender/api/mailOrder/mailInfo',
-		type:'GET',
-		otherGet:true
-	},
-	getRoutes:{
-		url:'/yoursender/api/mailOrder/getRoutes',
-		type:'GET'
-	},
-	infoByReceiptsNo:{
-		url:'/yoursender/api/mailOrder/infoByReceiptsNo',
-		type:'GET',
-		otherGet:true
-	},
-	testParams:{
-		url:'/yoursender/api/wechat/testParams',
-		type:'POST'
-	},
-	payOrder:{
-		url:'/yoursender/api/wechat/payOrder',
-		type:'POST'
-	},
-	getFreight:{
-		url:'/yoursender/api/mailOrder/getFreight',
-		type:'GET',
-	},
-	orderCancel:{
-		url:'/yoursender/api/mailOrder/orderCancel',
-		type:'GET',
-		otherGet:true
-	},
-	getNotification:{
-		url:'/yoursender/api/mailOrder/getNotification',
-		type:'GET'
-	}
 }
 export default requestObj;

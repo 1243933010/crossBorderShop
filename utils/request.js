@@ -2,12 +2,15 @@ import requestObj from '@/utils/requestObj.js'
 
 export const $request = (requestName,params,headerType=0)=>{
 	let reqObj = requestObj[requestName];
+	let token = uni.getStorageSync('token');
 	let headerObj = [
 		{
-			"Content-Type":"application/json"
+			"Content-Type":"application/json",
+			"Authorization":token?`${token}`:''
 		},
 		{
-			'Content-Type': 'application/x-www-form-urlencoded' 
+			'Content-Type': 'application/x-www-form-urlencoded',
+			"Authorization":token?`${token}`:''
 		}
 	]
 	let url = 'http://shop.2302.goldval.top'
@@ -20,9 +23,11 @@ export const $request = (requestName,params,headerType=0)=>{
 		    data,
 		    header: headerObj[headerType],
 		    success: (res) => {
+				console.log(res,'=====================')
 		        resolve(res)
 		    },
 			fail: (err) => {
+				console.log(err,'-------------')
 				reject(err)
 			}
 		});
