@@ -14,7 +14,7 @@
           <view class="image-icon"></view>
           <view class="prefix-con">
             <picker @change="bindPickerChange" :value="pNumberPerfixIndex" :range="pNumberPerfixArr">
-              <view class="number-prefix">{{ pNumberPerfix }}</view>
+              <view class="number-prefix">{{ formData.pNumberPerfix }}</view>
             </picker>
             <view class="arrow"></view>
           </view>
@@ -58,28 +58,26 @@ export default {
   data() {
     return {
       pNumberPerfixIndex: 0, // 手机前缀 角标
-      pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
-      pNumberPerfix: "+1", // 手机前缀
+      pNumberPerfixArr: ["+86"], // 手机前缀可选数组
       pwdType: true,
       formData: {
         mobile: "",
-        password: "",
+        password_confirmation: "",
         invitation_code: "",
+		pNumberPerfix: "+86", // 手机前缀
       },
     };
   },
   methods: {
     bindPickerChange(e) {
       this.pNumberPerfixIndex = e.detail.value;
-      this.pNumberPerfix = this.pNumberPerfixArr[this.pNumberPerfixIndex];
+      this.formData.pNumberPerfix = this.pNumberPerfixArr[this.pNumberPerfixIndex];
     },
     openpNumberPicker() {},
     handleEye() {
       this.pwdType = !this.pwdType;
     },
     async region() {
-      this.formData.password_confirmation = this.formData.password;
-      this.formData.country_code = this.pNumberPerfix;
       let data = await $request("region", this.formData);
       console.log(data);
       uni.showToast({
