@@ -14,6 +14,11 @@ let requestObj = {
 		url: "/api/level/list",
 		type: "POST"
 	},
+	walletInfo: {
+		name: "获取钱包信息",
+		url: "/api/bank_accounts/index",
+		type: "POST"
+	},
 	
 	bankAccounts:{
 		url:'/api/bank_accounts/index',

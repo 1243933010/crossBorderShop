@@ -3,7 +3,7 @@
 		<hx-navbar :config="config" />
 		<view class="storage-level-scroll page-scroll">
 			<view class="storage-list">
-				<view class="storage-item LV0" v-for="item in level_list" :key="id" @click="goPage(item.title)">
+				<view class="storage-item LV0" v-for="item in level_list" :key="item.id" @click="goPage(item.title)">
 					<view class="pic bg">
 						<image :src="lvImgList[item.title]" mode="widthFix" class="img"></image>
 					</view>

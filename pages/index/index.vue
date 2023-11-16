@@ -107,7 +107,7 @@
 
 <script>
 import customHeader from "@/components/customHeader/customHeader.vue";
-import { $request } from "@/utils/request.js";
+import {$request} from '@/utils/request.js'
 export default {
 	components: { customHeader },
 	data() {
