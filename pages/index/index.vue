@@ -121,7 +121,7 @@
 
 <script>
 import customHeader from "@/components/customHeader/customHeader.vue";
-
+import { $request } from "@/utils/request.js";
 export default {
 	components: { customHeader },
 	data() {
@@ -216,7 +216,14 @@ export default {
 			];
 		},
 	},
+	mounted(){
+		this.adverts();
+	},
 	methods: {
+		async adverts(){
+			let res = await $request('adverts',{})
+			console.log(res)
+		},
 		onLocaleChange(e) {
 			if (this.isAndroid) {
 				uni.showModal({

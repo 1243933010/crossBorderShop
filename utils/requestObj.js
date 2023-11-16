@@ -7,6 +7,12 @@ let requestObj = {
 		url:'/api/bank_accounts/index',
 		type:'POST'
 	},
+	adverts:{
+		url:'/api/adverts',
+		type:'POST'
+	},
+	
+	
 	
 	getMailOrderList:{
 		url:'/yoursender/api/mailOrder/getMailOrderList',

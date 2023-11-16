@@ -58,13 +58,15 @@ export default {
   data() {
     return {
       pNumberPerfixIndex: 0, // 手机前缀 角标
-      pNumberPerfixArr: ["+86"], // 手机前缀可选数组
+      pNumberPerfixArr: ["86"], // 手机前缀可选数组
       pwdType: true,
       formData: {
         mobile: "",
         password_confirmation: "",
         invitation_code: "",
-		pNumberPerfix: "+86", // 手机前缀
+		pNumberPerfix: "86", // 手机前缀
+		password:'',
+		country_code:''
       },
     };
   },
@@ -78,6 +80,9 @@ export default {
       this.pwdType = !this.pwdType;
     },
     async region() {
+		this.formData.password_confirmation = this.formData.password;
+		this.formData.password_confirmation = this.formData.password;
+		this.formData.country_code = this.formData.pNumberPerfix;
       let data = await $request("region", this.formData);
       console.log(data);
       uni.showToast({
