@@ -7,6 +7,12 @@ export default {
 			uni.setLocale("zh-Hans");
 		}
 		console.log(code);
+		let token = uni.getStorageSync('token');
+		if(!token){
+			uni.reLaunch({
+				url:"/pages/login/index"
+			})
+		}
 	},
 	onShow: function () {
 		console.log("App Show");
