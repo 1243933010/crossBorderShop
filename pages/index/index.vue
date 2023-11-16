@@ -5,10 +5,17 @@
 		<view class="index-scroll page-scroll has-tabbar">
 			<view class="banner">
 				<swiper class="swiper" circular autoplay>
+<<<<<<< HEAD
 					<swiper-item>
 						<view class="swiper-item" v-for="(item, index) in swiperList" :key="index">
 							<view class="pic">
 								<image :src="item.image" mode="widthFix" class="img"></image>
+=======
+					<swiper-item v-for="(item,index) in swiperList" :key="index">
+						<view class="swiper-item" >
+							<view class="pic">
+								<image @click="linkImg(item)" :src="item.image" class="img" mode="widthFix"></image>
+>>>>>>> main
 							</view>
 						</view>
 					</swiper-item>
@@ -19,8 +26,8 @@
 				<view class="left-tit">{{ $t("index.news") }}</view>
 				<view class="news-swiper">
 					<swiper class="swiper" vertical circular autoplay>
-						<swiper-item v-for="(item, index) in newsList" :key="index">
-							<view class="swiper-item">{{ item }}</view>
+						<swiper-item v-for="(item, index) in newsList" :key="index" @click="newLink(item)">
+							<view class="swiper-item">{{ item.name }}</view>
 						</swiper-item>
 					</swiper>
 				</view>
@@ -113,6 +120,7 @@ export default {
 	data() {
 		return {
 			title: "Hello",
+<<<<<<< HEAD
 			newsList: [
 				"lual or a team, whether you have e-co1lual or a team, whether you have e-co1",
 				"lual or a team, whether you have e-co1lual or a team, whether you have e-co1",
@@ -124,6 +132,10 @@ export default {
 					title: "广告1",
 				},
 			],
+=======
+			newsList: [],
+			swiperList: []
+>>>>>>> main
 		};
 	},
 	onLoad() {},
@@ -210,16 +222,43 @@ export default {
 	},
 	mounted() {
 		this.adverts();
+		this.getNotices();
 	},
 	methods: {
-		async adverts() {
-			$request("adverts", {}).then(res => {
-				let { code, data, msg } = res.data;
-				console.log(res);
-				if (code === 0) {
-					this.swiperList = data;
-				}
-			});
+		newLink(item){
+			uni.setStorageSync('notices',item);
+			uni.navigateTo({
+				url:'./notices'
+			})
+		},
+		linkImg(item){
+			uni.navigateTo({
+				url:item.url
+			})
+		},
+		async getNotices(){
+			let res = await $request('notices',{});
+			// console.log(res)
+			if(res.data.code===0){
+				this.newsList = res.data.data;
+			   return false;
+			}
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
+		},
+		async adverts(){
+			let res = await $request('adverts',{});
+			// console.log(res)
+			if(res.data.code===0){
+				this.swiperList = res.data.data;
+			   return false;
+			}
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
 		},
 		onLocaleChange(e) {
 			if (this.isAndroid) {

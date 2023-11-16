@@ -4,12 +4,12 @@
 			<view class="userinfo-box">
 				<view class="userinfo">
 					<view class="logo pic" @click="openAvatarPop">
-						<image src="../../static/img/logo.png" mode="widthFix" class="img"></image>
+						<image :src="userInfo.avatar" mode="widthFix" class="img"></image>
 					</view>
 					<view class="msg">
 						<view class="name">
-							<text class="name-text" @click="goModifyNickname">{{ userInfo.name }}</text>
-							<view class="vip">VIP{{ userInfo.vip }}</view>
+							<text class="name-text" @click="goModifyNickname">{{ userInfo.username }}</text>
+							<view class="vip">{{userInfo.vip_name}}{{ userInfo.vip_grade }}</view>
 						</view>
 						<view class="id">
 							<text>{{ userInfo.id }}</text>
@@ -91,8 +91,33 @@ export default {
 	data() {
 		return {
 			userInfo: {
-				name: "昵称",
-				id: "111111",
+				username: "昵称",
+				avatar: "",
+				balance: "",
+				country_code: null,
+				created_at: "",
+				deposit_balance: "",
+				email: "",
+				freeze_balance: "",
+				id: 0,
+				invitation_code: "",
+				is_auth: 0,
+				last_login: 0,
+				mobile: "",
+				nickname: "",
+				pay_password: "",
+				pid: 1,
+				point: "",
+				recharge_money: "",
+				status: 0,
+				total_income: "",
+				updated_at: "",
+				usdt: "",
+				username: "",
+				vip_grade: 1,
+				vip_name: "",
+				withdraw_money: "",
+				id: "",
 				vip: 1,
 				num1: 1,
 				num2: 1,
@@ -137,12 +162,20 @@ export default {
 		},
 	},
 	mounted(){
-		this.bankAccounts();
+		this.getUserInfo();
 	},
 	methods: {
-		async bankAccounts(){
-			let res =  await $request('bankAccounts',{type:'usdt'})
+		async getUserInfo(){
+			let res =  await $request('getUserInfo',{})
 			console.log(res)
+			if(res.data.code===0){
+				this.userInfo = res.data.data;
+				return
+			}
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
 		},
 		goModifyNickname() {
 			uni.navigateTo({
@@ -206,6 +239,9 @@ page {
 				.logo {
 					margin-right: 46rpx;
 					width: 115rpx;
+					image{
+						border-radius: 50%;
+					}
 				}
 
 				.msg {

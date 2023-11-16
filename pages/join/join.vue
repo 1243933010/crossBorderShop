@@ -18,7 +18,7 @@
 						<view class="icon pic">
 							<image src="../../static/img/icon/code.png" mode="widthFix" class="img"></image>
 						</view>
-						<view class="text">LboEgPy6 ({{ $t("loacal.chinaText") }})</view>
+						<view class="text">{{invitationObj.invitation_code}} ({{ $t("loacal.chinaText") }})</view>
 					</view>
 					<view class="copy-btn">{{ $t("join.copy") }}</view>
 				</view>
@@ -31,7 +31,7 @@
 						<view class="icon pic">
 							<image src="../../static/img/icon/code.png" mode="widthFix" class="img"></image>
 						</view>
-						<view class="text">https://puth1.com/#/pages/ashdiashda/asdjuhf</view>
+						<view class="text">{{invitationObj.invitation_url}}</view>
 					</view>
 					<view class="copy-btn">{{ $t("join.copy") }}</view>
 				</view>
@@ -106,11 +106,11 @@
 					</view>
 					<view class="box-num">
 						<view class="count-info san">
-							<view class="count">0</view>
+							<view class="count">{{invitationObj.first.total_count}}</view>
 							<view class="text">{{ $t("join.partners") }}</view>
 						</view>
 						<view class="count-info yi">
-							<view class="count">0</view>
+							<view class="count">{{invitationObj.first.total_commission}}</view>
 							<view class="text">{{ $t("join.committee") }}</view>
 						</view>
 					</view>
@@ -123,11 +123,11 @@
 					</view>
 					<view class="box-num">
 						<view class="count-info san">
-							<view class="count">0</view>
+							<view class="count">{{invitationObj.two.total_count}}</view>
 							<view class="text">{{ $t("join.partners") }}</view>
 						</view>
 						<view class="count-info yi">
-							<view class="count">0</view>
+							<view class="count">{{invitationObj.two.total_commission}}</view>
 							<view class="text">{{ $t("join.committee") }}</view>
 						</view>
 					</view>
@@ -140,11 +140,11 @@
 					</view>
 					<view class="box-num">
 						<view class="count-info san">
-							<view class="count">0</view>
+							<view class="count">{{invitationObj.three.total_count}}</view>
 							<view class="text">{{ $t("join.partners") }}</view>
 						</view>
 						<view class="count-info yi">
-							<view class="count">0</view>
+							<view class="count">{{invitationObj.three.total_commission}}</view>
 							<view class="text">{{ $t("join.committee") }}</view>
 						</view>
 					</view>
@@ -156,15 +156,36 @@
 
 <script>
 import customHeader from "@/components/customHeader/customHeader.vue";
-
+import {$request} from '@/utils/request.js'
 export default {
 	components: {
 		customHeader,
 	},
 	data() {
-		return {};
+		return {
+			invitationObj:{
+				first:{total_count:0,total_commission:0},
+				two:{total_count:0,total_commission:0},
+				three:{total_count:0,total_commission:0}
+			}
+		};
+	},
+	mounted(){
+		this.invitation();
 	},
 	methods: {
+		async invitation(){
+			let res = await $request('invitation',{});
+			console.log(res)
+			if(res.data.code===0){
+				this.invitationObj = res.data.data;
+				return
+			}
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
+		},
 		goTeamInfo(index) {
 			uni.navigateTo({
 				url: `/pages/join/teamInfo?id=${index}`,
