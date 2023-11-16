@@ -57,8 +57,9 @@ export default {
 	},
 	data() {
 		return {
-			pNumberPerfix: "+1", // 手机前缀
+			pNumberPerfixIndex: 0, // 手机前缀 角标
 			pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
+			pNumberPerfix: "+1", // 手机前缀
 		};
 	},
 	methods: {
