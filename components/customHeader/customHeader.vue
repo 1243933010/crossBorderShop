@@ -1,7 +1,7 @@
 <template>
   <view class="page">
     <view class="image-width">
-      <view class="header" :style="{ paddingTop: iStatusBarHeight + 10 + 'px' }">
+      <view class="header" :style="{ paddingTop: iStatusBarHeight + 'px' }">
         <view class="header-icon" @click="openPop">
           <image src="../../static/img/logo.png" mode="widthFix"></image>
         </view>
@@ -30,7 +30,7 @@
 <script>
 import { setTabbar } from "@/utils/utils.js";
 export default {
-  name: "customHeader",
+  name: "customHeader", 
   props: ["headerText", "above"],
   data() {
     return {

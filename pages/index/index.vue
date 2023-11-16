@@ -2,7 +2,7 @@
 	<view class="profix-page-container index-page">
 		<customHeader style="z-index: 0" :headerText="$t('app.name')" :above="false" />
 		<customHeader :headerText="$t('app.name')" style="position: fixed; top: 0; z-index: 1" :above="true" />
-		<view class="index-scroll page-scroll">
+		<view class="index-scroll page-scroll has-tabbar">
 			<view class="banner">
 				<swiper class="swiper" circular autoplay>
 					<swiper-item>

@@ -198,6 +198,7 @@ page {
     .storage-list {
       margin-right: -10rpx;
       margin-left: -10rpx;
+	  padding-bottom: 1rpx;
 
       .storage-item {
         margin-bottom: 20rpx;
