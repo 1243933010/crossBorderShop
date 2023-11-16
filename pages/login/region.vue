@@ -17,14 +17,14 @@
 						<view class="arrow"></view>
 					</view>
 					<view class="inp">
-						<input type="number" :placeholder="$t('login.phonePlaceholder')" />
+						<input type="number" v-model="formData.mobile" :placeholder="$t('login.phonePlaceholder')" />
 					</view>
 				</view>
 
 				<view class="input-con password">
 					<view class="image-icon"></view>
 					<view class="inp">
-						<input type="text" password :placeholder="$t('login.pwdPlaceholder')" />
+						<input type="text" v-model="formData.password" password :placeholder="$t('login.pwdPlaceholder')" />
 					</view>
 					<view class="eye-icon"></view>
 				</view>
@@ -32,13 +32,13 @@
 				<view class="input-con invite-code">
 					<view class="image-icon"></view>
 					<view class="inp">
-						<input type="number" :placeholder="$t('region.invitePlaceholder')" />
+						<input type="number" v-model="formData.invitation_code" :placeholder="$t('region.invitePlaceholder')" />
 					</view>
 					<view class="eye-icon"></view>
 				</view>
 
 				<view class="btn-list">
-					<button class="button login-btn">{{ $t("region.btn1") }}</button>
+					<button class="button login-btn" @click="region">{{ $t("region.btn1") }}</button>
 					<button class="button region-btn">{{ $t("region.btn2") }}</button>
 				</view>
 			</view>
@@ -53,19 +53,41 @@
 
 <script>
 import CustomHeader from "@/components/customHeader/customHeader.vue";
-
+import {$request} from '@/utils/request.js'
 export default {
 	components: {
 		CustomHeader,
 	},
 	data() {
 		return {
-			pNumberPerfix: "+1", // 手机前缀
-			pNumberPerfixArr: ["+1", "+2", "+3"], // 手机前缀可选数组
+			pNumberPerfix: "+86", // 手机前缀
+			pNumberPerfixArr: ["+86", "+89", "+90"], // 手机前缀可选数组
+			formData:{
+				mobile:'',
+				password:"",
+				invitation_code:''
+			}
 		};
 	},
 	methods: {
 		bindPickerChange() {},
+		async region(){
+			this.formData.password_confirmation = this.formData.password;
+			this.formData.country_code = this.pNumberPerfix;
+			let data = await $request('region',this.formData)
+			console.log(data)
+			uni.showToast({
+				icon:'none',
+				title:data.data.msg
+			})
+			if(data.data.code==0){
+				uni.setStorageSync('token',`Bearer ${data.data.data.token}`);
+				uni.reLaunch({
+					url:"/pages/index/index"
+				})
+			}
+			
+		}
 	},
 };
 </script>

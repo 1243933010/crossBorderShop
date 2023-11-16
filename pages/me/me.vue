@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import {$request} from '@/utils/request.js'
 export default {
 	data() {
 		return {
@@ -135,7 +136,14 @@ export default {
 			];
 		},
 	},
+	mounted(){
+		this.bankAccounts();
+	},
 	methods: {
+		async bankAccounts(){
+			let res =  await $request('bankAccounts',{type:'usdt'})
+			console.log(res)
+		},
 		goModifyNickname() {
 			uni.navigateTo({
 				url: "/pages/me/modifyNickname",
