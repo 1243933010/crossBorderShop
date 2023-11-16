@@ -6,9 +6,9 @@
 			<view class="banner">
 				<swiper class="swiper" circular autoplay>
 					<swiper-item>
-						<view class="swiper-item">
+						<view class="swiper-item" v-for="(item, index) in swiperList" :key="index">
 							<view class="pic">
-								<image src="../../static/img/banner/banner.png" mode="widthFix" class="img"></image>
+								<image :src="item.image" mode="widthFix" class="img"></image>
 							</view>
 						</view>
 					</swiper-item>
@@ -118,7 +118,12 @@ export default {
 				"lual or a team, whether you have e-co1lual or a team, whether you have e-co1",
 				"lual or a team, whether you have",
 			],
-			swiperList: []
+			swiperList: [
+				{
+					image: "../../static/img/banner/banner.png",
+					title: "广告1",
+				},
+			],
 		};
 	},
 	onLoad() {},
@@ -203,14 +208,18 @@ export default {
 			];
 		},
 	},
-	mounted(){
+	mounted() {
 		this.adverts();
 	},
 	methods: {
-		async adverts(){
-			$request('adverts',{}).then(res => {
-				
-			})
+		async adverts() {
+			$request("adverts", {}).then(res => {
+				let { code, data, msg } = res.data;
+				console.log(res);
+				if (code === 0) {
+					this.swiperList = data;
+				}
+			});
 		},
 		onLocaleChange(e) {
 			if (this.isAndroid) {
@@ -290,7 +299,7 @@ export default {
 						overflow: hidden;
 						white-space: nowrap;
 						text-overflow: ellipsis;
-						
+
 						color: #908f9a;
 						font-size: @descSize;
 						line-height: 36rpx;
