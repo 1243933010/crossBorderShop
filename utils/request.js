@@ -10,7 +10,7 @@ export const $request = (requestName,params,headerType=0)=>{
 			'Content-Type': 'application/x-www-form-urlencoded' 
 		}
 	]
-	// let url = 'http://192.168.2.163:8088'
+	let url = 'http://shop.2302.goldval.top'
 	let reqUrl = reqObj.otherGet?`${url}${reqObj.url}/${params}`:`${url}${reqObj.url}`
 	let data = reqObj.otherGet?{}:params;
 	return new Promise((resolve,reject)=>{
