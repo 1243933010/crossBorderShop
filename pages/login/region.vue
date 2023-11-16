@@ -13,7 +13,9 @@
 				<view class="input-con account">
 					<view class="image-icon"></view>
 					<view class="prefix-con">
-						<view class="number-prefix">{{ pNumberPerfix }}</view>
+						<picker @change="bindPickerChange" :value="pNumberPerfixIndex" :range="pNumberPerfixArr">
+							<view class="number-prefix">{{ pNumberPerfix }}</view>
+						</picker>
 						<view class="arrow"></view>
 					</view>
 					<view class="inp">
@@ -42,11 +44,6 @@
 					<button class="button region-btn">{{ $t("region.btn2") }}</button>
 				</view>
 			</view>
-
-			<!-- 手机号前缀选择器 -->
-			<picker @change="bindPickerChange" :value="pNumberPerfix" :range="pNumberPerfixArr">
-				<view class="uni-input">{{ pNumberPerfixArr[pNumberPerfix] }}</view>
-			</picker>
 		</view>
 	</view>
 </template>
@@ -65,7 +62,10 @@ export default {
 		};
 	},
 	methods: {
-		bindPickerChange() {},
+		bindPickerChange(e) {
+			this.pNumberPerfixIndex = e.detail.value;
+			this.pNumberPerfix = this.pNumberPerfixArr[this.pNumberPerfixIndex];
+		},
 	},
 };
 </script>
