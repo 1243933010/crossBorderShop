@@ -92,6 +92,13 @@
 	"storageLevel.row1": "Franchise deposit",
 	"storageLevel.row2": "Daily purchase limit",
 	"storageLevel.row3": "Monthly income",
+	"onlinePayment.pageTit": "Online Payment",
+	"onlinePayment.btnText": "Next step",
+	"payUpdata.btnText": "Submit review",
+	"payUpdata.pageTit": "Upload certificate",
+	"payUpdata.tips": "Screenshot or take a photo of the successful transaction screen, the clearer the photo, the faster the review speed!",
+	"payUpdata.placeholder": "Please enter TXID",
+	"payUpdata.toastFail": "Upload failed",
 
 	// 充值
 	"recargar.pageTit": "Recargar",

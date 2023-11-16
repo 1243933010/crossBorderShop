@@ -127,6 +127,22 @@
 				"enablePullDownRefresh": false
 			}
 		},
+		{
+			"path" : "pages/me/onlinePayment",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/me/payUpdata",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
 
 		// 登录注册
 		{

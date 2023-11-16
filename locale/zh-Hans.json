@@ -101,6 +101,13 @@
 	"recargar.recTxt3": "充值金额",
 	"recargar.inpPlaceholder": "输入金额",
 	"recargar.popupTips": "充值成功",
+	"onlinePayment.pageTit": "Online Payment",
+	"onlinePayment.btnText": "下一步",
+	"payUpdata.btnText": "提交审查",
+	"payUpdata.pageTit": "上载证书",
+	"payUpdata.tips": "截图或拍照成功交易的屏幕，照片越清晰，审核速度越快！",
+	"payUpdata.placeholder": "请输入TXID",
+	"payUpdata.toastFail": "上传失败",
 
 	// 提现
 	"withdraw.pageTit": "提现",
