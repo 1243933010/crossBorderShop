@@ -9,6 +9,11 @@ let requestObj = {
 		url:'/api/login',
 		type:'POST'
 	},
+	vipList: {
+		name: "VIP列表",
+		url: "/api/level/list",
+		type: "POST"
+	},
 	
 	bankAccounts:{
 		url:'/api/bank_accounts/index',
