@@ -2,22 +2,25 @@
   <view class="profix-page-container qualifications-info-page">
     <hx-navbar :config="config" />
     <view class="qualifications-info-scroll page-scroll">
-      <view class="pic">
-        <image src="../../static/img/qualifications/1.png" mode="widthFix" class="img"></image>
-      </view>
+
+     <rich-text :nodes="dataObj.content"></rich-text>
+      
     </view>
   </view>
 </template>
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
-
+import { $request } from "@/utils/request";
 export default {
   components: {
     hxNavbar,
   },
   data() {
-    return {};
+    return {
+		dataObj:{content:''},
+		id:''
+	};
   },
   computed: {
     config() {
@@ -31,6 +34,27 @@ export default {
       };
     },
   },
+  onLoad(e) {
+  	console.log(e)
+	this.id = +e.id
+  },
+ mounted() {
+  	this.getCertifications();
+  },
+  methods:{
+	  async getCertifications(){
+		  let res = await $request('certifications',{})
+		  console.log(res)
+		  if(res.data.code===0){
+			  res.data.data.forEach((val)=>{
+				  if(val.id == this.id){
+					  this.dataObj = val;
+				  }
+			  })
+		  }
+	  }
+	  
+  }
 };
 </script>
 

@@ -73,8 +73,10 @@ let requestObj = {
 		url: '/api/change_pay_password',
 		type: 'POST'
 	},
-
-
+    certifications: {
+		url: '/api/certifications',
+		type: 'POST'
+	},
 	getMailOrderList: {
 		url: '/yoursender/api/mailOrder/getMailOrderList',
 		type: 'GET'
