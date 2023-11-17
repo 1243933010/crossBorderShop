@@ -61,6 +61,18 @@ let requestObj = {
 		url: '/api/user_info',
 		type: 'POST'
 	},
+	changePassword: {
+		url: '/api/change_password',
+		type: 'POST'
+	},
+	setPayPassword: {
+		url: '/api/set_pay_password',
+		type: 'POST'
+	},
+	changePayPassword: {
+		url: '/api/change_pay_password',
+		type: 'POST'
+	},
 
 
 	getMailOrderList: {

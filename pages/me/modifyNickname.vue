@@ -3,9 +3,9 @@
 		<hx-navbar :config="config" />
 		<view class="modify-nickname-scroll page-scroll">
 			<view class="nickname-inp">
-				<input type="text" v-model="userInfo.username" :placeholder="$t('modifyNickname.placeholder')" />
+				<input type="text" v-model="userInfo.nickname" :placeholder="$t('modifyNickname.placeholder')" />
 			</view>
-			<button class="save-btn">{{$t("modifyNickname.btnText")}}</button>
+			<button class="save-btn" @click="saveBtn">{{$t("modifyNickname.btnText")}}</button>
 		</view>
 	</view>
 </template>
@@ -19,7 +19,9 @@ export default {
 	},
 	data() {
 		return {
-			userInfo:{}
+			userInfo:{
+				nickname:''
+			}
 		};
 	},
 	computed: {
@@ -49,6 +51,16 @@ export default {
 				icon:'none',
 				title:res.data.msg
 			})
+		},
+		async saveBtn(){
+			let resp = await $request('userSave',{nickname:this.userInfo.nickname});
+			uni.showToast({
+				icon: 'none',
+				title: resp.data.msg
+			})
+			if(resp.data.code===0){
+				this.getUserInfo();
+			}
 		},
 	}
 };

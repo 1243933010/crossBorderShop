@@ -12,31 +12,49 @@
 				</view>
 			</view>
 			<view class="tab-content-list">
-				<view class="tab-content left" :class="{ active: tabVal === 0 }">
+				<view class="tab-content left" :class="{ active: tabVal === 1 }">
 					<view class="input-box">
 						<view class="input-label">
-							<view class="text">登录密码</view>
+							<view class="text">{{$t('app.loginPassword')}}</view>
 							<view class="eye-icon"></view>
 						</view>
 						<view class="inp-box">
-							<input type="text" placeholder="请输入登录密码" />
+							<input type="text" v-model="loginObj.old_password" :placeholder="$t('app.password1')" />
+						</view>
+						<view class="inp-box">
+							<input type="text" v-model="loginObj.password" :placeholder="$t('app.password2')" />
+						</view>
+						<view class="inp-box">
+							<input type="text" v-model="loginObj.password_confirmation" :placeholder="$t('app.password3')" />
 						</view>
 					</view>
 
-					<view class="save-btn" @click="saveHandle('登录')">保存修改</view>
+					<view class="save-btn" @click="saveHandle('changePassword')">{{$t('app.saveChanges')}}</view>
 				</view>
-				<view class="tab-content right" :class="{ active: tabVal === 1 }">
+				<view class="tab-content right" :class="{ active: tabVal === 0 }">
 					<view class="input-box">
 						<view class="input-label">
-							<view class="text">交易密码</view>
+							<view class="text">{{$t('app.transactionPassword')}}</view>
 							<view class="eye-icon"></view>
 						</view>
-						<view class="inp-box">
-							<input type="text" placeholder="请输入登录密码" />
+						<view class="inp-box" v-if="userInfo.pay_password">
+							<input type="text" v-model="payObj.old_pay_password" :placeholder="$t('app.password1')" />
+						</view>
+						<view class="inp-box" v-if="userInfo.pay_password">
+							<input type="text" v-model="payObj.pay_password" :placeholder="$t('app.password2')" />
+						</view>
+						<view class="inp-box" v-if="userInfo.pay_password">
+							<input type="text" v-model="payObj.pay_password_confirmation"  :placeholder="$t('app.password3')" />
+						</view>
+						<view class="inp-box" v-if="!userInfo.pay_password">
+							<input type="text" v-model="payObj.pay_password1"  :placeholder="$t('app.password4')" />
+						</view>
+						<view class="inp-box" v-if="!userInfo.pay_password">
+							<input type="text" v-model="payObj.pay_password_confirmation1"  :placeholder="$t('app.password3')" />
 						</view>
 					</view>
 
-					<view class="save-btn" @click="saveHandle('交易')">保存修改</view>
+					<view class="save-btn" @click="saveHandle('')">{{$t('app.saveChanges')}}</view>
 				</view>
 			</view>
 		</view>
@@ -52,15 +70,31 @@
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
-
+import {
+		$request,url as requestUrl
+	} from '@/utils/request.js'
 export default {
 	components: {
 		hxNavbar,
 	},
+	
 	data() {
 		return {
-			tabList: ["登录密码", "交易密码"],
 			tabVal: 0,
+			loginObj:{
+				old_password:"",
+				password:'',
+				password_confirmation:''
+			},
+			payObj:{
+				old_pay_password:"",
+				pay_password:"",
+				pay_password_confirmation:'',
+				
+				pay_password1:'',
+				pay_password_confirmation1:""
+			},
+			userInfo:{}
 		};
 	},
 	computed: {
@@ -74,25 +108,69 @@ export default {
 				backgroundImg: "../../static/img/header_tabber.png",
 			};
 		},
+		tabList(){
+			return [this.$t('app.loginPassword'), this.$t('app.transactionPassword')]
+		}
+	},
+	mounted() {
+		this.getUserInfo();
 	},
 	methods: {
+		async getUserInfo() {
+			let res = await $request('getUserInfo', {})
+			console.log(res)
+			if (res.data.code === 0) {
+				this.userInfo = res.data.data;
+				return
+			}
+			uni.showToast({
+				icon: 'none',
+				title: res.data.msg
+			})
+		},
 		changeTab(index) {
 			this.tabVal = index;
 		},
-		saveHandle(type) {
-			if (type === "登录") {
-				// 登录密码修改
-			} else if ("交易") {
-				// 交易密码修改
+		handleRes(res,num){
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
+			if(res.data.code===0){
+				if(num){
+					console.log('----------------------')
+					// this.getUserInfo()
+					uni.setStorageSync("token", `Bearer ${res.data.data.token}`);
+				}
+				setTimeout(()=>{
+					uni.navigateBack({
+						delta:1
+					})
+				},1000)
+			}
+		},
+		async saveHandle(type) {
+			console.log(type)
+			if(type){
+				let res = await $request(type,{...this.loginObj})
+				this.handleRes(res,1)
+				return
+			}
+			if(this.userInfo.pay_password){
+			let resp = await $request('changePayPassword',{...this.payObj})
+			this.handleRes(resp)
+			  return	
 			}
 			
-			// 充值成功后的弹窗提示
-			this.$refs.popup.open("center");
+			let respon = await $request('setPayPassword',{pay_password:this.payObj.pay_password1,pay_password_confirmation:this.payObj.pay_password_confirmation1})
+			this.handleRes(respon)
+			// // 充值成功后的弹窗提示
+			// this.$refs.popup.open("center");
 
-			let timer = setTimeout(() => {
-				this.$refs.popup.close();
-				clearTimeout(timer);
-			}, 2000);
+			// let timer = setTimeout(() => {
+			// 	this.$refs.popup.close();
+			// 	clearTimeout(timer);
+			// }, 2000);
 		},
 	},
 };

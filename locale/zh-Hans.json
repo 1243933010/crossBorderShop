@@ -144,6 +144,15 @@
 	"app.classification": "分类",
 	"app.me": "我的",
 	"app.deposit":"押金",
+	"app.loginPassword":"登录密码",
+	"app.resetLoginPassword":"请重设登陆密码",
+	"app.transactionPassword":"交易密码",
+	"app.resetTransactionPassword":"请重设交易密码",
+	"app.saveChanges":"保存修改",
+	"app.password1":"请输入旧密码",
+	"app.password2":"请输入新密码",
+	"app.password3":"新密码确认",
+	"app.password4":"请设置密码",
 
 	// 团队加入详情
 	"teamInfo.pageTit": "下级详细信息",

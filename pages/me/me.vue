@@ -8,7 +8,7 @@
 					</view>
 					<view class="msg">
 						<view class="name">
-							<text class="name-text" @click="goModifyNickname">{{ userInfo.username }}</text>
+							<text class="name-text" @click="goModifyNickname">{{ userInfo.nickname }}</text>
 							<view class="vip">{{userInfo.vip_name}}{{ userInfo.vip_grade }}</view>
 						</view>
 						<view class="id">
