@@ -184,5 +184,6 @@
 	"app.totalPrice": "Total price",
 	"app.orderNumber": "Order number",
 	"app.PaymentTime": "Payment time",
-	"app.orderTime": "order time"
+	"app.orderTime": "order time",
+	"app.deposit":"deposit"
 }

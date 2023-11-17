@@ -17,17 +17,10 @@
 					</view>
 				</view>
 				<view class="number">
+					
 					<view class="item">
 						<view class="num">
-							<text>1</text>
-						</view>
-						<view class="text">
-							<text>{{ $t("app.price") }} (U)</text>
-						</view>
-					</view>
-					<view class="item">
-						<view class="num">
-							<text>1</text>
+							<text>{{userInfo.balance*1}}</text>
 						</view>
 						<view class="text">
 							<text>{{ $t("app.balance") }} (U)</text>
@@ -35,10 +28,18 @@
 					</view>
 					<view class="item">
 						<view class="num">
-							<text>1</text>
+							<text>{{userInfo.total_income*1}}</text>
 						</view>
 						<view class="text">
 							<text>{{ $t("app.TotalIncome") }} (U)</text>
+						</view>
+					</view>
+					<view class="item">
+						<view class="num">
+							<text>{{userInfo.deposit_balance*1}}</text>
+						</view>
+						<view class="text">
+							<text>{{ $t("app.deposit") }} (U)</text>
 						</view>
 					</view>
 				</view>
@@ -59,7 +60,7 @@
 			</view>
 
 			<view class="btn-box">
-				<view class="exit">
+				<view class="exit" @click="logout">
 					<text>{{ $t("app.Exit") }}</text>
 				</view>
 				<view class="agreement" @click="goFwxy">
@@ -205,12 +206,46 @@ export default {
 				clearTimeout(timer);
 			}, 2000);
 		},
-		openAvatarPop() {
-			this.$refs.avatarPopup.open("bottom");
+		async openAvatarPop() {
+			// this.$refs.avatarPopup.open("bottom");
+			uni.chooseImage({
+				count:1,
+				success: async(res) => {
+					console.log(res)
+					let res1 = await $request('userSave',{avatar:res.tempFiles[0]})
+					console.log(res1)
+					uni.showToast({
+						icon:'none',
+						title:res1.data.msg
+					})
+					if(res.data.code===0){
+						this.getUserInfo();
+					}
+				}
+			})
+			
 		},
 		closeAvatarPop() {
 			this.$refs.avatarPopup.close();
-		}
+		},
+		async logout(){
+			
+			let res = await $request('logout',{});
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
+			if(res.data.code===0){
+				setTimeout(()=>{
+					uni.clearStorageSync();
+					uni.reLaunch({
+						url:'/pages/login/index'
+					})
+				},1000)
+				return
+			}
+			
+		},
 	},
 };
 </script>

@@ -45,9 +45,28 @@ let requestObj = {
 		url: '/api/user/my_team',
 		type: 'POST'
 	},
+	logout: {
+		url: '/api/logout',
+		type: 'POST'
+	},
+	userSave: {
+		url: '/api/user/save',
+		type: 'POST'
+	},
+	fileUpload: {
+		url: '/api/file_upload',
+		type: 'POST'
+	},
 	getUserInfo: {
 		url: '/api/user_info',
 		type: 'POST'
+	},
+
+
+	getMailOrderList: {
+		url: '/yoursender/api/mailOrder/getMailOrderList',
+		type: 'GET'
+
 	},
 
 
