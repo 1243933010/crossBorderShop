@@ -14,13 +14,14 @@
 					<input type="text" :placeholder="$t('payUpdata.placeholder')" />
 				</view>
 			</view>
-			<button class="next-btn" @click="goPage">{{ $t("payUpdata.btnText") }}</button>
+			<button class="next-btn">{{ $t("payUpdata.btnText") }}</button>
 		</view>
 	</view>
 </template>
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
+import { $request } from "@/utils/request";
 
 export default {
 	components: {
@@ -49,8 +50,9 @@ export default {
 				count: 1,
 				sizeType: ['original'],
 				success({tempFilePaths, tempFiles}) {
-					// tempFilePaths: 图片的本地文件路径列表
-					// tempFiles: 图片的本地文件列表，每一项是一个 File 对象
+					// tempFilePaths: 图片的本地文件路径列表 Array
+					// tempFiles: 图片的本地文件列表，每一项是一个 File 对象 Array
+					console.log(tempFiles);
 				},
 				fail() {
 					// 上传失败
@@ -60,6 +62,9 @@ export default {
 					});
 				}
 			})
+		},
+		async fileUpload(tempFiles) {
+			const res = await $request("fileUpload", )
 		}
 	},
 };

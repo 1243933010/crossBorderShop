@@ -54,6 +54,7 @@ let requestObj = {
 		type: 'POST'
 	},
 	fileUpload: {
+		name: "上传接口",
 		url: '/api/file_upload',
 		type: 'POST'
 	},

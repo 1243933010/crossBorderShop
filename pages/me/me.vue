@@ -272,8 +272,12 @@ page {
 				.df(center, flex-start);
 
 				.logo {
+					border-radius: 50%;
 					margin-right: 46rpx;
 					width: 115rpx;
+					max-height: 115rpx;
+					background-color: #f5f5f5;
+					
 					image{
 						border-radius: 50%;
 					}

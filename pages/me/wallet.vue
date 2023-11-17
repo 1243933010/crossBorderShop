@@ -3,7 +3,7 @@
 		<hx-navbar :config="config" />
 		<view class="wallet-scroll page-scroll">
 			<view class="total-assets-box">
-				<view class="num">1151</view>
+				<view class="num">{{ balance }}</view>
 				<view class="text">{{ $t("wallet.total") }}</view>
 			</view>
 
@@ -22,18 +22,21 @@
 				</view>
 			</view>
 
-			<button class="sub-btn">{{$t("wallet.btnText")}}</button>
+			<button class="sub-btn">{{ $t("wallet.btnText") }}</button>
 		</view>
 	</view>
 </template>
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
+import { $request } from "../../utils/request";
 
 export default {
 	components: { hxNavbar },
 	data() {
-		return {};
+		return {
+			balance: 0,
+		};
 	},
 	computed: {
 		config() {
@@ -46,6 +49,27 @@ export default {
 				backgroundImg: "../../static/img/header_tabber.png",
 			};
 		},
+	},
+	methods: {
+		async walletInfo() {
+			const res = await $request("walletInfo");
+			const { code, data, msg } = res.data;
+
+			if (code !== 0) {
+				uni.showToast({
+					title: "钱包信息获取失败",
+					icon: "none",
+				});
+
+				return;
+			}
+
+			const { balance } = data;
+			this.balance = balance * 1;
+		},
+	},
+	mounted() {
+		this.walletInfo();
 	},
 };
 </script>
