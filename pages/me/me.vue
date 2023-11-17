@@ -287,6 +287,8 @@ page {
 					background-color: #f5f5f5;
 
 					image {
+						width: 115rpx;
+						height: 115rpx;
 						border-radius: 50%;
 					}
 				}
