@@ -93,8 +93,15 @@ export default {
 		},
 		recargarHandle() {
 			// 充值成功后的弹窗提示
+			if(this.recargarNum === 0) {
+				uni.showToast({
+					title: this.$t("recargar.toastText")
+				});
+				
+				return;
+			}
 			uni.navigateTo({
-				url: "",
+				url: `/pages/me/onlinePayment?recargarNum=${this.recargarNum}`,
 			});
 			// this.$refs.popup.open("center");
 

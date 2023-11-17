@@ -3,8 +3,8 @@
 		<hx-navbar :config="config" />
 		<view class="online-payment-scroll page-scroll">
 			<view class="address-box">
-				<view class="tit">USDT-TRC20</view>
-				<view class="inp-box"> <b>Payment address: </b>{{ address }} <text @click="copyHandle">复制</text></view>
+				<view class="tit">{{ network }}</view>
+				<view class="inp-box"> <b>Payment address: </b>{{ account_number }} <text @click="copyHandle">复制</text></view>
 			</view>
 			<button class="next-btn" @click="goPage">{{ $t("onlinePayment.btnText") }}</button>
 		</view>
@@ -13,6 +13,7 @@
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
+import { $request } from "../../utils/request";
 
 export default {
 	components: {
@@ -20,8 +21,14 @@ export default {
 	},
 	data() {
 		return {
-			address: "TDcu8jVJRpJ4hNMTJMKTQzwSMSHKmN1zAF",
+			recargarNum: 0,
+			account_number: "",
+			network: "",
 		};
+	},
+	mounted() {
+		this.recargarNum = this.$route.query.recargarNum;
+		this.getRechargeQrCode();
 	},
 	computed: {
 		config() {
@@ -38,15 +45,30 @@ export default {
 	methods: {
 		copyHandle() {
 			uni.setClipboardData({
-				data: this.address,
+				data: this.account_number,
 				showToast: true,
 			});
 		},
 		goPage() {
 			uni.navigateTo({
-				url: '/pages/me/payUpdata'
+				url: `/pages/me/payUpdata?recargarNum=${this.recargarNum}&network=${this.network[0]}`,
 			});
-		}
+		},
+		async getRechargeQrCode() {
+			const res = await $request("getRechargeQrCode");
+			const { data, code, msg } = res.data;
+
+			if (code !== 0) {
+				uni.showToast({
+					title: this.$t("onlinePayment.toastText"),
+					icon: "error",
+				});
+			}
+
+			let { account_number, network } = data.usdt;
+			this.account_number = BigInt(account_number).toString();
+			this.network = network[0];
+		},
 	},
 };
 </script>
