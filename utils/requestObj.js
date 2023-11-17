@@ -52,6 +52,10 @@ let requestObj = {
 		url:'/api/user/save',
 		type:'POST'
 	},
+	fileUpload:{
+		url:'/api/file_upload',
+		type:'POST'
+	},
 	
 	
 	getMailOrderList:{
