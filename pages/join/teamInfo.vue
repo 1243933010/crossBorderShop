@@ -29,7 +29,7 @@ export default {
 		return {
 			pageing:{
 				page:1,
-				page_size:15
+				page_size:20
 			},
 			list:[]
 		};

@@ -44,7 +44,14 @@ let requestObj = {
 		url:'/api/user_info',
 		type:'POST'
 	},
-	
+	logout:{
+		url:'/api/logout',
+		type:'POST'
+	},
+	userSave:{
+		url:'/api/user/save',
+		type:'POST'
+	},
 	
 	
 	getMailOrderList:{

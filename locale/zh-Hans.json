@@ -128,7 +128,7 @@
 	"productDetail.btnText": "释放货物",
 
 	"app.price": "价格",
-	"app.balance": "平衡",
+	"app.balance": "余额",
 	"app.TotalIncome": "总收入",
 	"app.deposit": "存款",
 	"app.myWallet": "我的钱包",
@@ -141,6 +141,7 @@
 	"app.join": "加盟",
 	"app.classification": "分类",
 	"app.me": "我的",
+	"app.deposit":"押金",
 
 	// 团队加入详情
 	"teamInfo.pageTit": "下级详细信息",
