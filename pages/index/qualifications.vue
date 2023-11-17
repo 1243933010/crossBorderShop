@@ -3,16 +3,8 @@
     <hx-navbar :config="config" />
     <view class="qualifications-scroll page-scroll">
       <view class="list">
-        <navigator url="/pages/index/qualificationsInfo" class="item">
-          <view class="item-tit">{{ $t("qualifications.item1") }}</view>
-          <view class="arrow-icon"></view>
-        </navigator>
-        <navigator url="/pages/index/qualificationsInfo" class="item">
-          <view class="item-tit">{{ $t("qualifications.item2") }}</view>
-          <view class="arrow-icon"></view>
-        </navigator>
-        <navigator url="/pages/index/qualificationsInfo" class="item">
-          <view class="item-tit">{{ $t("qualifications.item3") }}</view>
+        <navigator :url="`/pages/index/qualificationsInfo?id=${item.id}`" class="item" v-for="(item,index) in list" :key="index">
+          <view class="item-tit">{{ item.title }}</view>
           <view class="arrow-icon"></view>
         </navigator>
       </view>
@@ -22,13 +14,15 @@
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
-
+import { $request } from "@/utils/request";
 export default {
   components: {
     hxNavbar,
   },
   data() {
-    return {};
+    return {
+		list:[]
+	};
   },
   computed: {
     config() {
@@ -42,6 +36,18 @@ export default {
       };
     },
   },
+  mounted() {
+  	this.getCertifications();
+  },
+  methods:{
+	  async getCertifications(){
+		  let res = await $request('certifications',{})
+		  console.log(res)
+		  if(res.data.code===0){
+			  this.list = res.data.data;
+		  }
+	  }
+  }
 };
 </script>
 

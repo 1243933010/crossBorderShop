@@ -4,12 +4,12 @@
 			<view class="userinfo-box">
 				<view class="userinfo">
 					<view class="logo pic" @click="openAvatarPop">
-						<image :src="userInfo.avatar" mode="widthFix" class="img"></image>
+						<image :src="userInfo.avatar" mode="" class="img"></image>
 					</view>
 					<view class="msg">
 						<view class="name">
-							<text class="name-text" @click="goModifyNickname">{{ userInfo.username }}</text>
-							<view class="vip">{{userInfo.vip_name}}{{ userInfo.vip_grade }}</view>
+							<text class="name-text" @click="goModifyNickname">{{ userInfo.nickname }}</text>
+							<view class="vip">{{ userInfo.vip_name }}{{ userInfo.vip_grade }}</view>
 						</view>
 						<view class="id">
 							<text>{{ userInfo.id }}</text>
@@ -17,10 +17,9 @@
 					</view>
 				</view>
 				<view class="number">
-					
 					<view class="item">
 						<view class="num">
-							<text>{{userInfo.balance*1}}</text>
+							<text>{{ userInfo.balance * 1 }}</text>
 						</view>
 						<view class="text">
 							<text>{{ $t("app.balance") }} (U)</text>
@@ -28,7 +27,7 @@
 					</view>
 					<view class="item">
 						<view class="num">
-							<text>{{userInfo.total_income*1}}</text>
+							<text>{{ userInfo.total_income * 1 }}</text>
 						</view>
 						<view class="text">
 							<text>{{ $t("app.TotalIncome") }} (U)</text>
@@ -36,7 +35,7 @@
 					</view>
 					<view class="item">
 						<view class="num">
-							<text>{{userInfo.deposit_balance*1}}</text>
+							<text>{{ userInfo.deposit_balance * 1 }}</text>
 						</view>
 						<view class="text">
 							<text>{{ $t("app.deposit") }} (U)</text>
@@ -87,7 +86,7 @@
 </template>
 
 <script>
-import {$request} from '@/utils/request.js'
+import { $request, url as requestUrl } from "@/utils/request.js";
 export default {
 	data() {
 		return {
@@ -162,21 +161,21 @@ export default {
 			];
 		},
 	},
-	mounted(){
+	mounted() {
 		this.getUserInfo();
 	},
 	methods: {
-		async getUserInfo(){
-			let res =  await $request('getUserInfo',{})
-			console.log(res)
-			if(res.data.code===0){
+		async getUserInfo() {
+			let res = await $request("getUserInfo", {});
+			console.log(res);
+			if (res.data.code === 0) {
 				this.userInfo = res.data.data;
-				return
+				return;
 			}
 			uni.showToast({
-				icon:'none',
-				title:res.data.msg
-			})
+				icon: "none",
+				title: res.data.msg,
+			});
 		},
 		goModifyNickname() {
 			uni.navigateTo({
@@ -184,7 +183,7 @@ export default {
 			});
 		},
 		goPage(url) {
-			if(!url) {
+			if (!url) {
 				this.openPopup();
 				return;
 			}
@@ -209,42 +208,50 @@ export default {
 		async openAvatarPop() {
 			// this.$refs.avatarPopup.open("bottom");
 			uni.chooseImage({
-				count:1,
-				success: async(res) => {
-					console.log(res)
-					let res1 = await $request('userSave',{avatar:res.tempFiles[0]})
-					console.log(res1)
-					uni.showToast({
-						icon:'none',
-						title:res1.data.msg
-					})
-					if(res.data.code===0){
-						this.getUserInfo();
-					}
-				}
-			})
-			
+				count: 1,
+				success: async res => {
+					console.log(res.tempFiles[0]);
+					uni.uploadFile({
+						url: `${requestUrl}/api/file_upload`,
+						filePath: res.tempFilePaths[0],
+						name: "file",
+						formData: {},
+						success: async res1 => {
+							console.log(res1);
+							let avatar = JSON.parse(res1.data);
+							if (avatar.code === 0) {
+								let resp = await $request("userSave", { avatar: avatar.data.src });
+								uni.showToast({
+									icon: "none",
+									title: resp.data.msg,
+								});
+								if (resp.data.code === 0) {
+									this.getUserInfo();
+								}
+							}
+						},
+					});
+				},
+			});
 		},
 		closeAvatarPop() {
 			this.$refs.avatarPopup.close();
 		},
-		async logout(){
-			
-			let res = await $request('logout',{});
+		async logout() {
+			let res = await $request("logout", {});
 			uni.showToast({
-				icon:'none',
-				title:res.data.msg
-			})
-			if(res.data.code===0){
-				setTimeout(()=>{
+				icon: "none",
+				title: res.data.msg,
+			});
+			if (res.data.code === 0) {
+				setTimeout(() => {
 					uni.clearStorageSync();
 					uni.reLaunch({
-						url:'/pages/login/index'
-					})
-				},1000)
-				return
+						url: "/pages/login/index",
+					});
+				}, 1000);
+				return;
 			}
-			
 		},
 	},
 };
@@ -252,13 +259,14 @@ export default {
 
 <style lang="less" scoped>
 @import "../../static/less/variable.less";
+
 page {
-	background-color: #FD7F20;
+	background-color: #fd7f20;
 }
 
 .mine-page {
 	height: 100%;
-	
+
 	.mine-scroll {
 		padding: 0;
 
@@ -277,8 +285,8 @@ page {
 					width: 115rpx;
 					max-height: 115rpx;
 					background-color: #f5f5f5;
-					
-					image{
+
+					image {
 						border-radius: 50%;
 					}
 				}
@@ -292,6 +300,7 @@ page {
 							font-size: 36rpx;
 							font-weight: bold;
 						}
+
 						.vip {
 							margin-left: 20rpx;
 							border-radius: 10rpx;
@@ -300,6 +309,7 @@ page {
 							font-size: 24rpx;
 						}
 					}
+
 					.id {
 						color: #ffcf84;
 					}
@@ -321,6 +331,7 @@ page {
 						font-weight: 600;
 						margin-bottom: 23rpx;
 					}
+
 					.text {
 						font-size: 24rpx;
 					}
@@ -349,6 +360,7 @@ page {
 						font-weight: bold;
 					}
 				}
+
 				.right {
 					width: 14rpx;
 					height: 25rpx;
@@ -356,14 +368,14 @@ page {
 				}
 			}
 		}
-		
+
 		.btn-box {
 			padding: 0 50rpx 100rpx;
 			width: calc(100% - 100rpx);
 			background-color: #fff;
-			
+
 			.df(center, space-between);
-			
+
 			.exit,
 			.agreement {
 				border-radius: 10rpx;
@@ -372,22 +384,24 @@ page {
 				width: calc(50% - 40rpx);
 				text-align: center;
 			}
+
 			.exit {
 				color: #383838;
 				background: #f0e8e8;
 			}
+
 			.agreement {
 				background: #fd8124;
 				color: #fff;
 			}
 		}
 	}
-	
+
 	.opening {
 		.pic {
 			width: 210rpx;
 		}
-	
+
 		.text {
 			margin-top: 20rpx;
 			color: #fff;
@@ -395,19 +409,19 @@ page {
 			text-align: center;
 		}
 	}
-	
+
 	.change-avatar {
 		z-index: 9999;
-		
+
 		.select-ul {
 			display: flex;
 			flex-direction: column;
-			
+
 			.select-item {
 				padding: 40rpx;
 				text-align: center;
 				background-color: #fff;
-				
+
 				&.cancel {
 					margin-top: 10rpx;
 				}

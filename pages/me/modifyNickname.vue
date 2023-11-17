@@ -3,22 +3,26 @@
 		<hx-navbar :config="config" />
 		<view class="modify-nickname-scroll page-scroll">
 			<view class="nickname-inp">
-				<input type="text" :placeholder="$t('modifyNickname.placeholder')" />
+				<input type="text" v-model="userInfo.nickname" :placeholder="$t('modifyNickname.placeholder')" />
 			</view>
-			<button class="save-btn">{{$t("modifyNickname.btnText")}}</button>
+			<button class="save-btn" @click="saveBtn">{{$t("modifyNickname.btnText")}}</button>
 		</view>
 	</view>
 </template>
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
-
+import {$request} from '@/utils/request.js'
 export default {
 	components: {
 		hxNavbar,
 	},
 	data() {
-		return {};
+		return {
+			userInfo:{
+				nickname:''
+			}
+		};
 	},
 	computed: {
 		config() {
@@ -32,6 +36,33 @@ export default {
 			};
 		},
 	},
+	mounted(){
+		this.getUserInfo();
+	},
+	methods:{
+		async getUserInfo(){
+			let res =  await $request('getUserInfo',{})
+			console.log(res)
+			if(res.data.code===0){
+				this.userInfo = res.data.data;
+				return
+			}
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
+		},
+		async saveBtn(){
+			let resp = await $request('userSave',{nickname:this.userInfo.nickname});
+			uni.showToast({
+				icon: 'none',
+				title: resp.data.msg
+			})
+			if(resp.data.code===0){
+				this.getUserInfo();
+			}
+		},
+	}
 };
 </script>
 

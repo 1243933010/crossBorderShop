@@ -185,5 +185,15 @@
 	"app.orderNumber": "Order number",
 	"app.PaymentTime": "Payment time",
 	"app.orderTime": "order time",
-	"app.deposit":"deposit"
+	"app.deposit":"deposit",
+	"app.loginPassword":"Login password",
+	"app.resetLoginPassword":"Please reset the login password",
+	"app.transactionPassword":"Transaction password",
+	"app.resetTransactionPassword":"Please reset the transaction password",
+	"app.saveChanges":"Save Changes",
+	"app.password1":"Please enter a new password",
+	"app.password2":"Please enter your old password",
+	"app.password3":"New password confirmation",
+	"app.password4":"Please set password"
+	
 }
