@@ -3,7 +3,7 @@
 		<hx-navbar :config="config" />
 		<view class="modify-nickname-scroll page-scroll">
 			<view class="nickname-inp">
-				<input type="text" :placeholder="$t('modifyNickname.placeholder')" />
+				<input type="text" v-model="userInfo.username" :placeholder="$t('modifyNickname.placeholder')" />
 			</view>
 			<button class="save-btn">{{$t("modifyNickname.btnText")}}</button>
 		</view>
@@ -12,13 +12,15 @@
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
-
+import {$request} from '@/utils/request.js'
 export default {
 	components: {
 		hxNavbar,
 	},
 	data() {
-		return {};
+		return {
+			userInfo:{}
+		};
 	},
 	computed: {
 		config() {
@@ -32,6 +34,23 @@ export default {
 			};
 		},
 	},
+	mounted(){
+		this.getUserInfo();
+	},
+	methods:{
+		async getUserInfo(){
+			let res =  await $request('getUserInfo',{})
+			console.log(res)
+			if(res.data.code===0){
+				this.userInfo = res.data.data;
+				return
+			}
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
+		},
+	}
 };
 </script>
 

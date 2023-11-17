@@ -4,7 +4,7 @@
 			<view class="userinfo-box">
 				<view class="userinfo">
 					<view class="logo pic" @click="openAvatarPop">
-						<image :src="userInfo.avatar" mode="widthFix" class="img"></image>
+						<image :src="userInfo.avatar" mode="" class="img"></image>
 					</view>
 					<view class="msg">
 						<view class="name">
@@ -17,7 +17,7 @@
 					</view>
 				</view>
 				<view class="number">
-					
+
 					<view class="item">
 						<view class="num">
 							<text>{{userInfo.balance*1}}</text>
@@ -87,328 +87,353 @@
 </template>
 
 <script>
-import {$request} from '@/utils/request.js'
-export default {
-	data() {
-		return {
-			userInfo: {
-				username: "昵称",
-				avatar: "",
-				balance: "",
-				country_code: null,
-				created_at: "",
-				deposit_balance: "",
-				email: "",
-				freeze_balance: "",
-				id: 0,
-				invitation_code: "",
-				is_auth: 0,
-				last_login: 0,
-				mobile: "",
-				nickname: "",
-				pay_password: "",
-				pid: 1,
-				point: "",
-				recharge_money: "",
-				status: 0,
-				total_income: "",
-				updated_at: "",
-				usdt: "",
-				username: "",
-				vip_grade: 1,
-				vip_name: "",
-				withdraw_money: "",
-				id: "",
-				vip: 1,
-				num1: 1,
-				num2: 1,
-				num3: 1,
+	import {
+		$request,url as requestUrl
+	} from '@/utils/request.js'
+	export default {
+		data() {
+			return {
+				userInfo: {
+					username: "昵称",
+					avatar: "",
+					balance: "",
+					country_code: null,
+					created_at: "",
+					deposit_balance: "",
+					email: "",
+					freeze_balance: "",
+					id: 0,
+					invitation_code: "",
+					is_auth: 0,
+					last_login: 0,
+					mobile: "",
+					nickname: "",
+					pay_password: "",
+					pid: 1,
+					point: "",
+					recharge_money: "",
+					status: 0,
+					total_income: "",
+					updated_at: "",
+					usdt: "",
+					username: "",
+					vip_grade: 1,
+					vip_name: "",
+					withdraw_money: "",
+					id: "",
+					vip: 1,
+					num1: 1,
+					num2: 1,
+					num3: 1,
+				},
+			};
+		},
+		computed: {
+			linkList() {
+				return [{
+						url: "/pages/me/wallet",
+						title: this.$t("app.myWallet"),
+						src: "../../static/img/mine/lc.png",
+					},
+					{
+						url: "/pages/me/deal",
+						title: this.$t("app.financial"),
+						src: "../../static/img/mine/cw.png",
+					},
+					{
+						url: "/pages/login/forgetPwd",
+						title: this.$t("app.securityCenter"),
+						src: "../../static/img/mine/ws.png",
+					},
+					{
+						url: "/pages/index/recargar",
+						title: this.$t("app.recharge"),
+						src: "../../static/img/mine/cz.png",
+					},
+					{
+						url: "/pages/index/withdraw",
+						title: this.$t("app.withdraw"),
+						src: "../../static/img/mine/tx.png",
+					},
+					{
+						url: "",
+						title: this.$t("app.basicFunctions"),
+						src: "../../static/img/mine/jz.png",
+					},
+				];
 			},
-		};
-	},
-	computed: {
-		linkList() {
-			return [
-				{
-					url: "/pages/me/wallet",
-					title: this.$t("app.myWallet"),
-					src: "../../static/img/mine/lc.png",
-				},
-				{
-					url: "/pages/me/deal",
-					title: this.$t("app.financial"),
-					src: "../../static/img/mine/cw.png",
-				},
-				{
-					url: "/pages/login/forgetPwd",
-					title: this.$t("app.securityCenter"),
-					src: "../../static/img/mine/ws.png",
-				},
-				{
-					url: "/pages/index/recargar",
-					title: this.$t("app.recharge"),
-					src: "../../static/img/mine/cz.png",
-				},
-				{
-					url: "/pages/index/withdraw",
-					title: this.$t("app.withdraw"),
-					src: "../../static/img/mine/tx.png",
-				},
-				{
-					url: "",
-					title: this.$t("app.basicFunctions"),
-					src: "../../static/img/mine/jz.png",
-				},
-			];
 		},
-	},
-	mounted(){
-		this.getUserInfo();
-	},
-	methods: {
-		async getUserInfo(){
-			let res =  await $request('getUserInfo',{})
-			console.log(res)
-			if(res.data.code===0){
-				this.userInfo = res.data.data;
-				return
-			}
-			uni.showToast({
-				icon:'none',
-				title:res.data.msg
-			})
+		mounted() {
+			this.getUserInfo();
 		},
-		goModifyNickname() {
-			uni.navigateTo({
-				url: "/pages/me/modifyNickname",
-			});
-		},
-		goPage(url) {
-			if(!url) {
-				this.openPopup();
-				return;
-			}
-			uni.navigateTo({
-				url,
-			});
-		},
-		goFwxy() {
-			uni.navigateTo({
-				url: "/pages/me/fwxy",
-			});
-		},
-		openPopup() {
-			// 开发中 的弹窗
-			this.$refs.openingPopup.open("center");
-
-			let timer = setTimeout(() => {
-				this.$refs.openingPopup.close();
-				clearTimeout(timer);
-			}, 2000);
-		},
-		async openAvatarPop() {
-			// this.$refs.avatarPopup.open("bottom");
-			uni.chooseImage({
-				count:1,
-				success: async(res) => {
-					console.log(res)
-					let res1 = await $request('userSave',{avatar:res.tempFiles[0]})
-					console.log(res1)
-					uni.showToast({
-						icon:'none',
-						title:res1.data.msg
-					})
-					if(res.data.code===0){
-						this.getUserInfo();
-					}
+		methods: {
+			async getUserInfo() {
+				let res = await $request('getUserInfo', {})
+				console.log(res)
+				if (res.data.code === 0) {
+					this.userInfo = res.data.data;
+					return
 				}
-			})
-			
+				uni.showToast({
+					icon: 'none',
+					title: res.data.msg
+				})
+			},
+			goModifyNickname() {
+				uni.navigateTo({
+					url: "/pages/me/modifyNickname",
+				});
+			},
+			goPage(url) {
+				if (!url) {
+					this.openPopup();
+					return;
+				}
+				uni.navigateTo({
+					url,
+				});
+			},
+			goFwxy() {
+				uni.navigateTo({
+					url: "/pages/me/fwxy",
+				});
+			},
+			openPopup() {
+				// 开发中 的弹窗
+				this.$refs.openingPopup.open("center");
+
+				let timer = setTimeout(() => {
+					this.$refs.openingPopup.close();
+					clearTimeout(timer);
+				}, 2000);
+			},
+			async openAvatarPop() {
+				// this.$refs.avatarPopup.open("bottom");
+				uni.chooseImage({
+					count: 1,
+					success: async (res) => {
+						console.log(res.tempFiles[0])
+						uni.uploadFile({
+							url: `${requestUrl}/api/file_upload`,
+							filePath: res.tempFilePaths[0],
+							name: 'file',
+							formData: {
+							},
+							success:async(res1)=> {
+								console.log(res1)
+								let avatar = JSON.parse(res1.data);
+								if(avatar.code===0){
+									let resp = await $request('userSave',{avatar:avatar.data.src});
+									uni.showToast({
+										icon: 'none',
+										title: resp.data.msg
+									})
+									if(resp.data.code===0){
+										this.getUserInfo();
+									}
+								}
+								
+							}
+						})
+				}
+				})
+				
+
+			},
+			closeAvatarPop() {
+				this.$refs.avatarPopup.close();
+			},
+			async logout() {
+
+				let res = await $request('logout', {});
+				uni.showToast({
+					icon: 'none',
+					title: res.data.msg
+				})
+				if (res.data.code === 0) {
+					setTimeout(() => {
+						uni.clearStorageSync();
+						uni.reLaunch({
+							url: '/pages/login/index'
+						})
+					}, 1000)
+					return
+				}
+
+			},
 		},
-		closeAvatarPop() {
-			this.$refs.avatarPopup.close();
-		},
-		async logout(){
-			
-			let res = await $request('logout',{});
-			uni.showToast({
-				icon:'none',
-				title:res.data.msg
-			})
-			if(res.data.code===0){
-				setTimeout(()=>{
-					uni.clearStorageSync();
-					uni.reLaunch({
-						url:'/pages/login/index'
-					})
-				},1000)
-				return
-			}
-			
-		},
-	},
-};
+	};
 </script>
 
 <style lang="less" scoped>
-@import "../../static/less/variable.less";
-page {
-	background-color: #FD7F20;
-}
+	@import "../../static/less/variable.less";
 
-.mine-page {
-	height: 100%;
-	
-	.mine-scroll {
-		padding: 0;
+	page {
+		background-color: #FD7F20;
+	}
 
-		.userinfo-box {
-			background: url("../../static/img/bgcb7c2c77.png") no-repeat top left / 100%;
-			color: #fff;
+	.mine-page {
+		height: 100%;
 
-			.userinfo {
-				padding: 120rpx 86rpx 98rpx;
+		.mine-scroll {
+			padding: 0;
 
-				.df(center, flex-start);
+			.userinfo-box {
+				background: url("../../static/img/bgcb7c2c77.png") no-repeat top left / 100%;
+				color: #fff;
 
-				.logo {
-					margin-right: 46rpx;
-					width: 115rpx;
-					image{
-						border-radius: 50%;
+				.userinfo {
+					padding: 120rpx 86rpx 98rpx;
+
+					.df(center, flex-start);
+
+					.logo {
+						margin-right: 46rpx;
+						width: 115rpx;
+						height: 115rpx;
+						image {
+							width: 100%;
+							height: 100%;
+							border-radius: 50%;
+						}
+					}
+
+					.msg {
+						.name {
+							margin-bottom: 26rpx;
+							.df(center, flex-start);
+
+							.name-text {
+								font-size: 36rpx;
+								font-weight: bold;
+							}
+
+							.vip {
+								margin-left: 20rpx;
+								border-radius: 10rpx;
+								padding: 10rpx 15rpx;
+								background-color: #ffb47c;
+								font-size: 24rpx;
+							}
+						}
+
+						.id {
+							color: #ffcf84;
+						}
 					}
 				}
 
-				.msg {
-					.name {
-						margin-bottom: 26rpx;
-						.df(center, flex-start);
+				.number {
+					padding-bottom: 33rpx;
+					display: flex;
 
-						.name-text {
-							font-size: 36rpx;
-							font-weight: bold;
+					.item {
+						.df(center, flex-start);
+						flex-direction: column;
+
+						width: 33.33%;
+
+						.num {
+							font-size: 48rpx;
+							font-weight: 600;
+							margin-bottom: 23rpx;
 						}
-						.vip {
-							margin-left: 20rpx;
-							border-radius: 10rpx;
-							padding: 10rpx 15rpx;
-							background-color: #ffb47c;
+
+						.text {
 							font-size: 24rpx;
 						}
 					}
-					.id {
-						color: #ffcf84;
-					}
 				}
 			}
 
-			.number {
-				padding-bottom: 33rpx;
-				display: flex;
+			.list {
+				padding: 22rpx 34rpx;
+				background-color: #fff;
 
 				.item {
-					.df(center, flex-start);
-					flex-direction: column;
+					padding: 30rpx 0;
+					.df(center, space-between);
 
-					width: 33.33%;
+					.left {
+						.df(center, flex-start);
 
-					.num {
-						font-size: 48rpx;
-						font-weight: 600;
-						margin-bottom: 23rpx;
+						.icon {
+							margin-right: 20rpx;
+							width: 54rpx;
+						}
+
+						.text {
+							font-size: 28rpx;
+							font-weight: bold;
+						}
 					}
-					.text {
-						font-size: 24rpx;
+
+					.right {
+						width: 14rpx;
+						height: 25rpx;
+						background: url("../../static/img/right_arrow.png") no-repeat top left / 100% 100%;
 					}
 				}
 			}
-		}
 
-		.list {
-			padding: 22rpx 34rpx;
-			background-color: #fff;
+			.btn-box {
+				padding: 0 50rpx 100rpx;
+				width: calc(100% - 100rpx);
+				background-color: #fff;
 
-			.item {
-				padding: 30rpx 0;
 				.df(center, space-between);
 
-				.left {
-					.df(center, flex-start);
-
-					.icon {
-						margin-right: 20rpx;
-						width: 54rpx;
-					}
-
-					.text {
-						font-size: 28rpx;
-						font-weight: bold;
-					}
+				.exit,
+				.agreement {
+					border-radius: 10rpx;
+					padding: 32rpx 0;
+					font-size: 24rpx;
+					width: calc(50% - 40rpx);
+					text-align: center;
 				}
-				.right {
-					width: 14rpx;
-					height: 25rpx;
-					background: url("../../static/img/right_arrow.png") no-repeat top left / 100% 100%;
+
+				.exit {
+					color: #383838;
+					background: #f0e8e8;
+				}
+
+				.agreement {
+					background: #fd8124;
+					color: #fff;
 				}
 			}
 		}
-		
-		.btn-box {
-			padding: 0 50rpx 100rpx;
-			width: calc(100% - 100rpx);
-			background-color: #fff;
-			
-			.df(center, space-between);
-			
-			.exit,
-			.agreement {
-				border-radius: 10rpx;
-				padding: 32rpx 0;
-				font-size: 24rpx;
-				width: calc(50% - 40rpx);
-				text-align: center;
+
+		.opening {
+			.pic {
+				width: 210rpx;
 			}
-			.exit {
-				color: #383838;
-				background: #f0e8e8;
-			}
-			.agreement {
-				background: #fd8124;
+
+			.text {
+				margin-top: 20rpx;
 				color: #fff;
+				font-size: 30rpx;
+				text-align: center;
 			}
 		}
-	}
-	
-	.opening {
-		.pic {
-			width: 210rpx;
-		}
-	
-		.text {
-			margin-top: 20rpx;
-			color: #fff;
-			font-size: 30rpx;
-			text-align: center;
-		}
-	}
-	
-	.change-avatar {
-		z-index: 9999;
-		
-		.select-ul {
-			display: flex;
-			flex-direction: column;
-			
-			.select-item {
-				padding: 40rpx;
-				text-align: center;
-				background-color: #fff;
-				
-				&.cancel {
-					margin-top: 10rpx;
+
+		.change-avatar {
+			z-index: 9999;
+
+			.select-ul {
+				display: flex;
+				flex-direction: column;
+
+				.select-item {
+					padding: 40rpx;
+					text-align: center;
+					background-color: #fff;
+
+					&.cancel {
+						margin-top: 10rpx;
+					}
 				}
 			}
 		}
 	}
-}
 </style>

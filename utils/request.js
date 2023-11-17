@@ -1,5 +1,5 @@
 import requestObj from '@/utils/requestObj.js'
-
+export let url = 'http://shop.2302.goldval.top'
 export const $request = (requestName,params,headerType=0)=>{
 	let reqObj = requestObj[requestName];
 	let token = uni.getStorageSync('token');
@@ -14,13 +14,13 @@ export const $request = (requestName,params,headerType=0)=>{
 			"Accept-Language":languageObj[language]
 		},
 		{
-			'Content-Type': 'application/x-www-form-urlencoded',
+			"Content-Type": "application/x-www-form-urlencoded",
 			"Authorization":token?`${token}`:'',
 			"Accept":"application/json",
 			"Accept-Language":languageObj[language]
 		}
 	]
-	let url = 'http://shop.2302.goldval.top'
+	
 	let reqUrl = reqObj.otherGet?`${url}${reqObj.url}/${params}`:`${url}${reqObj.url}`
 	let data = reqObj.otherGet?{}:params;
 	return new Promise((resolve,reject)=>{
