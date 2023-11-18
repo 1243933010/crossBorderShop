@@ -31,7 +31,8 @@ export default {
 				page:1,
 				page_size:20
 			},
-			list:[]
+			list:[],
+			id:''
 		};
 	},
 	computed: {
@@ -48,11 +49,12 @@ export default {
 	},
 	onLoad(e) {
 		console.log(e)
-		this.myTeam(+e)
+		this.myTeam(+e.id)
+		this.id = e.id;
 	},
 	onReachBottom(e){
 		this.pageing.page++;
-		this.myTeam();
+		this.myTeam(this.id);
 	},
 	methods: {
 		async myTeam(num){

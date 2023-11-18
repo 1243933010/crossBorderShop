@@ -199,6 +199,7 @@
 	"app.MinimumWithdrawalAmount": "Minimum withdrawal amount",
 	"app.MaximumWithdrawalAmount": "Maximum withdrawal amount",
 	"app.popup1": "Insufficient balance, do you want to recharge?",
+	"app.popup2":"Do you choose to purchase this VIP?",
 	"app.sure": "sure",
 	"app.cancel": "cancel"
 	

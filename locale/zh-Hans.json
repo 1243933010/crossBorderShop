@@ -200,6 +200,7 @@
 	"app.MinimumWithdrawalAmount": "提现最小金额",
 	"app.MaximumWithdrawalAmount": "提现最大金额",
 	"app.popup1": "余额不足，是否充值?",
+	"app.popup2": "是否选择购买该vip?",
 	"app.sure": "确定",
 	"app.cancel": "取消"
 	

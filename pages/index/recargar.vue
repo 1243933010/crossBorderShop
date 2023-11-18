@@ -166,7 +166,7 @@ page {
 
 			.right {
 				color: #fd7e1f;
-				font-size: 36rpx;
+				font-size: 32rpx;
 				font-weight: bold;
 			}
 		}

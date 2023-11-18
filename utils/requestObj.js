@@ -119,6 +119,10 @@ let requestObj = {
 		url: '/api/orders/info',
 		type: 'POST'
 	},
+	levelBuy: {
+		url: '/api/level/buy',
+		type: 'POST'
+	},
 	wechatLogin: {
 		url: '/yoursender/api/wechat/login',
 		type: 'GET',

@@ -98,6 +98,27 @@ export default {
 						}
 						
 					})
+				}else{
+					// uni.switchTab({
+					// 	url: "/pages/classification/classification"
+					// })
+					uni.showModal({
+						title:this.$t('api.message'),
+						content:this.$t('app.popup2'),
+						confirmText:this.$t('app.sure'),
+						cancelText:this.$t('app.cancel'),
+						success: async(res) => {
+							if(res.confirm){
+								let resp = await $request('levelBuy',{vip_id:item.id});
+								uni.showToast({
+									icon:'none',
+									title:resp.data.msg
+								})
+							}
+						}
+						
+					})
+					
 				}
 			}
 		}
