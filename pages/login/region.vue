@@ -41,7 +41,7 @@
 
         <view class="btn-list">
           <button class="button login-btn" @click="region">{{ $t("region.btn1") }}</button>
-          <button class="button region-btn">{{ $t("region.btn2") }}</button>
+          <button class="button region-btn" @click="regionBtn">{{ $t("region.btn2") }}</button>
         </view>
       </view>
     </view>
@@ -70,6 +70,11 @@ export default {
       },
     };
   },
+  onLoad(e){
+	  if(e.invitation_code){
+		  this.formData.invitation_code=e.invitation_code;
+	  }
+  },
   methods: {
     bindPickerChange(e) {
       this.pNumberPerfixIndex = e.detail.value;
@@ -96,6 +101,11 @@ export default {
         });
       }
     },
+	regionBtn(){
+		uni.reLaunch({
+			url:'./index'
+		})
+	}
   },
 };
 </script>

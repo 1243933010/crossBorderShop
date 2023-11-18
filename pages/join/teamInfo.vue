@@ -115,12 +115,15 @@ page {
 				&.th {
 					background-color: #fff;
 					border-bottom: 1px solid #f5f4f9;
+					
 				}
 
 				.td {
 					padding: 38rpx 18rpx;
 					text-align: center;
-
+					view{
+						width: 33%;
+					}
 					&.mW28 {
 						min-width: 28%;
 					}

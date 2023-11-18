@@ -1,25 +1,27 @@
 <template>
 	<view style="background: #ffffff; height: 100%">
-		<view style="height: 100%">
-			<customHeader style="z-index: 0" :headerText="$t('app.name')" />
-			<customHeader :headerText="$t('app.name')" style="width: 100%; position: fixed; top: 0; z-index: 10" />
-
-			<view class="search">
-				<view class="flex">
-					<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
-					<input type="text" v-model="keywords" :placeholder="$t('app.search')" style="font-size: 24rpx" confirm-type="search" @confirm="search" />
-					<view class=""></view>
-				</view>
-			</view>
-			<view style="position: fixed; top: 0; width: 100%; z-index: 100">
+		<view style="">
+			<view style="height: 290rpx;background: red;">
 				<customHeader style="z-index: 0" :headerText="$t('app.name')" />
 				<customHeader :headerText="$t('app.name')" style="width: 100%; position: fixed; top: 0; z-index: 10" />
-
+				
 				<view class="search">
 					<view class="flex">
 						<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
 						<input type="text" v-model="keywords" :placeholder="$t('app.search')" style="font-size: 24rpx" confirm-type="search" @confirm="search" />
 						<view class=""></view>
+					</view>
+				</view>
+				<view style="position: fixed; top: 0; width: 100%; z-index: 100">
+					<customHeader style="z-index: 0" :headerText="$t('app.name')" />
+					<customHeader :headerText="$t('app.name')" style="width: 100%; position: fixed; top: 0; z-index: 10" />
+				
+					<view class="search">
+						<view class="flex">
+							<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
+							<input type="text" v-model="keywords" :placeholder="$t('app.search')" style="font-size: 24rpx" confirm-type="search" @confirm="search" />
+							<view class=""></view>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -37,7 +39,7 @@
 				</view>
 				<!-- <view class="" v-if="!tabBool"></view> -->
 				<view class=""></view>
-				<view class="content" :style="{ width: tabBool ? '' : '100%' }">
+				<view class="content"  :style="{ width: tabBool ? '' : '100%' }">
 					<view class="tab" :style="{ left: tabBool ? '180rpx' : 0 }">
 						<view class="h-tab">
 							<view class="h-tab-item h-tab-item-active" @click="activeClick(index)" v-for="(item, index) in tabList" :key="index" :class="active == index ? 'active' : ''">
@@ -220,7 +222,7 @@ page {
 	}
 }
 .scroll-Y {
-	height: calc(100%-20rpx);
+	height: calc(100% - 20rpx);
 }
 
 .active {
@@ -298,10 +300,12 @@ page {
 	flex-direction: row;
 	align-items: center;
 	padding: 30rpx;
-	left: 180rpx;
-	right: 0;
-	position: fixed;
-	z-index: 100;
+	margin-top: 20rpx;
+	// position: fixed;
+	// top: 0;
+	// left: 180rpx;
+	// right: 0;
+	// z-index: 100;
 	background-color: #fff;
 
 	.h-tab {

@@ -11,7 +11,7 @@
 			<view class="deal-list" >
 				<view class="list-item" v-for="item in dealList" :key="index">
 					<view class="left">
-						<view class="top">{{item.network||item.remark}}</view>
+						<view class="top">{{item.type_txt}}</view>
 						<view class="bottom">{{item.updated_at||item.created_at}}</view>
 					</view>
 					<view class="right">{{item.money||item.amount*1}}</view>
