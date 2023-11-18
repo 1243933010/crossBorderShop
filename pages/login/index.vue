@@ -32,10 +32,11 @@
 					<view class="eye-icon" :class="{ close: pwdType }" @click="handleEye"></view>
 				</view>
 
-				<label class="remember-me">
-					<checkbox v-model="isMember" class="radio" value="1" checked="true" color="#FD862C" />
+				<!-- <label class="remember-me">
+					
+					<checkbox  class="radio" @change="changeRadio" value="1" checked="true" color="#FD862C" />
 					{{ $t("login.radioText") }}
-				</label>
+				</label> -->
 				<view class="btn-list">
 					<button class="button login-btn" :disabled="!(formData.mobile && formData.password)" @click="loginHandle">{{ $t("login.btn1") }}</button>
 					<button class="button region-btn" @click="goRegion">{{ $t("region.btn1") }}</button>
@@ -76,6 +77,9 @@ export default {
 		this.formData.password = uni.getStorageSync('password');
 	},
 	methods: {
+		changeRadio(e){
+			console.log(e)
+		},
 		bindPickerChange(e) {
 			this.pNumberPerfixIndex = e.detail.value;
 			this.formData.country_code = this.pNumberPerfixArr[this.pNumberPerfixIndex];

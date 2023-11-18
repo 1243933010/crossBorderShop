@@ -20,7 +20,7 @@
 						</view>
 						<view class="text">{{invitationObj.invitation_code}} ({{ $t("loacal.chinaText") }})</view>
 					</view>
-					<view class="copy-btn">{{ $t("join.copy") }}</view>
+					<view class="copy-btn" @click="copy(invitationObj.invitation_code)">{{ $t("join.copy") }}</view>
 				</view>
 			</view>
 
@@ -33,7 +33,7 @@
 						</view>
 						<view class="text">{{invitationObj.invitation_url}}</view>
 					</view>
-					<view class="copy-btn">{{ $t("join.copy") }}</view>
+					<view class="copy-btn" @click="copy(invitationObj.invitation_url)">{{ $t("join.copy") }}</view>
 				</view>
 			</view>
 
@@ -67,7 +67,7 @@
 				</view>
 			</view>
 
-			<view class="census-box">
+<!-- 			<view class="census-box">
 				<view class="census-tit">
 					<view class="icon pic">
 						<image src="../../static/img/icon/wallet.png" mode="widthFix" class="img"></image>
@@ -95,7 +95,7 @@
 						<view class="text">{{ $t("join.compensationText") }}</view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 
 			<view class="team-info">
 				<view class="info-box">
@@ -174,6 +174,17 @@ export default {
 		this.invitation();
 	},
 	methods: {
+		copy(text){
+			uni.setClipboardData({
+				data:text,
+				success: (res) => {
+					uni.showToast({
+						icon:'none',
+						title:'success'
+					})
+				}
+			})
+		},
 		async invitation(){
 			let res = await $request('invitation',{});
 			console.log(res)

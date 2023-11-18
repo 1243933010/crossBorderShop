@@ -51,54 +51,19 @@
         <view class="desc">{{ $t("index.moreProductDesc") }}</view>
 
         <view class="product-list">
-          <view @click="goProductDetail(1)" class="product-item">
+          <view  class="product-item" v-for="(item,index) in nftList" :key="index" >
             <view class="product-img pic">
-              <image src="../../static/img/product/1.png" mode="widthFix" class="img"></image>
+              <image :src="item.nft_img" mode="widthFix" class="img" @click="goProductDetail(item)"></image>
             </view>
             <view class="product-info">
-              <view class="product-tit">GGMARMONT超保暖羽绒服限时发售GGMARMONT超保暖羽绒服限时发售</view>
+              <view class="product-tit">{{item.nft_name}}</view>
               <view class="product-price-info">
-                <view class="rebate">$ 198</view>
-                <view class="brfore-rebate">$ 1980</view>
+                <view class="rebate">$ {{item.money*1}}</view>
+                <!-- <view class="brfore-rebate">$ 1980</view> -->
               </view>
             </view>
           </view>
-          <view class="product-item">
-            <view class="product-img pic">
-              <image src="../../static/img/product/2.png" mode="widthFix" class="img"></image>
-            </view>
-            <view class="product-info">
-              <view class="product-tit">古驰限量绝版包包限时发售古驰限量绝版包包限时发售古驰限量绝版包包限时发售</view>
-              <view class="product-price-info">
-                <view class="rebate">$ 198</view>
-                <view class="brfore-rebate">$ 1980</view>
-              </view>
-            </view>
-          </view>
-          <view class="product-item">
-            <view class="product-img pic">
-              <image src="../../static/img/product/1.png" mode="widthFix" class="img"></image>
-            </view>
-            <view class="product-info">
-              <view class="product-tit">GGMARMONT超保暖羽绒服限时发售GGMARMONT超保暖羽绒服限时发售</view>
-              <view class="product-price-info">
-                <view class="rebate">$ 198</view>
-                <view class="brfore-rebate">$ 1980</view>
-              </view>
-            </view>
-          </view>
-          <view class="product-item">
-            <view class="product-img pic">
-              <image src="../../static/img/product/2.png" mode="widthFix" class="img"></image>
-            </view>
-            <view class="product-info">
-              <view class="product-tit">古驰限量绝版包包限时发售古驰限量绝版包包限时发售古驰限量绝版包包限时发售</view>
-              <view class="product-price-info">
-                <view class="rebate">$ 198</view>
-                <view class="brfore-rebate">$ 1980</view>
-              </view>
-            </view>
-          </view>
+          
         </view>
       </view>
     </view>
@@ -115,6 +80,7 @@ export default {
       title: "Hello",
       newsList: [],
       swiperList: [],
+	  nftList:[]
     };
   },
   onLoad() {},
@@ -202,8 +168,20 @@ export default {
   mounted() {
     this.adverts();
     this.getNotices();
+	this.nftListFnc();
   },
   methods: {
+	  async nftListFnc(){
+	  	this.loading = true;
+	  	let formData = {keywords:'',page:1,page_size:20,vip_grade:''}
+	  	let res= await $request('nftList',formData);
+	  	console.log(res)
+	  	this.loading = false;
+	  	if(res.data.code===0){
+	  		this.nftList=res.data.data.data;
+			console.log(this.nftList)
+	  	}
+	  },
     newLink(item) {
       uni.setStorageSync("notices", item);
       uni.navigateTo({
@@ -254,9 +232,9 @@ export default {
         this.$i18n.locale = e.code;
       }
     },
-    goProductDetail(productId) {
+    goProductDetail(item) {
       uni.navigateTo({
-        url: `/pages/index/productDetail?id=${productId}`,
+        url: `/pages/index/productDetail?id=${item.id}`,
       });
     },
     goPage(link) {

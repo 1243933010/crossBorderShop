@@ -3,7 +3,7 @@
 		<hx-navbar :config="config" />
 		<view class="storage-level-scroll page-scroll">
 			<view class="storage-list">
-				<view class="storage-item LV0" v-for="item in level_list" :key="item.id" @click="goPage(item.title)">
+				<view class="storage-item LV0" v-for="item in level_list" :key="item.id" @click="goPage(item)">
 					<view class="pic bg">
 						<image :src="lvImgList[item.title]" mode="widthFix" class="img"></image>
 					</view>
@@ -25,8 +25,8 @@
 						<view class="level-income">
 							<view class="level">{{ item.title }}</view>
 							<view class="income">
-								<text>{{ item.daily_income }} {{ $t("storageLevel.dollar") }}</text>
-								<text>{{ $t("storageLevel.dailyRevenue") }}</text>
+								<text>{{ item.price }} {{ $t("storageLevel.dollar") }}</text>
+								<text>{{ $t("storageLevel.dailyRevenue") }}{{item.daily_income}}</text>
 							</view>
 						</view>
 					</view>
@@ -77,15 +77,28 @@ export default {
 		this.user_info = user_info;
 	},
 	methods: {
-		goPage(title) {
-			if(title.indexOf('LV0') !== -1) {
+		async goPage(item) {
+			if(item.title.indexOf('LV0') !== -1) {
 				uni.switchTab({
 					url: "/pages/classification/classification"
 				})
 			}else {
-				uni.navigateTo({
-					url: "/pages/index/recargar",
-				});
+				if(+this.user_info.balance<(+item.price)){
+					uni.showModal({
+						title:this.$t('api.message'),
+						content:this.$t('app.popup1'),
+						confirmText:this.$t('app.sure'),
+						cancelText:this.$t('app.cancel'),
+						success: (res) => {
+							if(res.confirm){
+								uni.navigateTo({
+									url:'/pages/index/recargar'
+								})
+							}
+						}
+						
+					})
+				}
 			}
 		}
 	}

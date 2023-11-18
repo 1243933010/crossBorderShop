@@ -4,24 +4,24 @@
 		<view class="pay-updata-scroll page-scroll">
 			<view class="box">
 				<view class="pic" @click="upImg">
-					<image src="../../static/img/updata_img.png" mode="widthFix" class="img"></image>
+					<image :src="payImg" mode="widthFix" class="img"></image>
 				</view>
 			</view>
 			<view class="tips">{{ $t("payUpdata.tips") }}</view>
 			<view class="address-box">
 				<view class="tit">TXID</view>
 				<view class="inp-box">
-					<input type="text" :placeholder="$t('payUpdata.placeholder')" />
+					<input type="text" v-model="txid" :placeholder="$t('payUpdata.placeholder')" />
 				</view>
 			</view>
-			<button class="next-btn">{{ $t("payUpdata.btnText") }}</button>
+			<button class="next-btn" @click="rechargeCreate">{{ $t("payUpdata.btnText") }}</button>
 		</view>
 	</view>
 </template>
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
-import { $request } from "@/utils/request";
+import { $request,url as requestUrl } from "@/utils/request";
 
 export default {
 	components: {
@@ -30,6 +30,10 @@ export default {
 	data() {
 		return {
 			address: "TDcu8jVJRpJ4hNMTJMKTQzwSMSHKmN1zAF",
+			payImg:'../../static/img/updata_img.png',
+			transfer_voucher:'',
+			onLoadData:{},
+			txid:''
 		};
 	},
 	computed: {
@@ -41,31 +45,49 @@ export default {
 				// 背景图片（array则为滑动切换背景图，string为单一背景图）
 				// backgroundImg: ['/static/xj.jpg','/static/logo.png'],
 				backgroundImg: "../../static/img/header_tabber.png",
+				
 			};
 		},
+	},
+	onLoad(e) {
+		console.log(e);
+		this.onLoadData = e;
 	},
 	methods: {
 		upImg() {
 			uni.chooseImage({
 				count: 1,
-				sizeType: ['original'],
-				success({tempFilePaths, tempFiles}) {
-					// tempFilePaths: 图片的本地文件路径列表 Array
-					// tempFiles: 图片的本地文件列表，每一项是一个 File 对象 Array
-					console.log(tempFiles);
-				},
-				fail() {
-					// 上传失败
-					uni.showToast({
-						title: this.$t("payUpdata.toastFail"),
-						icon: "error",
+				success: async res => {
+					console.log(res.tempFiles[0]);
+					uni.uploadFile({
+						url: `${requestUrl}/api/file_upload`,
+						filePath: res.tempFilePaths[0],
+						name: "file",
+						formData: {},
+						success: async res1 => {
+							console.log(res1);
+							let avatar = JSON.parse(res1.data);
+							if (avatar.code === 0) {
+								this.payImg = `${requestUrl}${avatar.data.src}`
+								this.transfer_voucher = avatar.data.src;
+							}
+						},
 					});
-				}
-			})
+				},
+			});
 		},
-		async fileUpload(tempFiles) {
-			const res = await $request("fileUpload", )
-		}
+		async rechargeCreate(){
+			let {recargarNum,network} = this.onLoadData;
+			let res = await $request('rechargeCreate',{money:recargarNum,transfer_voucher:this.transfer_voucher,network,txid:this.txid});
+			console.log(res)
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
+			if(res.data.code===0){
+				setTimeout(()=>{uni.navigateBack({delta:3})},1500)
+			}
+		},
 	},
 };
 </script>

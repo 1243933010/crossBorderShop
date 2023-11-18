@@ -4,38 +4,56 @@
     <view class="withdraw-scroll page-scroll">
       <view class="title">{{ $t("withdraw.title") }}</view>
       <view class="withdraw-box">
-        <view class="way-box">{{ $t("storageLevel.dollar") }}T-TEC 20</view>
+        <view class="way-box">
+		<!-- {{ $t("storageLevel.dollar") }}T-TEC 20 -->
+		<radio-group @change="radioChange">
+			<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in info.withdrawal_network" :key="index">
+				<view class="tit" style="display: flex;flex-direction: row;align-items: center;">
+					<radio :value="item" :checked="index === current" />
+					<view>{{item}}</view>
+				</view>
+				
+			</label>
+		</radio-group>
+		</view>
         <view class="inp-box">
-          <input type="number" value="0" />
+          <input type="number" v-model="money" />
         </view>
         <view class="inp-box">
-          <input type="text" password :placeholder="$t('withdraw.pwdPlaceholder')" />
-          <view class="eye-icon"></view>
+          <input  v-model="pay_password" :type="type" :placeholder="$t('withdraw.pwdPlaceholder')" />
+          <view class="eye-icon" @click="()=>{type=type=='password'?'text':'password'}"></view>
         </view>
       </view>
       <view class="tips">
         <view class="tit">{{ $t("withdraw.tipsTit") }}</view>
         <view class="tips-ul">
-          <view class="tips-item">{{ $t("withdraw.tips1") }}</view>
-          <view class="tips-item">{{ $t("withdraw.tips2") }}</view>
-          <view class="tips-item">{{ $t("withdraw.tips3") }}</view>
+          <view class="tips-item">1、{{ $t("app.WithdrawalHandlingFee") }}:{{info.withdraw_fee_ratio}}</view>
+          <view class="tips-item">2、{{ $t("app.MinimumWithdrawalAmount") }}:{{info.withdraw_min_amount}}</view>
+          <view class="tips-item">3、{{ $t("app.MaximumWithdrawalAmount") }}:{{info.withdraw_max_amount}}</view>
         </view>
       </view>
 
-      <button class="sub-btn">{{$t("withdraw.btnText")}}</button>
+      <button class="sub-btn" @click="subBtn">{{$t("withdraw.btnText")}}</button>
     </view>
   </view>
 </template>
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
-
+import { $request } from "@/utils/request";
 export default {
   components: {
     hxNavbar,
   },
   data() {
-    return {};
+    return {
+		info:{},
+		money:0,
+		pay_password:'',
+		current:0,
+		networkStr:'',
+		type:'password'
+	};
   },
   computed: {
     config() {
@@ -49,16 +67,51 @@ export default {
       };
     },
   },
+  mounted(){
+	  this.withdrawInfo();
+  },
+  methods:{
+	  radioChange(e){
+	  	console.log(e)
+	  	this.networkStr = e.detail.value;
+	  },
+	  async withdrawInfo(){
+		  let res = await $request('withdrawInfo',{})
+		  if(res.data.code===0){
+			  this.info = res.data.data;
+			  this.networkStr= res.data.data.withdrawal_network[0]
+			  return
+		  }
+		  uni.showToast({
+		  	icon:'none',
+			title:res.data.msg
+		  })
+	  },
+	  async subBtn(){
+		  let res = await $request('withdrawCreate',{money:this.money,pay_password:this.pay_password,withdraw_address:this.networkStr})
+	      console.log(res)
+		  uni.showToast({
+		  	icon:'none',
+			title:res.data.msg
+		  })
+		  if(res.data.code===0){
+			  setTimeout(()=>{
+			  		 uni.navigateBack({delta:1})
+			  },1500)
+		  }
+	  },
+  }
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less" >
 @import "../../static/less/variable.less";
 uni-page-body {
   height: auto;
 }
 page {
-  background: linear-gradient(0deg, #ffa563 0%, #fd7e1f 100%);
+  // background: linear-gradient(0deg, #ffa563 0%, #fd7e1f 100%);
+  background-color: #fd7f20;
 }
 
 .withdraw-page {

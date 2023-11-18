@@ -59,7 +59,7 @@ export default {
 				title: resp.data.msg
 			})
 			if(resp.data.code===0){
-				this.getUserInfo();
+				setTimeout(()=>{uni.navigateBack({delta:1})},1500)
 			}
 		},
 	}

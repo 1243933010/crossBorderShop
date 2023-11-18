@@ -39,8 +39,8 @@
 	"app.name": "普斯集团",
 	"app.search": "点击搜索内容",
 	"app.Product": "产品",
-	"app.Store": "店",
-	"app.Sell": "卖",
+	"app.Store": "出售中",
+	"app.Sell": "已出售",
 
 	// 首页
 	"index.news": "新闻",
@@ -69,7 +69,7 @@
 	"join.teamTit1": "A-level团队加入详情",
 	"join.teamTit2": "B级团队加入详情",
 	"join.teamTit3": "C级团队加入详情",
-	"join.committee": "委员会",
+	"join.committee": "佣金",
 	"join.partners": "合伙人数量",
 
 	// 关于我们
@@ -125,7 +125,7 @@
 	"productDetail.pageTit": "商品详情",
 	"productDetail.title": "GGMARMONT超迷你缝皮革包",
 	"productDetail.text1": "成本价",
-	"productDetail.text2": "利润",
+	"productDetail.text2": "奖励金额",
 	"productDetail.text3": "订单号",
 	"productDetail.btnText": "释放货物",
 
@@ -195,5 +195,13 @@
 	"app.totalPrice": "价格总额",
 	"app.orderNumber": "订单号",
 	"app.PaymentTime": "付款时间",
-	"app.orderTime": "订货时间"
+	"app.orderTime": "订货时间",
+	"app.WithdrawalHandlingFee": "提现手续费",
+	"app.MinimumWithdrawalAmount": "提现最小金额",
+	"app.MaximumWithdrawalAmount": "提现最大金额",
+	"app.popup1": "余额不足，是否充值?",
+	"app.sure": "确定",
+	"app.cancel": "取消"
+	
+	
 }

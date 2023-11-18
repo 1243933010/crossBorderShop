@@ -8,7 +8,7 @@
 			<view class="search">
 				<view class="flex">
 					<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
-					<input type="text" :placeholder="$t('app.search')" style="font-size: 24rpx;" confirm-type="search"
+					<input type="text" v-model="keywords"  :placeholder="$t('app.search')" style="font-size: 24rpx;" confirm-type="search"
 						@confirm="search" />
 					<view class=""></view>
 				</view>
@@ -20,7 +20,7 @@
 				<view class="search">
 					<view class="flex">
 						<image src="../../static/img/icon/icon_search.png" mode="widthFix"></image>
-						<input type="text" :placeholder="$t('app.search')" style="font-size: 24rpx;" confirm-type="search"
+						<input type="text" v-model="keywords" :placeholder="$t('app.search')" style="font-size: 24rpx;" confirm-type="search"
 							@confirm="search" />
 						<view class=""></view>
 					</view>
@@ -51,26 +51,33 @@
 						</view>
 					</view>
 					<view class="con-box">
-						<!-- <scroll-view style="height: 1150rpx;" scroll-y="true" class="scroll-Y" @scrolltoupper="upper"
-							@scrolltolower="lower" @scroll="scroll"> -->
-							<view class="item" v-if="tabBool" v-for="(item,index) in conBox" :key="index" @click="goDetail">
+						
+							<view class="item" v-if="tabBool" v-for="(item,index) in nftList" :key="index" @click="goDetail(item)">
 								<view class="img" >
-									<image :src="item.src" mode="widthFix"></image>
+									<image :src="item.nft_img" mode="widthFix"></image>
 								</view>
-								<text>{{item.title}}</text>
+								<text>{{item.nft_name}}</text>
 							</view>
-							<view class="item1" v-if="!tabBool" v-for="(item,index) in conBox" :key="index">
+							<view class="item1" v-if="!tabBool" v-for="(item,index) in conBox" :key="index" @click="linkDetail(item)">
 								<view class="img" >
-									<image :src="item.src" mode="widthFix"></image>
+									<image :src="item.nft_img" mode="widthFix"></image>
 								</view>
 								<view class="item1-text">
-									<text class="title">{{item.title}}</text>
-									<text class="price">{{$t('app.price')}}:{{item.price}}</text>
-									<text class="label">{{item.label}}</text>
-									<text class="price1">{{item.price}}</text>
+									<text class="title">{{item.nft_name}}</text>
+									<text class="price">{{$t('app.price')}}:{{item.order_money}}</text>
+									<text class="label">{{item.order_status_txt}}</text>
+									<text class="price1">{{item.rebate_money}}</text>
 								</view>
 							</view>
-						<!-- </scroll-view> -->
+							<template v-if="!loading&&tabBool&&!nftList.length">
+								<view class="no-content"><image src="../../static/img/no_icon.png" mode="widthFix"></image></view>
+							</template>
+							<template v-if="!loading&&!tabBool&&!conBox.length">
+								<view  class="no-content"><image src="../../static/img/no_icon.png" mode="widthFix"></image> </view>
+							</template>
+							<template v-if="loading">
+								<view  class="no-content"><uni-icons type="waiting"></uni-icons> </view>
+							</template>
 
 					</view>
 				</view>
@@ -83,6 +90,7 @@
 
 <script>
 	import customHeader from '@/components/customHeader/customHeader.vue'
+	import { $request,url as requestUrl } from "@/utils/request";
 	export default {
 		components: {
 			customHeader
@@ -94,68 +102,79 @@
 		},
 		data() {
 			return {
+				// level_list:[],
 				active: 0,
 				leftIndex: 0,
 				tabBool:true,
-				conLeftList: [{
-						title: 'All'
-					}, {
-						title: 'lv1'
-					},
-					{
-						title: 'lv2'
-					},
-				],
-				conBox: [{
-					src: '../../static/img/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..',
-					price:'55',
-					price1:'1',
-					label:'促销'
-				},{
-					src: '../../static/img/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..',
-					price:'55',
-					price1:'1',
-					label:'促销'
-				}
-				,{
-					src: '../../static/img/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..',
-					price:'55',
-					price1:'1',
-					label:'促销'
-				},{
-					src: '../../static/img/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..',
-					price:'55',
-					price1:'1',
-					label:'促销'
-				},{
-					src: '../../static/img/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..',
-					price:'55',
-					price1:'1',
-					label:'促销'
-				},{
-					src: '../../static/img/logo.png',
-					title: 'New Balance Mens 411 V1 Training S..',
-					price:'55',
-					price1:'1',
-					label:'促销'
-				},{
-					src: '../../static/img/logo.png',
-					title: 'New   411 V1 Training S..',
-					price:'55',
-					price1:'1',
-					label:'促销'
+				keywords:'',
+				nftListPage:{
+					page:1,
+					page_size:10
 				},
-				]
+				conLeftList: [],
+				nftList:[],
+				userOrderPage:{
+					page:1,
+					page_size:10
+				},
+				conBox: [],
+				loading:false
 			};
 		},
-		mounted() {},
+		mounted() {
+			this.getVip();
+		},
+		onReachBottom(){
+			if(this.tabBool){
+				this.nftListPage.page++;
+				this.nftListFnc()
+			}else{
+				this.userOrderPage.page++;
+				this.getUserOrder();
+			}
+		},
+		watch:{
+			keywords(val,oldValue){
+				console.log(oldValue)
+				if(!val&&oldValue){
+					this.search();
+				}
+			},
+		},
 		methods: {
-			search() {},
+			async getVip(){
+				const res = await $request("vipList");
+				const { data, code, msg } = res.data;
+				const { level_list, user_info } = data;
+				this.conLeftList = [];
+				this.conLeftList.push({id:'',title:'All'})
+				this.conLeftList.push(...level_list);
+				this.nftListPage.page = 1;
+				this.nftListFnc();
+			},
+			
+			async nftListFnc(){
+				this.loading = true;
+				let formData = {keywords:this.keywords,...this.nftListPage,vip_grade:this.conLeftList[this.leftIndex].id}
+				let res= await $request('nftList',formData);
+				console.log(res)
+				this.loading = false;
+				if(res.data.code===0){
+					this.nftList.push(...res.data.data.data)
+				}
+			},
+			search() {
+				if(this.tabBool){
+					this.nftListPage.page = 1;
+					this.nftList = [];
+					this.nftListFnc()
+				}else{
+					this.userOrderPage.page = 1;
+					this.conBox = [];
+					this.getUserOrder();
+				}
+				
+			},
 			activeClick(index) {
 				console.log(index)
 				this.active = index;
@@ -164,13 +183,33 @@
 				}else{
 					this.tabBool = true;
 				}
+				this.search();
 			},
 			leftClick(index) {
 				this.leftIndex = index;
+				this.nftListPage.page = 1;
+				this.nftList = [];
+				this.nftListFnc()
 			},
-			goDetail(){
+			goDetail(item){
 				uni.navigateTo({
-					url:'./detail'
+					url:`/pages/index/productDetail?id=${item.id}`
+				})
+			},
+			async getUserOrder(){
+				this.loading = true;
+				let formData = {order_status:this.active,...this.userOrderPage,keywords:this.keywords,};
+				let res  = await $request('userOrders',formData)
+				this.loading = false;
+				console.log(res)
+				if(res.data.code===0){
+					this.conBox.push(...res.data.data.data)
+				}
+				
+			},
+			linkDetail(item){
+				uni.navigateTo({
+					url:`./detail?id=${item.id}`
 				})
 			}
 		}
@@ -182,7 +221,16 @@
 		height: 100% !important;
 		
 	}
-
+	.no-content{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-top: 50rpx;
+		image{
+			width: 200rpx;
+		}
+	}
 	.scroll-Y {
 		height: calc(100%-20rpx);
 	}
@@ -302,7 +350,7 @@
 		justify-content: space-between;
 
 		.con-box {
-			width: cale(100% - 26rpx);
+			width: calc(100% - 156rpx);
 			/* #ifdef H5 */
 			padding-bottom: 100rpx;
 			/* #endif */

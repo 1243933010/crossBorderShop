@@ -78,21 +78,45 @@ let requestObj = {
 		url: '/api/certifications',
 		type: 'POST'
 	},
-	getMailOrderList: {
-		url: '/yoursender/api/mailOrder/getMailOrderList',
-		type: 'GET'
-
+	
+	rechargeCreate: {
+		url: '/api/recharge/create',
+		type: 'POST'
 	},
-
-
-
-	getMailOrderList: {
-		url: '/yoursender/api/mailOrder/getMailOrderList',
-		type: 'GET'
-
+	withdrawInfo: {
+		url: '/api/user/withdraw_info',
+		type: 'POST'
 	},
-	addLogisticOrder: {
-		url: '/yoursender/api/mailOrder/addLogisticOrder',
+	withdrawCreate: {
+		url: '/api/user_withdraw_applies/create',
+		type: 'POST'
+	},
+	rechargeIndex: {
+		url: '/api/recharge/index',
+		type: 'POST'
+	},
+	userAccount: {
+		url: '/api/user/account',
+		type: 'POST'
+	},
+	nftList: {
+		url: '/api/nft/list',
+		type: 'POST'
+	},
+	nftDeail: {
+		url: '/api/nft/info',
+		type: 'POST'
+	},
+	ordersRequest: {
+		url: '/api/orders',
+		type: 'POST'
+	},
+	userOrders: {
+		url: '/api/user/order',
+		type: 'POST'
+	},
+	userOrderDetail: {
+		url: '/api/orders/info',
 		type: 'POST'
 	},
 	wechatLogin: {

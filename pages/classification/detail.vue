@@ -3,10 +3,10 @@
 		<hx-navbar :config="config" />
 		<view class="order">
 			<view class="img">
-				<image src="../../static/img/cn.png" mode="widthFix"></image>
+				<image :src="info.nft_img" mode="widthFix"></image>
 			</view>
 			<view class="name">
-				<text>Fire TV Stick 4K Max with Alexa VoiceRemote Pro</text>
+				<text>{{info.nft_name}}</text>
 			</view>
 			<view class="hr"></view>
 			<view class="box">
@@ -26,6 +26,7 @@
 
 <script>
 	import hxNavbar from "@/components/hx-navbar.vue";
+	import { $request,url as requestUrl } from "@/utils/request";
 	export default {
 		components: {
 		  hxNavbar,
@@ -43,20 +44,42 @@
 		  },
 		  detailList(){
 			  return [
-				  {title:this.$t('app.costPrice'),num:'1111',label:'$',color:'#FF690C'},
-				  {title:this.$t('app.profit'),num:'11',label:'$',color:'#FF690C'},
-				  {title:this.$t('app.quantity'),num:'23',label:'$',color:'#FF690C'},
-				  {title:this.$t('app.totalPrice'),num:'1321545',label:'$',color:'#FF690C'},
-				  {title:this.$t('app.orderNumber'),num:'202311120204558244',label:'$',color:''},
-				  {title:this.$t('app.PaymentTime'),num:'2023-11-04 11:23:31',label:'$',color:''},
-				  {title:this.$t('app.orderTime'),num:'2023-11-04 11:22:31',label:'$',color:''},
+				  {title:this.$t('app.costPrice'),num:this.info.cost_price,label:'$',color:'#FF690C'},
+				  {title:this.$t('app.profit'),num:this.info.profit,label:'$',color:'#FF690C'},
+				  // {title:this.$t('app.quantity'),num:'23',label:'$',color:'#FF690C'},
+				  {title:this.$t('app.totalPrice'),num:this.info.order_money,label:'$',color:'#FF690C'},
+				  {title:this.$t('app.orderNumber'),num:this.info.order_no,label:'',color:''},
+				  {title:this.$t('app.PaymentTime'),num:this.info.created_at,label:'',color:''},
+				  {title:this.$t('app.orderTime'),num:this.info.sell_success_time,label:'',color:''},
 			  ]
 		  }
 		},
 		data() {
 			return {
-				
+				info:{cost_price:'',profit:'',order_money:'',order_no:'',created_at:'',sell_success_time:''}
 			};
+		},
+		onLoad(e) {
+			this.getDetail(e.id)
+		},
+		methods:{
+			async getDetail(id){
+				let res = await $request('userOrderDetail',{order_id:id});
+				console.log(res)
+				if(res.data.code===0){
+					this.info = res.data.data;
+					// let [cost_price,profit,order_money,order_no,created_at,sell_success_time] = res.data.data;
+					// let resp = res.data.data;
+					// let arr = [resp.cost_price,resp.profit,resp.order_money,resp.order_no,resp.created_at,resp.sell_success_time];
+					// let data = JSON.parse(JSON.stringify(this.detailList))
+					// arr.forEach((val,index)=>{
+					// 	data[index].num = val;
+					// })
+					// console.log(data)
+					// this.detailList[0] = data[0];
+					// this.$forceUpdate()
+				}
+			}
 		}
 	}
 </script>

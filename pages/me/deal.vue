@@ -4,17 +4,17 @@
 		<view class="deal-scroll page-scroll">
 			<scroll-view scroll-y="true" class="tab-view">
 				<view class="tab-list">
-					<view class="tab-item" :class="{ active: checkTab === index }" v-for="(item, index) in tabList" :key="index" @click="changeTab(index)">{{ item }}</view>
+					<view class="tab-item" :class="{ active: checkTab === index }" v-for="(item, index) in tabList" :key="index" @click="changeTab(item,index)">{{ item.title }}</view>
 				</view>
 			</scroll-view>
 
-			<view class="deal-list">
-				<view class="list-item" v-for="item in dealList" :key="item.id">
+			<view class="deal-list" >
+				<view class="list-item" v-for="item in dealList" :key="index">
 					<view class="left">
-						<view class="top">{{item.tit}}</view>
-						<view class="bottom">{{item.time}}</view>
+						<view class="top">{{item.network||item.remark}}</view>
+						<view class="bottom">{{item.updated_at||item.created_at}}</view>
 					</view>
-					<view class="right">+{{item.num}}</view>
+					<view class="right">+{{item.money||item.amount*1}}</view>
 				</view>
 			</view>
 		</view>
@@ -23,7 +23,7 @@
 
 <script>
 import hxNavbar from "@/components/hx-navbar.vue";
-
+import { $request } from "@/utils/request";
 export default {
 	components: {
 		hxNavbar,
@@ -31,32 +31,12 @@ export default {
 	data() {
 		return {
 			checkTab: 0,
-			dealList: [
-				{
-					id: 1,
-					tit: '商店收入1',
-					time: '2023-11-04 11:24:00',
-					num: '32.32'
-				},
-				{
-					id: 2,
-					tit: '商店收入2',
-					time: '2023-11-04 11:24:00',
-					num: '2'
-				},
-				{
-					id: 3,
-					tit: '商店收入3',
-					time: '2023-11-04 11:24:00',
-					num: '54'
-				},
-				{
-					id: 4,
-					tit: '商店收入4',
-					time: '2023-11-04 11:24:00',
-					num: '68'
-				}
-			]
+			dealList: [],
+			dealPage:{
+				page:1,
+				page_size:20
+			},
+			requestUrl:['userAccount','','','rechargeIndex','']
 		};
 	},
 	computed: {
@@ -72,18 +52,40 @@ export default {
 		},
 		tabList() {
 			return [
-				this.$t("deal.listItem1"),
-				this.$t("deal.listItem2"),
-				this.$t("deal.listItem3"),
-				this.$t("deal.listItem4"),
-				this.$t("deal.listItem5"),
+				{title:this.$t("deal.listItem1"),label:''},
+				{title:this.$t("deal.listItem2"),label:'rebate'},
+				{title:this.$t("deal.listItem3"),label:'buy_vip'},
+				{title:this.$t("deal.listItem4"),label:'recharge'},
+				{title:this.$t("deal.listItem5"),label:'withdraw'},
 			];
 		},
 	},
+	onReachBottom(){
+		this.dealPage.page++
+		this.requestFnc(this.requestUrl[this.checkTab]);
+	},
+	mounted(){
+		this.requestFnc(this.requestUrl[this.checkTab]);
+	},
 	methods: {
-		changeTab(index) {
+		changeTab(item,index) {
 			this.checkTab = index;
+			// if(!this.requestUrl[index]){
+			// 	this.dealList = [];
+			// 	return
+			// }
+			this.dealPage.page = 1;
+			this.dealList = [];
+			this.requestFnc('userAccount',item.label);
 		},
+		async requestFnc(url,type){
+			let res = await $request(url,{...this.dealPage,change_tag:type});
+			console.log(res)
+			if(res.data.code===0){
+				this.dealList.push(...res.data.data.list);
+			}
+		},
+		
 	},
 };
 </script>

@@ -9,7 +9,7 @@
 					<view class="msg">
 						<view class="name">
 							<text class="name-text" @click="goModifyNickname">{{ userInfo.nickname }}</text>
-							<view class="vip">{{ userInfo.vip_name }}{{ userInfo.vip_grade }}</view>
+							<view class="vip">{{ userInfo.vip_name }}</view>
 						</view>
 						<view class="id">
 							<text>{{ userInfo.id }}</text>
@@ -161,7 +161,7 @@ export default {
 			];
 		},
 	},
-	mounted() {
+	onShow() {
 		this.getUserInfo();
 	},
 	methods: {
@@ -299,6 +299,8 @@ page {
 						.df(center, flex-start);
 
 						.name-text {
+							min-height: 20rpx;
+							min-width: 50rpx;
 							font-size: 36rpx;
 							font-weight: bold;
 						}
@@ -329,7 +331,7 @@ page {
 					width: 33.33%;
 
 					.num {
-						font-size: 48rpx;
+						font-size: 38rpx;
 						font-weight: 600;
 						margin-bottom: 23rpx;
 					}
