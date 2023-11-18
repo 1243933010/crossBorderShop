@@ -14,7 +14,7 @@
 						<view class="top">{{item.network||item.remark}}</view>
 						<view class="bottom">{{item.updated_at||item.created_at}}</view>
 					</view>
-					<view class="right">+{{item.money||item.amount*1}}</view>
+					<view class="right">{{item.money||item.amount*1}}</view>
 				</view>
 			</view>
 		</view>
