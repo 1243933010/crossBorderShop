@@ -95,6 +95,8 @@ export default {
 .product-detail-page {
   .product-detail-scroll {
     padding: 0;
+	display: flex;
+	flex-direction: column;
 
     .product-img {
       width: 100%;
@@ -132,7 +134,7 @@ export default {
     }
 
     .sub-btn {
-      margin: 100rpx auto 0;
+      margin: 100rpx auto 20rpx;
       padding: 10rpx;
       background-color: #383838;
       color: #fff;
