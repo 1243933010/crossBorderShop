@@ -10,7 +10,7 @@
 				</view>
 				<view class="tr"  v-for="(item,index) in list" :key="index">
 					<view class="td mW28">{{item.mobile}}</view>
-					<view class="td flex1">{{item.order_count}}</view>
+					<view class="td flex1">{{item.vip_level_txt}}</view>
 					<view class="td mW35">{{item.created_at}}</view>
 				</view>
 			</view>
@@ -125,11 +125,11 @@ page {
 						width: 33%;
 					}
 					&.mW28 {
-						min-width: 28%;
+						min-width: 29%;
 					}
 
 					&.mW35 {
-						min-width: 35%;
+						min-width: 44%;
 					}
 
 					&.flex1 {
