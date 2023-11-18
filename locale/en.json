@@ -188,6 +188,9 @@
   "fwxy.pageTit": "Contract",
   "fwxy.btn1": "re-sign",
   "fwxy.btn2": "complete signature",
+  
+  // 公告
+  "notices.pageTit": "Notices",
 
   "app.Exit": "Exit login",
   "app.Agreement": "Service Agreement",
