@@ -165,7 +165,7 @@
   "wallet.pageTit": "钱包",
   "wallet.total": "资产总额",
   "wallet.tips": "默认法定货币",
-  "wallet.placeholder": "请输入USDT收获地址",
+  "wallet.placeholder": "请输入账号地址",
   "wallet.btnText": "捆绑钱包",
 
   // 修改昵称
@@ -208,5 +208,10 @@
   "app.popup1": "余额不足，是否充值?",
   "app.popup2": "是否选择购买该vip?",
   "app.sure": "确定",
-  "app.cancel": "取消"
+  "app.cancel": "取消",
+  "app.signFirst":"请先签名",
+  "app.img1":"加入社区",
+  "app.img2":"加入社区了解更多",
+  "app.img3":"纸飞机",
+  "app.img4":"点击了解更多"
 }

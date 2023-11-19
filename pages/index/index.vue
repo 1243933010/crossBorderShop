@@ -38,12 +38,27 @@
       </view>
 
       <view class="paper-card-list">
-        <view class="paper-card pic">
-          <image src="../../static/img/paperCard/join.png" mode="widthFix" class="img"></image>
+        <view class="paper-card ">
+          <!-- <image src="../../static/img/paperCard/join.png" mode="widthFix" class="img"></image> -->
+		  
+		  <view class="left">
+		  	<view class="title">{{$t('app.img1')}}</view>
+			<view class="label">{{$t('app.img2')}}</view>
+		  </view>
+		  <view class="right">
+		  	<image src="../../static/img/shequ.c92aac23.png" mode="widthFix"></image>
+		  </view>
         </view>
-        <view class="paper-card pic">
-          <image src="../../static/img/paperCard/paper_air.png" mode="widthFix" class="img"></image>
-        </view>
+        <view class="paper-card ">
+          <!-- <image src="../../static/img/paperCard/paper_air.png" mode="widthFix" class="img"></image> -->
+          <view class="left">
+          	<view class="title">{{$t('app.img3')}}</view>
+          	<view class="label">{{$t('app.img4')}}</view>
+          </view>
+          <view class="right">
+          	<image src="../../static/img/feiji.d3ae16e3.png" mode="widthFix"></image>
+          </view>
+		</view>
       </view>
 
       <view class="product-container">
@@ -340,6 +355,38 @@ export default {
       .paper-card {
         margin-bottom: 10rpx;
         width: 100%;
+		// height: 280rpx;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background: linear-gradient(0deg, rgba(249,246,233,1) 0%,  rgba(251,249,255,1) 100%);
+		// background: red;
+		padding: 40rpx 50rpx;
+		.left{
+			width: 70%;
+			.title{
+				color: rgba(228, 133, 39, 1);
+				font-size: 36rpx;
+				font-weight: 600;
+				margin-bottom: 40rpx;
+			}
+			.label{
+				color: rgba(228, 133, 39, 1);
+				font-size: 26rpx;
+				// font-weight: 600;
+				// margin-bottom: 30rpx;
+			}
+		}
+		.right{
+			width: 30%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			image{
+				width: 120rpx;
+			}
+		}
       }
     }
 

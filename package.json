@@ -1,0 +1,9 @@
+{
+    "id": "sin-signature",
+    "name": "签名组件-兼容H5、小程序、APP",
+    "version": "1.0.0",
+    "description": "用于uni-app的签名组件，支持H5、小程序、APP，可导出svg矢量图片。",
+    "keywords": [
+        "签名,签字,svg,canvas"
+    ]
+}

@@ -1,4 +1,5 @@
 <script>
+	import {setTabbar} from '@/utils/utils.js'
 export default {
 	onLaunch: function () {
 		console.log("App Launch");
@@ -6,6 +7,8 @@ export default {
 		if (!code) {
 			uni.setLocale("zh-Hans");
 		}
+		console.log(this.$t,'-------')
+		setTabbar(this.$t)
 		console.log(code);
 		let token = uni.getStorageSync('token');
 		if(!token){

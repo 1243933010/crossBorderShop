@@ -38,7 +38,7 @@
   "region.btn1": "Register",
   "region.btn2": "Already have an account, go to log in",
 
-  "app.name": "Profi group",
+  "app.name": "PUTH GROUP",
   "app.search": "Please input the product name",
   "app.Product": "Product",
   "app.Store": "Shop",
@@ -165,7 +165,7 @@
   "wallet.pageTit": "Wallet",
   "wallet.total": "Total Assets",
   "wallet.tips": "Default fiat currency",
-  "wallet.placeholder": "Please enter USDT harvesting address",
+  "wallet.placeholder": "Please enter account address",
   "wallet.btnText": "Bundle Wallet",
 
   // 修改昵称
@@ -208,5 +208,10 @@
   "app.popup1": "Insufficient balance, do you want to recharge?",
   "app.popup2": "Do you choose to purchase this VIP?",
   "app.sure": "Confirm",
-  "app.cancel": "Cancel"
+  "app.cancel": "Cancel",
+  "app.signFirst":"Please sign first",
+  "app.img1":"Join the community",
+  "app.img2":"Join the community to learn more",
+  "app.img3":"Telegram",
+  "app.img4":"Contact online customer service"
 }

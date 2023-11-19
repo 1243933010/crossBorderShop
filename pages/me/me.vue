@@ -8,11 +8,11 @@
 					</view>
 					<view class="msg">
 						<view class="name">
-							<text class="name-text" @click="goModifyNickname">{{ userInfo.nickname }}</text>
+							<text class="name-text" @click="goModifyNickname">{{ userInfo.nickname||userInfo.mobile }}</text>
 							<view class="vip">{{ userInfo.vip_name }}</view>
 						</view>
 						<view class="id">
-							<text>{{ userInfo.id }}</text>
+							<text>+{{userInfo.country_code}}</text>  <text>{{ userInfo.mobile }}</text>
 						</view>
 					</view>
 				</view>
@@ -210,7 +210,7 @@ export default {
 			uni.chooseImage({
 				count: 1,
 				success: async res => {
-					console.log(res.tempFiles[0]);
+					console.log(res);
 					uni.uploadFile({
 						url: `${requestUrl}/api/file_upload`,
 						filePath: res.tempFilePaths[0],

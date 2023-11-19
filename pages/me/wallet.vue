@@ -12,17 +12,18 @@
 					<view class="circle"></view>
 					{{ $t("wallet.tips") }}
 				</view>
-				<view class="text">1{{ $t("storageLevel.dollar") }}=1{{ $t("storageLevel.dollar") }}</view>
+				<view class="text">1USDT=$1</view>
 			</view>
 
 			<view class="address-box">
-				<view class="tit">{{ $t("storageLevel.dollar") }}T-TEC 20</view>
+				<!-- {{ $t("storageLevel.dollar") }} -->
+				<view class="tit">USDT-TRC20</view>
 				<view class="inp-box">
-					<input type="text" :placeholder="$t('wallet.placeholder')" />
+					<input v-model="account" type="text" :placeholder="$t('wallet.placeholder')" />
 				</view>
 			</view>
 
-			<button class="sub-btn">{{ $t("wallet.btnText") }}</button>
+			<button class="sub-btn" @click="subBtn">{{ $t("wallet.btnText") }}</button>
 		</view>
 	</view>
 </template>
@@ -36,6 +37,7 @@ export default {
 	data() {
 		return {
 			balance: 0,
+			account:''
 		};
 	},
 	computed: {
@@ -66,6 +68,18 @@ export default {
 
 			const { balance } = data;
 			this.balance = balance * 1;
+		},
+		async subBtn(){
+			let res = await $request('bindAccount',{account:this.account})
+			uni.showToast({
+				icon:'none',
+				title:res.data.msg
+			})
+			if(res.data.code===0){
+				setTimeout(()=>{
+					uni.navigateBack({delta:1})
+				},1500)
+			}
 		},
 	},
 	mounted() {

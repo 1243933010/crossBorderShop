@@ -37,7 +37,7 @@
 				</view>
 			</view>
 
-			<view class="census-box">
+<!-- 			<view class="census-box">
 				<view class="census-tit">
 					<view class="icon pic">
 						<image src="../../static/img/icon/wallet.png" mode="widthFix" class="img"></image>
@@ -65,7 +65,7 @@
 						<view class="text">{{ $t("join.compensationText") }}</view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 
 <!-- 			<view class="census-box">
 				<view class="census-tit">
@@ -234,7 +234,7 @@ export default {
 
 		.join-info {
 			margin-top: 46rpx;
-
+			margin-bottom: 20rpx;
 			.join-tit {
 				color: #fff;
 				margin-bottom: 26rpx;

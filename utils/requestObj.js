@@ -123,6 +123,18 @@ let requestObj = {
 		url: '/api/level/buy',
 		type: 'POST'
 	},
+	bindAccount: {
+		url: '/api/bank_accounts/bind_account',
+		type: 'POST'
+	},
+	agreements: {
+		url: '/api/agreements',
+		type: 'GET'
+	},
+	sign: {
+		url: '/api/user/sign',
+		type: 'POST'
+	},
 	wechatLogin: {
 		url: '/yoursender/api/wechat/login',
 		type: 'GET',

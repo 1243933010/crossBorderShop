@@ -14,7 +14,7 @@
 								<text>{{ $t("storageLevel.row1") }}</text>
 							</view>
 							<view class="row-item">
-								<text>{{ item.is_can_buy }}</text>
+								<text>{{ item.queue_num }}</text>
 								<text>{{ $t("storageLevel.row2") }}</text>
 							</view>
 							<view class="row-item">
@@ -78,48 +78,42 @@ export default {
 	},
 	methods: {
 		async goPage(item) {
-			if(item.title.indexOf('LV0') !== -1) {
-				uni.switchTab({
-					url: "/pages/classification/classification"
-				})
-			}else {
-				if(+this.user_info.balance<(+item.price)){
-					uni.showModal({
-						title:this.$t('api.message'),
-						content:this.$t('app.popup1'),
-						confirmText:this.$t('app.sure'),
-						cancelText:this.$t('app.cancel'),
-						success: (res) => {
-							if(res.confirm){
-								uni.navigateTo({
-									url:'/pages/index/recargar'
-								})
-							}
+			if(+this.user_info.balance<(+item.price)){
+				uni.showModal({
+					title:this.$t('api.message'),
+					content:this.$t('app.popup1'),
+					confirmText:this.$t('app.sure'),
+					cancelText:this.$t('app.cancel'),
+					success: (res) => {
+						if(res.confirm){
+							uni.navigateTo({
+								url:'/pages/index/recargar'
+							})
 						}
-						
-					})
-				}else{
-					// uni.switchTab({
-					// 	url: "/pages/classification/classification"
-					// })
-					uni.showModal({
-						title:this.$t('api.message'),
-						content:this.$t('app.popup2'),
-						confirmText:this.$t('app.sure'),
-						cancelText:this.$t('app.cancel'),
-						success: async(res) => {
-							if(res.confirm){
-								let resp = await $request('levelBuy',{vip_id:item.id});
-								uni.showToast({
-									icon:'none',
-									title:resp.data.msg
-								})
-							}
-						}
-						
-					})
+					}
 					
-				}
+				})
+			}else{
+				// uni.switchTab({
+				// 	url: "/pages/classification/classification"
+				// })
+				uni.showModal({
+					title:this.$t('api.message'),
+					content:this.$t('app.popup2'),
+					confirmText:this.$t('app.sure'),
+					cancelText:this.$t('app.cancel'),
+					success: async(res) => {
+						if(res.confirm){
+							let resp = await $request('levelBuy',{vip_id:item.id});
+							uni.showToast({
+								icon:'none',
+								title:resp.data.msg
+							})
+						}
+					}
+					
+				})
+				
 			}
 		}
 	}
