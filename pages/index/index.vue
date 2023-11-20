@@ -45,7 +45,7 @@
 		  	<view class="title">{{$t('app.img1')}}</view>
 			<view class="label">{{$t('app.img2')}}</view>
 		  </view>
-		  <view class="right">
+		  <view class="right1">
 		  	<image src="../../static/img/shequ.c92aac23.png" mode="widthFix"></image>
 		  </view>
         </view>
@@ -320,7 +320,7 @@ export default {
     }
 
     .menu-container {
-      padding: 70rpx 36rpx;
+      padding: 70rpx 0rpx;
 
       .menu-list {
         margin-bottom: 60rpx;
@@ -366,14 +366,14 @@ export default {
 		.left{
 			width: 70%;
 			.title{
-				color: rgba(228, 133, 39, 1);
+				color: #E68724;
 				font-size: 36rpx;
 				font-weight: 600;
 				margin-bottom: 40rpx;
 			}
 			.label{
-				color: rgba(228, 133, 39, 1);
-				font-size: 26rpx;
+				color: #E68724;
+				font-size: 24rpx;
 				// font-weight: 600;
 				// margin-bottom: 30rpx;
 			}
@@ -384,7 +384,16 @@ export default {
 			justify-content: center;
 			align-items: center;
 			image{
-				width: 120rpx;
+				width: 137rpx;
+			}
+		}
+		.right1{
+			width: 30%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			image{
+				width: 174rpx;
 			}
 		}
       }

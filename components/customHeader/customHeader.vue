@@ -93,6 +93,9 @@ export default {
     padding-top: 44rpx;
     /* #endif */
     padding-bottom: 30rpx;
+	color: white;
+	font-weight: 600;
+	font-size: 36rpx;
     .header-icon {
       image {
         width: 68rpx;

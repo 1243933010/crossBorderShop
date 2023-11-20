@@ -45,7 +45,7 @@
 		  detailList(){
 			  return [
 				  {title:this.$t('app.costPrice'),num:this.info.cost_price,label:'$',color:'#FF690C'},
-				  {title:this.$t('app.profit'),num:this.info.profit,label:'$',color:'#FF690C'},
+				  {title:this.$t('app.profit'),num:this.info.rebate_money,label:'$',color:'#FF690C'},
 				  // {title:this.$t('app.quantity'),num:'23',label:'$',color:'#FF690C'},
 				  {title:this.$t('app.totalPrice'),num:this.info.order_money,label:'$',color:'#FF690C'},
 				  {title:this.$t('app.orderNumber'),num:this.info.order_no,label:'',color:''},

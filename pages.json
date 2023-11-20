@@ -201,7 +201,7 @@
 	"uniIdRouter": {},
 	"tabBar": {
 		"color": "#7A7E83",
-		"selectedColor": "#3cc51f",
+		"selectedColor": "#FD7F22",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"height": "50px",

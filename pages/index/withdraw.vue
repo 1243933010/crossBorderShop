@@ -30,6 +30,7 @@
           <view class="tips-item">1、{{ $t("app.WithdrawalHandlingFee") }}:{{info.withdraw_fee_ratio}}</view>
           <view class="tips-item">2、{{ $t("app.MinimumWithdrawalAmount") }}:{{info.withdraw_min_amount}}</view>
           <view class="tips-item">3、{{ $t("app.MaximumWithdrawalAmount") }}:{{info.withdraw_max_amount}}</view>
+		   <view class="tips-item">4、{{ $t("app.text5") }}{{info.withdraw_date_start_hour}}{{ $t("app.text6") }}{{info.withdraw_date_end_hour}}{{ $t("app.text7") }}</view>
         </view>
       </view>
 
