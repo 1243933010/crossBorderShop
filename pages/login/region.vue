@@ -4,7 +4,7 @@
     <customHeader style="position: fixed; top: 0; width: 100%" />
     <view class="region-scroll page-scroll">
       <view class="logo pic">
-        <image src="../../static/img/logo.png" mode="widthFix" class="img"></image>
+        <image src="../../static/img/logo.jpg" mode="widthFix" class="img"></image>
       </view>
 
       <view class="form-container">
@@ -237,7 +237,8 @@ export default {
           &.login-btn {
             border-color: #383838;
             color: #fff;
-            background-color: #383838;
+            // background-color: #383838;
+			background: linear-gradient(60deg, #0694B8 0%, #6BBDB4 100%);
           }
 
           &.region-btn {

@@ -211,7 +211,7 @@ export default {
 
 .join-page {
 	.join-scroll {
-		background-color: #fd7e1f;
+		background-color: #0C96B7;
 		
 		display: flex;
 		flex-direction: column;
@@ -244,7 +244,8 @@ export default {
 			.info-box {
 				border-radius: 10rpx;
 				padding: 32rpx 22rpx;
-				background-color: #ffe5d5;
+				// background-color: #ffe5d5;
+				background-color: #D5FEFF;
 				.df(center, space-between);
 				font-size: 28rpx;
 
@@ -267,7 +268,8 @@ export default {
 					border-radius: 10rpx;
 					padding: 14rpx 50rpx;
 					color: #fff;
-					background: linear-gradient(0deg, #fd7e1f 0%, #fd631f 100%);
+					// background: linear-gradient(0deg, #fd7e1f 0%, #fd631f 100%);
+					background: linear-gradient(0deg, #0694B8 0%, #6BBDB4 100%);
 				}
 			}
 		}

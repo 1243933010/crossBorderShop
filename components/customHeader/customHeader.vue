@@ -3,7 +3,7 @@
     <view class="image-width">
       <view class="header" :style="{ paddingTop: iStatusBarHeight + 'px' }">
         <view class="header-icon" @click="openPop">
-          <image src="../../static/img/logo.png" mode="widthFix"></image>
+          <image src="../../static/img/logo.jpg" mode="widthFix"></image>
         </view>
         <view class="header-text">
           <text>{{ headerText }}</text>
@@ -35,12 +35,12 @@ export default {
   data() {
     return {
       iStatusBarHeight: 0,
-      array: ["中文", "English"],
+      array: ["中文", "English","Francés","Español"],
       index: 0,
       iconList: ["../../static/img/cn.png", "../../static/img/eg.png"],
       imgSrc: "../../static/img/cn.png",
-      locale: { "zh-Hans": 0, en: 1 },
-      code: ["zh-Hans", "en"],
+      locale: { "zh-Hans": 0, en: 1,fr:2,es:3 },
+      code: ["zh-Hans", "en","fr","es"],
     };
   },
   mounted() {

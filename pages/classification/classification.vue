@@ -1,7 +1,7 @@
 <template>
 	<view style="background: #ffffff; height: 100%">
 		<view style="">
-			<view style="height: 290rpx;background: red;">
+			<view style="height: 290rpx;">
 				<customHeader style="z-index: 0" :headerText="$t('app.name')" />
 				<customHeader :headerText="$t('app.name')" style="width: 100%; position: fixed; top: 0; z-index: 10" />
 				

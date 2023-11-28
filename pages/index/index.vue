@@ -295,7 +295,8 @@ export default {
         margin-right: 38rpx;
         border-radius: 0 50px 50px 0;
         padding: 10rpx 30rpx;
-        background: linear-gradient(0deg, #fd631f 0%, #fd7e1f 100%);
+        // background: linear-gradient(0deg, #fd631f 0%, #fd7e1f 100%);
+		background: linear-gradient(90deg, #B8DDDE 0%, #DBEBEB 100%);
         color: #fff;
       }
 
@@ -360,7 +361,8 @@ export default {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background: linear-gradient(0deg, rgba(249,246,233,1) 0%,  rgba(251,249,255,1) 100%);
+		// background: linear-gradient(0deg, rgba(249,246,233,1) 0%,  rgba(251,249,255,1) 100%);
+		background: linear-gradient(90deg, #B8DDDE 0%, #DBEBEB 100%);
 		// background: red;
 		padding: 40rpx 50rpx;
 		.left{

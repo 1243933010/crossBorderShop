@@ -28,7 +28,7 @@ export default {
 				color: "#ffffff",
 				// backgroundColor: [1, "#24bdab"],
 				// 背景图片（array则为滑动切换背景图，string为单一背景图）
-				// backgroundImg: ['/static/xj.jpg','/static/logo.png'],
+				// backgroundImg: ['/static/xj.jpg','/static/logo.jpg'],
 				backgroundImg: "../../static/img/header_tabber.png",
 			};
 		},

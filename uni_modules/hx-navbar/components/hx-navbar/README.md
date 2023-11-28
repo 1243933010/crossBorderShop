@@ -340,7 +340,7 @@ export default {
 				title: '这里是新疆',
 				color: '#ffffff',
 				// 背景图片（array则为滑动切换背景图，string为单一背景图）
-				// backgroundImg: ['/static/xj.jpg','/static/logo.png'],
+				// backgroundImg: ['/static/xj.jpg','/static/logo.jpg'],
 				backgroundImg: '/static/xj.jpg',
 			},
 		}

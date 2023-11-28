@@ -63,7 +63,7 @@ export default {
         color: "#ffffff",
         // backgroundColor: [1, "#24bdab"],
         // 背景图片（array则为滑动切换背景图，string为单一背景图）
-        // backgroundImg: ['/static/xj.jpg','/static/logo.png'],
+        // backgroundImg: ['/static/xj.jpg','/static/logo.jpg'],
         backgroundImg: "../../static/img/header_tabber.png",
       };
     },
@@ -112,7 +112,8 @@ uni-page-body {
 }
 page {
   // background: linear-gradient(0deg, #ffa563 0%, #fd7e1f 100%);
-  background-color: #fd7f20;
+  // background-color: #fd7f20;
+  background: linear-gradient(0deg, #0694B8 0%, #6BBDB4 100%);
 }
 
 .withdraw-page {
@@ -176,8 +177,9 @@ page {
     .sub-btn {
       margin: 100rpx auto 0;
       padding: 10rpx;
-      background-color: #383838;
-      color: #fff;
+      // background-color: #383838;
+	  background-color: #EAF9FF;
+      color: #0E97B7;
       font-size: @descSize;
       width: calc(100vw - 236rpx);
     }

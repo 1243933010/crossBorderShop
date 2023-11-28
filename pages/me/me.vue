@@ -260,9 +260,9 @@ export default {
 <style lang="less" scoped>
 @import "../../static/less/variable.less";
 
-page {
-	background-color: #fd7f20;
-}
+// page {
+// 	background-color: #fd7f20;
+// }
 
 .mine-page {
 	height: 100%;
@@ -391,11 +391,11 @@ page {
 
 			.exit {
 				color: #383838;
-				background: #f0e8e8;
+				background: #F0E8E8;
 			}
 
 			.agreement {
-				background: #fd8124;
+				background: linear-gradient(0deg, #0694B8 0%, #6BBDB4 100%);
 				color: #fff;
 			}
 		}
