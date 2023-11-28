@@ -216,5 +216,6 @@
   "app.img4":"Contact online customer service",
   "app.text5":"Withdrawal time: from Monday to Friday",
   "app.text6":"to",
-  "app.text7":"between"
+  "app.text7":"between",
+  "app.systemMessages":"System messages"
 }

@@ -158,7 +158,7 @@
 				}
 
 				.agreement {
-					background: #fd8124;
+					background: linear-gradient(0deg, #0694B8 0%, #6BBDB4 100%);
 					color: #fff;
 				}
 			}

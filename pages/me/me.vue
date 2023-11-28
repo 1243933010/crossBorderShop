@@ -15,6 +15,12 @@
 							<text>+{{userInfo.country_code}}</text>  <text>{{ userInfo.mobile }}</text>
 						</view>
 					</view>
+					<view class="message" @click="goMessage">
+						<uni-badge size="small" :text="messageCount" absolute="rightTop" type="error">
+							<image src="../../static/img/message.png" mode="widthFix"></image>
+						</uni-badge>
+						
+					</view>
 				</view>
 				<view class="number">
 					<view class="item">
@@ -123,6 +129,7 @@ export default {
 				num2: 1,
 				num3: 1,
 			},
+			messageCount:0
 		};
 	},
 	computed: {
@@ -170,12 +177,20 @@ export default {
 			console.log(res);
 			if (res.data.code === 0) {
 				this.userInfo = res.data.data;
-				return;
+				
+			}else{
+				uni.showToast({
+					icon: "none",
+					title: res.data.msg,
+				});
 			}
-			uni.showToast({
-				icon: "none",
-				title: res.data.msg,
-			});
+			
+			let resp = await $request('msgCount',{});
+			console.log(resp.data.data,'---')
+			if(resp.data.code===0){
+				this.messageCount = resp.data.data.total_count;
+				// console.log(resp.data.data.total_count,'--')
+			}
 		},
 		goModifyNickname() {
 			uni.navigateTo({
@@ -253,6 +268,11 @@ export default {
 				return;
 			}
 		},
+		goMessage(){
+			uni.navigateTo({
+				url:'/pages/me/message'
+			})
+		}
 	},
 };
 </script>
@@ -275,8 +295,13 @@ export default {
 			color: #fff;
 
 			.userinfo {
-				padding: 120rpx 86rpx 98rpx;
-
+				padding: 120rpx 0rpx 98rpx 86rpx;
+				.message{
+					padding-left: 100rpx;
+					image{
+						width: 43rpx;
+					}
+				}
 				.df(center, flex-start);
 
 				.logo {

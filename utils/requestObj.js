@@ -135,10 +135,13 @@ let requestObj = {
 		url: '/api/user/sign',
 		type: 'POST'
 	},
-	wechatLogin: {
-		url: '/yoursender/api/wechat/login',
-		type: 'GET',
-		otherGet: true
+	msgCount: {
+		url:'/api/msg/count',
+		type: 'POST',
+	},
+	msgList: {
+		url:'/api/msg/list',
+		type: 'POST',
 	},
 }
 export default requestObj;

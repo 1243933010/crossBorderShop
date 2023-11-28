@@ -37,7 +37,7 @@ export default {
       iStatusBarHeight: 0,
       array: ["中文", "English","Francés","Español"],
       index: 0,
-      iconList: ["../../static/img/cn.png", "../../static/img/eg.png"],
+      iconList: ["../../static/img/cn.png", "../../static/img/eg.png","../../static/img/cn.png","../../static/img/eg.png",],
       imgSrc: "../../static/img/cn.png",
       locale: { "zh-Hans": 0, en: 1,fr:2,es:3 },
       code: ["zh-Hans", "en","fr","es"],
@@ -80,6 +80,7 @@ export default {
 .image-width {
   padding-top: 44rpx;
   width: 100%;
+  // height: 200rpx;
   background: url("/static/img/header_tabber.png") no-repeat center center / 100%;
 
   .header {
@@ -111,6 +112,10 @@ export default {
       .header-select-icon {
         width: 53rpx;
         border-radius: 50%;
+		image{
+			width: 100%;
+			height: 100%;
+		}
       }
 
       .header-select-select {

@@ -296,7 +296,7 @@ export default {
         border-radius: 0 50px 50px 0;
         padding: 10rpx 30rpx;
         // background: linear-gradient(0deg, #fd631f 0%, #fd7e1f 100%);
-		background: linear-gradient(90deg, #B8DDDE 0%, #DBEBEB 100%);
+		background: linear-gradient(90deg, #1098B7 0%, #64BAB4 100%);
         color: #fff;
       }
 
