@@ -5,7 +5,7 @@ export default {
 		console.log("App Launch");
 		let code = uni.getLocale();
 		if (!code) {
-			uni.setLocale("zh-Hans");
+			uni.setLocale("en");
 		}
 		console.log(this.$t,'-------')
 		setTabbar(this.$t)

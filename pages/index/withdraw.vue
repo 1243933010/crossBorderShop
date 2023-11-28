@@ -16,6 +16,18 @@
 			</label>
 		</radio-group>
 		</view>
+		<view class="way-box">
+		<!-- {{ $t("storageLevel.dollar") }}T-TEC 20 -->
+		<radio-group @change="radioChange1">
+			<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in accountList" :key="index">
+				<view class="tit" style="display: flex;flex-direction: row;align-items: center;">
+					<radio :value="item.value" :checked="index === current1" />
+					<view>{{item.label}}</view>
+				</view>
+				
+			</label>
+		</radio-group>
+		</view>
         <view class="inp-box">
           <input type="number" v-model="money" />
         </view>
@@ -53,7 +65,11 @@ export default {
 		pay_password:'',
 		current:0,
 		networkStr:'',
-		type:'password'
+		type:'password',
+		withdraw_type:'',
+		account_list:{},
+		accountList:[],
+		current1:0
 	};
   },
   computed: {
@@ -70,11 +86,16 @@ export default {
   },
   mounted(){
 	  this.withdrawInfo();
+	  this.walletInfo();
   },
   methods:{
 	  radioChange(e){
 	  	console.log(e)
 	  	this.networkStr = e.detail.value;
+	  },
+	  radioChange1(e){
+	  	console.log(e)
+	  	this.withdraw_type = e.detail.value;
 	  },
 	  async withdrawInfo(){
 		  let res = await $request('withdrawInfo',{})
@@ -89,7 +110,25 @@ export default {
 		  })
 	  },
 	  async subBtn(){
-		  let res = await $request('withdrawCreate',{money:this.money,pay_password:this.pay_password,withdraw_address:this.networkStr})
+		  console.log(this.account_list.bank.bank_account,this.account_list.usdt.bank_account)
+		  if(!this.account_list.bank.bank_account&&!this.account_list.usdt.bank_account){
+			  uni.showToast({
+			  	icon:'none',
+				title:this.$t("wallet.text7")
+			  })
+			  setTimeout(()=>{
+				  uni.navigateTo({
+				  	url:'/pages/me/wallet'
+				  })
+			  },1500)
+			  return
+		  }
+		  let res = await $request('withdrawCreate',
+		  {money:this.money,
+		  pay_password:this.pay_password,
+		  withdraw_address:this.networkStr,
+		  withdraw_type:this.withdraw_type},
+		  )
 	      console.log(res)
 		  uni.showToast({
 		  	icon:'none',
@@ -100,6 +139,41 @@ export default {
 			  		 uni.navigateBack({delta:1})
 			  },1500)
 		  }
+	  },
+	  
+	  async walletInfo() {
+	  	const res = await $request("walletInfo");
+	  	const {
+	  		code,
+	  		data,
+	  		msg
+	  	} = res.data;
+	  
+	  	if (code !== 0) {
+	  		uni.showToast({
+	  			title: "钱包信息获取失败",
+	  			icon: "none",
+	  		});
+	  
+	  		return;
+	  	}
+	  
+	  	const {
+	  		balance,
+	  		account_list
+	  	} = data;
+	  	this.account_list = account_list;
+		this.accountList = [];
+		if(account_list.bank.bank_account){
+			this.accountList.push({value:account_list.bank.withdraw_type,label:this.$t("app.bankCard")})
+			this.withdraw_type = account_list.bank.withdraw_type
+		}
+		if(account_list.usdt.bank_account){
+			this.accountList.push({value:account_list.usdt.withdraw_type,label:'usdt'})
+			if(!this.withdraw_type){
+				this.withdraw_type = account_list.usdt.withdraw_type
+			}
+		}
 	  },
   }
 };

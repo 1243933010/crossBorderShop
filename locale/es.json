@@ -208,5 +208,13 @@
 	  "app.text5":"Horario de retiros: de ",
 	  "app.text6":"a",
 	  "app.text7":"entre",
-	  "app.systemMessages":"Mensajes del sistema"
+	  "app.systemMessages":"Mensajes del sistema",
+	  "app.bankCard":"Tarjeta bancaria",
+	   "wallet.text1": "Por favor, ingrese su nombre real",
+	   "wallet.text2": "Por favor, ingrese su número de móvil",
+	   "wallet.text3": "Por favor, ingrese el nombre del banco",
+	   "wallet.text4": "Por favor, ingrese su número de cuenta bancaria",
+	   "wallet.text5": "Por favor, ingrese su número de identificación",
+	   "wallet.text6": "Vincular tarjeta bancaria",
+	   "wallet.text7":"Por favor, vincule primero la billetera o usdt"
 	}

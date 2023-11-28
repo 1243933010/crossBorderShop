@@ -430,7 +430,12 @@ export default {
 
           .product-img {
             width: 100%;
+			height: 400rpx;
             background-color: #e8e8e8;
+			image{
+				width: 100%;
+				// height: 100rpx;
+			}
           }
 
           .product-info {

@@ -217,5 +217,13 @@
   "app.text5":"Withdrawal time: from Monday to Friday",
   "app.text6":"to",
   "app.text7":"between",
-  "app.systemMessages":"System messages"
+  "app.systemMessages":"System messages",
+  "app.bankCard":"Bank Card",
+   "wallet.text1": "Please enter your real name",
+   "wallet.text2": "Please enter your mobile number",
+   "wallet.text3": "Please enter the bank name",
+   "wallet.text4": "Please enter your bank account number",
+   "wallet.text5": "Please enter your ID card number",
+   "wallet.text6": "Bind bank card",
+   "wallet.text7":"Please bind your wallet or USDT first"
 }

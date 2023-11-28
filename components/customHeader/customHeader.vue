@@ -35,12 +35,13 @@ export default {
   data() {
     return {
       iStatusBarHeight: 0,
-      array: ["中文", "English","Francés","Español"],
       index: 0,
-      iconList: ["../../static/img/cn.png", "../../static/img/eg.png","../../static/img/cn.png","../../static/img/eg.png",],
-      imgSrc: "../../static/img/cn.png",
-      locale: { "zh-Hans": 0, en: 1,fr:2,es:3 },
-      code: ["zh-Hans", "en","fr","es"],
+	  array: [ "English","Francés","Español","中文"],
+      iconList: [ "../../static/img/eg.png","../../static/img/fr.png","../../static/img/es.png","../../static/img/cn.png"],
+      code: [ "en","fr","es","zh-Hans"],
+	  imgSrc: "../../static/img/eg.png",
+      locale: {en: 0, "zh-Hans": 1, fr:2,es:3 },
+      
     };
   },
   mounted() {

@@ -208,5 +208,13 @@
 	"app.text5": "Temps de retrait : du lundi au vendredi,",
 	"app.text6": "à",
 	"app.text7": "entre",
-	"app.systemMessages":"Messages système"
+	"app.systemMessages":"Messages système",
+	"app.bankCard":"Carte bancaire",
+	 "wallet.text1": "Veuillez entrer votre véritable nom",
+	 "wallet.text2": "Veuillez entrer votre numéro de mobile",
+	 "wallet.text3": "Veuillez entrer le nom de la banque",
+	 "wallet.text4": "Veuillez entrer votre numéro de compte bancaire",
+	 "wallet.text5": "Veuillez entrer votre numéro de carte d'identité",
+	 "wallet.text6": "Lier la carte bancaire",
+	 "wallet.text7":"S'il vous plaît lier le portefeuille ou usdt d'abord"
 }

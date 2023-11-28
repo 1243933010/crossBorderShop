@@ -143,5 +143,9 @@ let requestObj = {
 		url:'/api/msg/list',
 		type: 'POST',
 	},
+	bindBank: {
+		url:'/api/bank_accounts/bind_bank',
+		type: 'POST',
+	},
 }
 export default requestObj;

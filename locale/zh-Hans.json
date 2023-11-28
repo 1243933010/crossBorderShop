@@ -217,5 +217,14 @@
   "app.text5":"取款时间:从周一到周五的",
   "app.text6":"到",
   "app.text7":"之间",
-  "app.systemMessages":"系统消息"
+  "app.systemMessages":"系统消息",
+  "app.bankCard":"银行卡",
+  "wallet.text1":"请输入真实姓名",
+  "wallet.text2":"请输入手机号",
+  "wallet.text3":"请输入银行名称",
+  "wallet.text4":"请输入银行卡账户",
+  "wallet.text5":"请输入身份证号",
+  "wallet.text6":"捆绑银行卡",
+  "wallet.text7":"请先绑定钱包或者usdt"
+  
 }
