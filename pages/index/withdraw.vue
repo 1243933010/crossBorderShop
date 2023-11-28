@@ -5,7 +5,6 @@
       <view class="title">{{ $t("withdraw.title") }}</view>
       <view class="withdraw-box">
         <view class="way-box">
-		<!-- {{ $t("storageLevel.dollar") }}T-TEC 20 -->
 		<radio-group @change="radioChange">
 			<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in info.withdrawal_network" :key="index">
 				<view class="tit" style="display: flex;flex-direction: row;align-items: center;">
@@ -91,17 +90,18 @@ export default {
   methods:{
 	  radioChange(e){
 	  	console.log(e)
-	  	this.networkStr = e.detail.value;
+	  	// this.networkStr = e.detail.value;
 	  },
 	  radioChange1(e){
-	  	console.log(e)
-	  	this.withdraw_type = e.detail.value;
+	  	console.log(e.detail.value)
+	  	this.withdraw_type = e.detail.value.withdraw_type;
+		this.networkStr = e.detail.value.bank_account;
 	  },
 	  async withdrawInfo(){
 		  let res = await $request('withdrawInfo',{})
 		  if(res.data.code===0){
 			  this.info = res.data.data;
-			  this.networkStr= res.data.data.withdrawal_network[0]
+			  // this.networkStr= res.data.data.withdrawal_network[0]
 			  return
 		  }
 		  uni.showToast({
@@ -165,13 +165,15 @@ export default {
 	  	this.account_list = account_list;
 		this.accountList = [];
 		if(account_list.bank.bank_account){
-			this.accountList.push({value:account_list.bank.withdraw_type,label:this.$t("app.bankCard")})
+			this.accountList.push({value:account_list.bank,label:this.$t("app.bankCard")})
 			this.withdraw_type = account_list.bank.withdraw_type
+			this.networkStr = account_list.bank.bank_account;
 		}
 		if(account_list.usdt.bank_account){
-			this.accountList.push({value:account_list.usdt.withdraw_type,label:'usdt'})
+			this.accountList.push({value:account_list.usdt,label:'usdt'})
 			if(!this.withdraw_type){
 				this.withdraw_type = account_list.usdt.withdraw_type
+				this.networkStr = account_list.usdt.bank_account;
 			}
 		}
 	  },
