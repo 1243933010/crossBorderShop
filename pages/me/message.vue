@@ -6,7 +6,7 @@
 				<view class="item-top">
 					<view class="item-top-title-text">
 						<!-- v-if="item.is_read!==1" -->
-						<view  class="radio"></view>
+						<!-- <view  class="radio"></view> -->
 						<text class="item-top-title-text"  style="font-weight: 600;">
 							{{item.title}}</text> 
 					</view>

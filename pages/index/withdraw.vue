@@ -17,7 +17,7 @@
 		</view>
 		<view class="way-box">
 		<!-- {{ $t("storageLevel.dollar") }}T-TEC 20 -->
-		<radio-group @change="radioChange1">
+		<radio-group style="display: flex;flex-direction: row;" @change="radioChange1">
 			<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in accountList" :key="index">
 				<view class="tit" style="display: flex;flex-direction: row;align-items: center;">
 					<radio :value="item.value" :checked="index === current1" />
@@ -191,7 +191,9 @@ page {
   // background-color: #fd7f20;
   background: linear-gradient(0deg, #0694B8 0%, #6BBDB4 100%);
 }
-
+.uni-list-cell{
+	margin-right: 20rpx;
+}
 .withdraw-page {
   .withdraw-scroll {
     padding-bottom: 20rpx;
@@ -212,6 +214,9 @@ page {
       .way-box {
         margin-bottom: 36rpx;
         color: #fd7e1f;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
       }
 
       .inp-box {

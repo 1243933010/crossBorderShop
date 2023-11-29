@@ -362,7 +362,8 @@ page {
 				align-items: center;
 				margin-bottom: 5rpx;
 				padding: 20rpx 0 13rpx 0;
-
+				width: 100%;
+				height: 300rpx;
 				image {
 					width: 175rpx;
 				}
@@ -390,6 +391,7 @@ page {
 
 				image {
 					width: 145rpx;
+					height: 145rpx;
 					margin-right: 30rpx;
 				}
 			}

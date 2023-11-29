@@ -296,8 +296,13 @@ export default {
 
 			.userinfo {
 				padding: 120rpx 0rpx 98rpx 86rpx;
+				// display: flex;
+				// align-items: flex-start;
+				// justify-content: space-between;
+				// align-items: center;
 				.message{
 					padding-left: 100rpx;
+					margin-top: -25rpx;
 					image{
 						width: 43rpx;
 					}
