@@ -166,6 +166,14 @@
 				"enablePullDownRefresh": false
 			}
 		},
+		{
+			"path" : "pages/login/phonePrefix",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
 		
 		// 加盟
 		{

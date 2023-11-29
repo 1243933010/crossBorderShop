@@ -14,9 +14,7 @@
 					<view class="image-icon"></view>
 					<view class="prefix-con" @click="openpNumberPicker">
 						<!-- 手机号前缀选择器 -->
-						<picker @change="bindPickerChange" :value="pNumberPerfixIndex" :range="pNumberPerfixArr">
-							<view class="number-prefix">{{ formData.country_code }}</view>
-						</picker>
+						<view class="number-prefix" @click="goPhonePrefix">{{ formData.country_code }}</view>
 						<view class="arrow"></view>
 					</view>
 					<view class="inp">
@@ -56,9 +54,6 @@ export default {
 	},
 	data() {
 		return {
-			pNumberPerfixIndex: 0, // 手机前缀 角标
-			pNumberPerfixArr: ["+86"], // 手机前缀可选数组
-			pNumberPerfix: "+86", // 手机前缀
 			iStatusBarHeight: 0,
 			pwdType: true,
 			isMember: true,
@@ -71,18 +66,19 @@ export default {
 	},
 	mounted() {
 		this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-		
+
 		// 获取缓存里面的手机号和密码
-		this.formData.mobile = uni.getStorageSync('mobile');
-		this.formData.password = uni.getStorageSync('password');
+		this.formData.mobile = uni.getStorageSync("mobile");
+		this.formData.password = uni.getStorageSync("password");
+
+		// 在页面加载时监听返回事件
+		uni.$on("getPrefix", event => {
+			this.formData.country_code = "+" + event.prefix;
+		});
 	},
 	methods: {
-		changeRadio(e){
-			console.log(e)
-		},
-		bindPickerChange(e) {
-			this.pNumberPerfixIndex = e.detail.value;
-			this.formData.country_code = this.pNumberPerfixArr[this.pNumberPerfixIndex];
+		changeRadio(e) {
+			console.log(e);
 		},
 		openpNumberPicker() {},
 		handleEye() {
@@ -92,6 +88,12 @@ export default {
 			// 去往注册页面
 			uni.navigateTo({
 				url: "/pages/login/region",
+			});
+		},
+		goPhonePrefix() {
+			// 去往注册页面
+			uni.navigateTo({
+				url: "/pages/login/phonePrefix",
 			});
 		},
 		loginHandle() {
@@ -111,11 +113,11 @@ export default {
 
 				// 登录成功
 				uni.setStorageSync("token", `Bearer ${token}`); // 存储token
-				
+
 				// 记住密码
-				let {mobile, password} = this.formData;
+				let { mobile, password } = this.formData;
 				uni.setStorageSync("mobile", mobile); // 存储手机号
-				this.isMember ? uni.setStorageSync("password", password) : ''; // 存储密码
+				this.isMember ? uni.setStorageSync("password", password) : ""; // 存储密码
 				uni.showToast({
 					title: this.$t("login.seccuss"),
 					success: () => {
@@ -141,7 +143,7 @@ export default {
 			margin: 170rpx auto 62rpx;
 			// border-radius: 50%;
 			width: 140rpx;
-			image{
+			image {
 				border-radius: 50%;
 			}
 		}
@@ -253,7 +255,7 @@ export default {
 						border-color: #383838;
 						color: #fff;
 						// background-color: #383838;
-						background: linear-gradient(60deg, #0694B8 0%, #6BBDB4 100%);
+						background: linear-gradient(60deg, #0694b8 0%, #6bbdb4 100%);
 
 						&[disabled] {
 							background-color: #585858;
