@@ -216,5 +216,14 @@
 	 "wallet.text4": "Veuillez entrer votre numéro de compte bancaire",
 	 "wallet.text5": "Veuillez entrer votre numéro de carte d'identité",
 	 "wallet.text6": "Lier la carte bancaire",
-	 "wallet.text7":"S'il vous plaît lier le portefeuille ou usdt d'abord"
+	 "wallet.text7":"S'il vous plaît lier le portefeuille ou usdt d'abord",
+	 "app.popup3": "Choisir à partir de l'album",
+	 "app.popup4": "Prendre des photos",
+	 "app.popup5": "vider",
+	 "app.mobile": "numéro de téléphone",
+	 "app.branch_bank_name": "numéro de carte bancaire",
+	 "app.bank_account": "nom de la Banque",
+	 "app.id_number": "numéro d'identification",
+	 "app.popup6": "pas de message pour le moment",
+	 "app.popup7": "centre personnel"
 }

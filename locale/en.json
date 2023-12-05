@@ -225,5 +225,14 @@
    "wallet.text4": "Please enter your bank account number",
    "wallet.text5": "Please enter your ID card number",
    "wallet.text6": "Bind bank card",
-   "wallet.text7":"Please bind your wallet or USDT first"
+   "wallet.text7":"Please bind your wallet or USDT first",
+   "app.popup3": "Select from album",
+   "app.popup4": "photograph",
+   "app.popup5": "clear",
+   "app.mobile": "mobile",
+   "app.branch_bank_name": "branch bank name",
+   "app.bank_account": "bank account",
+   "app.id_number": "id number",
+   "app.popup6": "No message at the moment",
+   "app.popup7": "Personal Center"
 }

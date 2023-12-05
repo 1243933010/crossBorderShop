@@ -14,7 +14,7 @@
 			<view style="border: 1rpx dashed #555555;" v-if="userInfo.is_sign===1">
 				<image :src="userInfo.sign_img" mode="widthFix"></image>
 			</view>
-			<view class="btn-box">
+			<view class="btn-box" v-if="userInfo.is_sign==2">
 				<view class="exit" @click="startSign">
 					<text>{{ $t("fwxy.btn1") }}</text>
 				</view>
@@ -64,7 +64,8 @@
 				// let s = await this.$refs.sig.getSyncSignature();
 				// console.log('组件版本', this.$refs.sig.VERSION);
 				// console.log('签名数据', s);
-				this.uploadImgFnc();
+				// this.uploadImgFnc();
+				this.$refs.sig.showSignature()
 			},
 			async getAgreements(){
 				let res = await $request('agreements',{})
@@ -86,9 +87,6 @@
 				});
 			},
 			async uploadImgFnc(){
-				// let aaa =  await this.$refs.drawPad.save();
-				// this.v = aaa.tempFilePath;
-				// console.log(await this.$refs.drawPad.save())
 				console.log(this.v)
 				if(!this.v){
 					uni.showToast({

@@ -27,7 +27,7 @@ export default {
 	computed: {
 		config() {
 			return {
-				title: this.$t("teamInfo.pageTit"),
+				title: this.$t("app.popup7"),
 				color: "#ffffff",
 				// backgroundColor: [1, "#24bdab"],
 				// 背景图片（array则为滑动切换背景图，string为单一背景图）

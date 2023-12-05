@@ -225,6 +225,14 @@
   "wallet.text4":"请输入银行卡账户",
   "wallet.text5":"请输入身份证号",
   "wallet.text6":"捆绑银行卡",
-  "wallet.text7":"请先绑定钱包或者usdt"
-  
+  "wallet.text7":"请先绑定钱包或者usdt",
+  "app.popup3": "从相册选择",
+  "app.popup4": "拍照",
+  "app.popup5": "清空",
+  "app.mobile": "手机号",
+  "app.branch_bank_name": "银行卡号",
+  "app.bank_account": "银行名称",
+  "app.id_number": "身份证号",
+  "app.popup6": "暂无消息",
+  "app.popup7": "个人中心"
 }

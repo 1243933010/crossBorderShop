@@ -92,7 +92,7 @@
 					account_number,
 					network
 				} = data.usdt;
-				this.account_number = BigInt(account_number).toString();
+				this.account_number = account_number.toString();
 				this.network = network;
 				this.networkStr = network[0]
 			},

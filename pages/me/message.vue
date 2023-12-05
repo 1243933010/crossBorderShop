@@ -51,6 +51,12 @@
 				console.log(res)
 				if(res.data.code===0){
 					this.list = res.data.data.list;
+					if(res.data.data.list.length===0){
+						uni.showToast({
+							icon:"none",
+							title:this.$t("app.popup6")
+						})
+					}
 				}
 			}
 		}

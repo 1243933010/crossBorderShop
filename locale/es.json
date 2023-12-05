@@ -216,5 +216,14 @@
 	   "wallet.text4": "Por favor, ingrese su número de cuenta bancaria",
 	   "wallet.text5": "Por favor, ingrese su número de identificación",
 	   "wallet.text6": "Vincular tarjeta bancaria",
-	   "wallet.text7":"Por favor, vincule primero la billetera o usdt"
+	   "wallet.text7":"Por favor, vincule primero la billetera o usdt",
+	   "app.popup3": "Selección del álbum",
+	   "app.popup4": "Tomar fotos",
+	   "app.popup5": "vaciado",
+	   "app.mobile": "número de teléfono móvil",
+	   "app.branch_bank_name": "número de tarjeta bancaria",
+	   "app.bank_account": "nombre del banco",
+	   "app.id_number": "número de identificación",
+	   "app.popup6": "no hay noticias por el momento",
+	   "app.popup7": "centro personal"
 	}

@@ -10,13 +10,13 @@
 					@touchmove="touchmove" @touchend="touchend"></canvas>
 				<view class="signature-btns">
 					<view class="btn btn-cancel cu-btn bg-main margin-tb-sm text-white" @tap="cancelSignature()">
-						<text>取</text><text>消</text>
+						<text>{{$t("app.cancel")}}</text>
 					</view>
 					<view class="btn btn-clear cu-btn bg-main margin-tb-sm text-white" @tap="clearSignature();">
-						<text>清</text><text>空</text>
+						<text>清空</text>
 					</view>
 					<view class="btn btn-ok cu-btn bg-main margin-tb-sm text-white" @tap="onOK()">
-						<text>确</text><text>定</text>
+						<text>{{$t("app.sure")}}</text>
 					</view>
 				</view>
 			</view>

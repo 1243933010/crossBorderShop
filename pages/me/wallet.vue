@@ -48,7 +48,13 @@
 										<input :disabled="bankBool" v-model="bankObj.id_number" type="text" :placeholder="$t('wallet.text5')" />
 									</view>
 								</view>
-								
+								<view class="disabled-text"  v-if="bankBool" >
+									<view class="">{{$t("schema.name")}}:{{bankObj.realname}}</view>
+									<view class="">{{$t("app.mobile")}}:{{bankObj.mobile}}</view>
+									<view class="">{{$t("app.branch_bank_name")}}:{{bankObj.branch_bank_name}}</view>
+									<view class="">{{$t("app.bank_account")}}:{{bankObj.bank_account}}</view>
+									<view class="">{{$t("app.id_number")}}:{{bankObj.id_number}}</view>
+								</view>
 								<button v-if="!bankBool" class="sub-btn" @click="bindBank">{{ $t("wallet.text6") }}</button>
 							<!-- </view> -->
 
@@ -200,6 +206,14 @@
 
 <style lang="less" scoped>
 	@import "../../static/less/variable.less";
+	
+	.disabled-text{
+		padding: 20px 0;
+		view{
+			margin-bottom: 20px;
+			font-size: 24rpx;
+		}
+	}
 
 	page {
 		background-color: #f5f4f9;

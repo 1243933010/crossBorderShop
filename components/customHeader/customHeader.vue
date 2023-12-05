@@ -19,9 +19,9 @@
 
     <uni-popup ref="popup" type="center" background-color="#fff" v-if="above">
       <view class="popup-container">
-        <view class="popup-tit">普斯集团</view>
+        <view class="popup-tit">{{$t("app.name")}}</view>
         <view class="popup-content">{{ $t("aboutUs.content") }}</view>
-        <view class="popup-close-btn" @click="closePop">关闭</view>
+        <view class="popup-close-btn" @click="closePop">{{$t("app.sure")}}</view>
       </view>
     </uni-popup>
   </view>

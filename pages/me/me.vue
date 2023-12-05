@@ -12,7 +12,7 @@
 							<view class="vip">{{ userInfo.vip_name }}</view>
 						</view>
 						<view class="id">
-							<text>+{{userInfo.country_code}}</text>  <text>{{ userInfo.mobile }}</text>
+							<text>{{userInfo.country_code}}</text>  <text>{{ userInfo.mobile }}</text>
 						</view>
 					</view>
 					<view class="message" @click="goMessage">
@@ -83,9 +83,9 @@
 
 		<uni-popup ref="avatarPopup" type="bottom" class="change-avatar">
 			<view class="select-ul">
-				<view class="select-item">从相册选择</view>
-				<view class="select-item">拍照</view>
-				<view class="select-item cancel" @click="closeAvatarPop">取消</view>
+				<view class="select-item">{{$t("app.popup3")}}</view>
+				<view class="select-item">{{$t("app.popup4")}}</view>
+				<view class="select-item cancel" @click="closeAvatarPop">{{$t("app.cancel")}}</view>
 			</view>
 		</uni-popup>
 	</view>
