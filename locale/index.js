@@ -4,7 +4,7 @@ import fr from './fr.json'
 import es from './es.json'
 export default {
 	en,
-	'zh-Hans': zhHans,
+	// 'zh-Hans': zhHans,
 	'fr': fr,
 	'es': es,
 }

@@ -36,7 +36,7 @@ export default {
     return {
       iStatusBarHeight: 0,
       index: 0,
-	  array: [ "English","Francés","Español","中文"],
+	  array: [ "English","Francés","Español"],
       iconList: [ "../../static/img/eg.png","../../static/img/fr.png","../../static/img/es.png","../../static/img/cn.png"],
       code: [ "en","fr","es","zh-Hans"],
 	  imgSrc: "../../static/img/eg.png",
